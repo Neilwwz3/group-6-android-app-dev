@@ -20,7 +20,7 @@ COMP7506 智能手机应用开发，第 6 组课程项目（香港大学，2026�
 | Neilwwz3 | 调研与统筹：用户调研、设计决策、任务分配、代码审查 |
 | 李同学（ketianli082-stack） | UI 与视觉设计 |
 | 杨同学（bfzzzzzz） | 待定 |
-| 郭同学 | 待定 |
+| 郭同学（GuoYiyang） | 待定 |
 
 当前任务见 [docs/tasks](docs/tasks/README.md)。
 
