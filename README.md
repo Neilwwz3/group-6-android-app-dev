@@ -1,80 +1,62 @@
 # group-6-android-app-dev
 
-A lightweight Android app built by Group 6 with Android Studio.
+COMP7506 Smart Phone Apps Development, Group 6 project (HKU, 2026).
+
+**Working title:** MovieTracker, a local-first app for rating and tracking the movies and TV shows you watch.
+
+**Status:** we are researching the core user need (Nov 2–4). Features and the remaining task assignments will be added here after that.
+
+## Key dates
+
+| Date | Milestone |
+| --- | --- |
+| Thu, Nov 19, 2026 | In-class demo |
+| Mon, Nov 30, 2026, 23:59 | Final submission: document, source code with this README, 1–2 minute video |
+
+## Team
+
+| Member (GitHub) | Role |
+| --- | --- |
+| Neilwwz3 | Research and coordination: user research, design decisions, task assignment, code review |
+| TBD | TBD |
+| TBD | TBD |
+| TBD | TBD |
 
 ## Tech stack
 
 | Item | Version |
 | --- | --- |
-| Language | Java 11 |
+| Language | Java 11, XML layouts |
 | Build | Gradle 9.6.0 (wrapper), Android Gradle Plugin 9.4.1, Kotlin DSL |
 | SDK | minSdk 24 / targetSdk 37 / compileSdk 37 |
 | UI | AppCompat, Material Components, ConstraintLayout |
 
-Dependency versions are managed centrally in [`gradle/libs.versions.toml`](gradle/libs.versions.toml).
+Dependency versions live in [`gradle/libs.versions.toml`](gradle/libs.versions.toml).
 
-## Getting started
+## Build and run
 
 1. Clone the repo:
    ```bash
    git clone https://github.com/Neilwwz3/group-6-android-app-dev.git
    ```
-2. Open the folder in Android Studio (**File > Open**) and let Gradle sync.
-   Android Studio creates `local.properties` with your SDK path automatically. Do not commit it.
+2. Open the folder in Android Studio (**File > Open**) and wait for Gradle sync. Android Studio creates `local.properties` with your SDK path; do not commit it.
 3. Pick an emulator or device and press **Run**.
 
-Command-line build:
+From the command line (use `gradlew.bat` on Windows):
 
 ```bash
-./gradlew assembleDebug        # build debug APK -> app/build/outputs/apk/debug/
-./gradlew test                 # unit tests
-./gradlew connectedAndroidTest # instrumented tests (needs a device/emulator)
-```
-
-## Project structure
-
-```
-.
-├── app/
-│   ├── build.gradle.kts              # app module config (SDK levels, dependencies)
-│   └── src/
-│       ├── main/
-│       │   ├── AndroidManifest.xml
-│       │   ├── java/hk/hkucs/group_6_android_app_dev/
-│       │   │   └── MainActivity.java # entry screen
-│       │   ├── res/
-│       │   │   ├── layout/           # screen layouts (XML)
-│       │   │   ├── values/           # strings, colours, themes
-│       │   │   ├── values-night/     # dark theme overrides
-│       │   │   ├── drawable/         # vector images / shapes
-│       │   │   └── mipmap-*/         # launcher icons
-│       │   └── keepRules/            # R8 keep rules for release builds
-│       ├── test/                     # local JVM unit tests
-│       └── androidTest/              # instrumented tests (run on device)
-├── gradle/
-│   ├── libs.versions.toml            # version catalog (all dependency versions)
-│   └── wrapper/                      # Gradle wrapper, do not edit by hand
-├── build.gradle.kts                  # root build file
-├── settings.gradle.kts               # module list and repositories
-└── gradle.properties                 # Gradle JVM / build flags
-```
-
-As the app grows, group code into packages under `hk.hkucs.group_6_android_app_dev`, for example:
-
-```
-ui/       # Activities, Fragments, Adapters
-model/    # data classes
-data/     # storage, network, repositories
-util/     # small helpers
+./gradlew assembleDebug   # debug APK -> app/build/outputs/apk/debug/
 ```
 
 ## Workflow
 
-- `main` should always build. Work on a feature branch (`feature/<name>`) and open a pull request to merge.
-- Pull before you start: `git pull --rebase`.
-- Add new libraries through `gradle/libs.versions.toml`, not hard-coded versions in `build.gradle.kts`.
-- Put user-facing text in `res/values/strings.xml` instead of hard-coding it in layouts or Java.
-- Never commit `local.properties`, keystores (`*.jks`, `*.keystore`) or build outputs; `.gitignore` already covers these.
+- `main` is protected. Nobody pushes to it directly; every change goes through a pull request approved by the coordinator.
+- One task, one branch (`feature/<task-id>-<short-name>`), one pull request.
+- Pull the latest `main` before you start work each day.
+- Only change the files your task card allows. Ask before touching shared code: data models, database, navigation, themes.
+- Ask before adding a library; add approved ones through `gradle/libs.versions.toml`.
+- A pull request is ready when the app builds and you have attached a screenshot for each acceptance criterion.
+- Never commit `local.properties`, keystores or build outputs; `.gitignore` already covers these.
 
 ## License
 
