@@ -26,7 +26,6 @@
 ui/<功能名>/       Activity、Fragment、Adapter，以及这个功能自己的 ViewModel
 data/db/           Room 数据库、Entity、DAO（只有统筹能改）
 data/repository/   Repository：界面层访问数据的唯一入口
-data/jellyfin/     Jellyfin 服务器客户端（纯 Java，不依赖界面）
 util/              小工具类
 ```
 
