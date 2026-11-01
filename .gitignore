@@ -1,0 +1,34 @@
+# Gradle
+.gradle/
+build/
+.kotlin/
+
+# Local machine config (SDK path etc.) - never commit
+local.properties
+
+# Android Studio / IntelliJ (regenerated from Gradle on sync)
+.idea/
+*.iml
+captures/
+.navigation/
+.externalNativeBuild/
+.cxx/
+
+# Build outputs
+*.apk
+*.aab
+*.ap_
+*.dex
+output-metadata.json
+/app/release/
+/app/debug/
+
+# Signing keys - keep these out of the repo
+*.jks
+*.keystore
+keystore.properties
+
+# Logs / OS files
+*.log
+.DS_Store
+Thumbs.db
