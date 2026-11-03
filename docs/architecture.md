@@ -10,7 +10,7 @@
 | 数据 | 存在哪里 |
 | --- | --- |
 | 影视条目、观看记录 | **Room**（androidx.room 2.8.x，基于 SQLite） |
-| 设置项（是否已载入示例数据、Jellyfin 服务器地址等） | `SharedPreferences` |
+| 设置项（是否已载入示例数据等） | `SharedPreferences` |
 | 海报图片 | App 私有目录的文件，数据库里只存文件名 |
 
 ### 为什么是 Room
@@ -37,7 +37,7 @@
 
 ### 表结构（v1 草案）
 
-字段参考 D-1 示例数据格式和 J-1 Jellyfin 字段，保证两边的数据都能直接存进来。
+字段参考 D-1 示例数据格式，保证示例数据能直接存进来。
 
 **`media_item`：一部电影或剧集**
 
@@ -54,8 +54,8 @@
 | `poster` | TEXT | 海报文件名，可空 |
 | `status` | TEXT | `want` / `watching` / `watched` / `dropped` |
 | `rating` | REAL | 当前评分 0–10，可空 |
-| `source` | TEXT | `manual` / `sample` / `jellyfin` |
-| `jellyfin_id` / `tmdb_id` / `imdb_id` | TEXT | 外部编号，可空，用于去重 |
+| `source` | TEXT | `manual` / `sample` |
+| `tmdb_id` / `imdb_id` | TEXT | 外部编号，可空，预留给以后去重 |
 | `created_at` / `updated_at` | INTEGER | 毫秒时间戳 |
 
 **`watch_record`：一次观看记录**
@@ -152,7 +152,6 @@ MainActivity
 普通布局实现，不引入 Preference 库。
 
 - 数据：载入示例数据、清空所有数据（二次确认）
-- Jellyfin：连接服务器、同步片库（是否保留 11 月 4 日确定）
 - 导出 / 导入 JSON 备份（可选，看进度）
 - 关于：版本号、小组成员
 
@@ -178,7 +177,9 @@ MainActivity
 | P-1 | 首页 | 李同学 | UI-1、ARCH-2 |
 | P-2 | 媒体库 + 作品详情 + 编辑作品 | 杨同学 | ARCH-2、D-2 |
 | P-3 | 统计页 + 自绘柱状图 | 待定 | ARCH-2、D-2 |
-| P-4 | 设置页 + Jellyfin 联调 | 郭同学 | J-1、ARCH-2 |
+| P-4 | 设置页（载入示例数据、清空数据、关于） | 待定 | ARCH-2、D-2 |
 | P-5 | 记一笔 | 待定 | ARCH-2 |
 
-ARCH-1 和 ARCH-2 先合并进 `main`，其他人在这个骨架上各自只改自己的 `ui/<功能名>/` 包和对应布局，互不冲突。
+好友功能和 Jellyfin 导入已在 11 月 2 日决定不做。
+
+ARCH-1 和 ARCH-2 先合并进 `dev`，其他人在这个骨架上各自只改自己的 `ui/<功能名>/` 包和对应布局，互不冲突。

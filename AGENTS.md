@@ -71,7 +71,8 @@ util/              小工具类
 
 ## Git 规则
 
-- 永远不要提交到 `main`，不要 force push。
+- 不要直接提交到 `dev` 或 `main`，不要 force push。所有 PR 都提到 `dev`，不要向 `main` 提 PR。
+- 新建分支前，先切到 `dev` 并拉取最新代码，再从 `dev` 新建分支。
 - 分支名：`feature/<任务编号>-<简短英文名>`，例如 `feature/ui-1-design-system`。
 - 提交信息：`<任务编号>: <做了什么>`，例如 `UI-1: add status badge styles`。
 - 不要提交 `local.properties`、`build/` 目录、APK、密钥文件。
