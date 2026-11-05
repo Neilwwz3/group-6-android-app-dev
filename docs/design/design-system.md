@@ -10,28 +10,28 @@ Use `Theme.Group6androidappdev`. All interface copy belongs in `strings.xml`. Ke
 
 | Resource | Value | Use |
 | --- | --- | --- |
-| `primary` | `#2979FF` | primary |
-| `on_primary` | `#FFFFFF` | on primary |
-| `primary_container` | `#EAF2FF` | primary container |
-| `on_primary_container` | `#174B9C` | on primary container |
-| `background` | `#F7F9FC` | background |
-| `surface` | `#FFFFFF` | surface |
-| `surface_variant` | `#EDF1F7` | surface variant |
-| `text_primary` | `#172033` | text primary |
-| `text_secondary` | `#526176` | text secondary |
-| `text_hint` | `#64748B` | text hint |
-| `outline` | `#DCE3ED` | outline |
-| `rating` | `#986400` | rating |
-| `status_want_text` | `#174B9C` | status want text |
-| `status_want_bg` | `#EAF2FF` | status want bg |
-| `status_watching_text` | `#805400` | status watching text |
-| `status_watching_bg` | `#FFF3D6` | status watching bg |
-| `status_watched_text` | `#176245` | status watched text |
-| `status_watched_bg` | `#E0F4EA` | status watched bg |
-| `status_dropped_text` | `#8A3441` | status dropped text |
-| `status_dropped_bg` | `#FCE8EC` | status dropped bg |
-| `error` | `#BA1A1A` | error |
-| `on_error` | `#FFFFFF` | on error |
+| `primary` | `#2979FF` | Brand accents, primary actions and selected navigation icons/labels; use on_primary for content on a solid primary fill |
+| `on_primary` | `#FFFFFF` | Text and icons on a solid primary fill, including the primary FAB |
+| `primary_container` | `#EAF2FF` | Pale selected-filter and highlighted-container background |
+| `on_primary_container` | `#174B9C` | Readable text/icons on primary_container, including selected filter labels |
+| `background` | `#F7F9FC` | Full-page background behind cards |
+| `surface` | `#FFFFFF` | Card and bottom-navigation background; unselected filter background |
+| `surface_variant` | `#EDF1F7` | Secondary filled regions such as poster placeholders |
+| `text_primary` | `#172033` | Headings, media titles and body content |
+| `text_secondary` | `#526176` | Supporting information such as year, type, genre and captions; unselected navigation labels/icons |
+| `text_hint` | `#64748B` | Input hints and placeholder guidance, rather than primary content |
+| `outline` | `#DCE3ED` | Dividers, card outlines and unfilled rating-star background |
+| `rating` | `#986400` | Filled stars in read-only ratings |
+| `status_want_text` | `#174B9C` | Want to Watch badge text; pair with status_want_bg |
+| `status_want_bg` | `#EAF2FF` | Want to Watch badge background; pair with status_want_text |
+| `status_watching_text` | `#805400` | Watching badge text; pair with status_watching_bg |
+| `status_watching_bg` | `#FFF3D6` | Watching badge background; pair with status_watching_text |
+| `status_watched_text` | `#176245` | Watched badge text; pair with status_watched_bg |
+| `status_watched_bg` | `#E0F4EA` | Watched badge background; pair with status_watched_text |
+| `status_dropped_text` | `#8A3441` | Dropped badge text; pair with status_dropped_bg |
+| `status_dropped_bg` | `#FCE8EC` | Dropped badge background; pair with status_dropped_text |
+| `error` | `#BA1A1A` | Error messages and error accents; pair with on_error on a solid error fill |
+| `on_error` | `#FFFFFF` | Text/icons on a solid error fill |
 
 Use each `status_*_text` with its matching `status_*_bg`; status labels must remain visible so color is never the only signal. The retained brand blue is used for accents; small selected text uses the darker `on_primary_container`.
 
@@ -39,29 +39,29 @@ Use each `status_*_text` with its matching `status_*_bg`; status labels must rem
 
 | Resource | Value | Use |
 | --- | --- | --- |
-| `text_headline` | `32sp` | text headline |
-| `text_title` | `24sp` | text title |
-| `text_card_title` | `16sp` | text card title |
-| `text_body` | `14sp` | text body |
-| `text_caption` | `12sp` | text caption |
-| `space_4` | `4dp` | space 4 |
-| `space_8` | `8dp` | space 8 |
-| `space_12` | `12dp` | space 12 |
-| `space_16` | `16dp` | space 16 |
-| `space_24` | `24dp` | space 24 |
-| `corner_card` | `16dp` | corner card |
-| `corner_badge` | `8dp` | corner badge |
-| `corner_button` | `12dp` | corner button |
-| `badge_horizontal_padding` | `12dp` | badge horizontal padding |
-| `badge_vertical_padding` | `6dp` | badge vertical padding |
-| `poster_width` | `88dp` | poster width |
-| `poster_height` | `132dp` | poster height |
+| `text_headline` | `32sp` | Large heading at the top of a screen; avoid repeating inside ordinary cards |
+| `text_title` | `24sp` | Page heading or major section heading |
+| `text_card_title` | `16sp` | Media title, card heading or compact section heading |
+| `text_body` | `14sp` | Body copy and ordinary labels |
+| `text_caption` | `12sp` | Year/type/genre metadata and supporting descriptions |
+| `space_4` | `4dp` | Tightly related text, such as media title to year/type/genre |
+| `space_8` | `8dp` | Icon-to-label gaps and related elements within one group |
+| `space_12` | `12dp` | Poster-to-details gap and horizontal padding inside badges |
+| `space_16` | `16dp` | Default screen inset, card padding and spacing between adjacent cards |
+| `space_24` | `24dp` | Separation between major content sections, such as Continue Watching and Recent Records |
+| `corner_card` | `16dp` | Corner radius for shared media/content cards |
+| `corner_badge` | `8dp` | Corner radius for the four watch-status badge backgrounds |
+| `corner_button` | `12dp` | Button shape corner radius; apply ShapeAppearance.Group6.Button explicitly |
+| `badge_horizontal_padding` | `12dp` | Start/end padding inside each status badge |
+| `badge_vertical_padding` | `6dp` | Top/bottom padding inside each status badge |
+| `poster_width` | `88dp` | Width of the compact sample media-card poster; adapt for other card formats |
+| `poster_height` | `132dp` | Height of the compact sample media-card poster; adapt for other card formats |
 | `touch_target` | `48dp` | Minimum interactive target |
-| `swatch_width` | `32dp` | Width of a palette swatch |
-| `icon_size` | `24dp` | Navigation icon and palette swatch height |
+| `swatch_width` | `32dp` | Palette-preview swatch and sample poster-icon size |
+| `icon_size` | `24dp` | Navigation illustration icon size |
 | `card_outline_width` | `1dp` | Card outline thickness |
 
-Use 16dp screen padding and the 4/8/12/16/24dp spacing scale. Cards have 16dp corners, badges 8dp and buttons 12dp. Button shapes can use `ShapeAppearance.Group6.Button`. Use wrap-content for English labels and keep interactive touch targets at least 48dp.
+Use 16dp screen padding and the 4/8/12/16/24dp spacing scale. These are the default conventions for new screens; the sample palette grid may use the same dimensions for compact preview arrangement. Keep repeated relationships consistent across pages rather than choosing a different gap for each item. Cards have 16dp corners, badges 8dp and buttons 12dp. Button shapes can use `ShapeAppearance.Group6.Button`. Use wrap-content for English labels and keep interactive touch targets at least 48dp.
 
 ## Styles
 
@@ -86,7 +86,7 @@ Use 16dp screen padding and the 4/8/12/16/24dp spacing scale. Cards have 16dp co
 
 ## Rating and text
 
-Ratings use 0–10 in product data and 0–5 stars in the small RatingBar: set the displayed rating to score / 2. A score of 8/10 displays four stars. Override the rating content description for each item using a formatted string. Do not reuse the sample description for production data. No editable rating behavior is delivered in UI-1.
+Ratings use 0–10 in product data and 0–5 stars in the small RatingBar: set the displayed rating to score / 2. A score of 8/10 displays four stars. A null score means not rated: show localized Not rated text and hide the star/score display instead of converting null to zero. A numeric zero remains a valid rating. Override the rating content description for each item using a formatted string. Do not reuse the sample description for production data. No editable rating behavior is delivered in UI-1.
 
 Do not display the implementation note “Read-only rating · Half-star steps” on media cards or in the component sample. Show only the stars and score. This behavior is documented here for developers.
 
@@ -96,7 +96,9 @@ The interface uses system typography, English labels and no downloaded font. Lab
 
 Open `app/src/main/res/layout/design_sample.xml` in Android Studio Split or Design. The preview declares the application theme. It includes all five text levels, palette swatches, four badges, selected/unselected filter chips, a read-only rating, fictional media card and FAB.
 
-The four navigation labels are a visual illustration only. The actual styled BottomNavigationView has no menu and therefore no working items. This follows the user instruction to keep the exact allowed directory scope: no res/menu resources are added. No app navigation or business page is changed.
+UI-1 acceptance decision (November 5, 2026): retain the four static navigation placeholders and the reusable `Widget.Group6.BottomNavigation` style. The user explicitly assigned the real navigation component and its interaction to G1 acceptance. The hidden, menu-less BottomNavigationView in the sample is not evidence of a working navigation component. No res/menu resources, Java or app navigation changes are included in UI-1.
+
+G1 must apply this style to a visible BottomNavigationView with Home, Library, Diary and Profile items and connect them to the four Fragments defined in docs/architecture.md. G1 acceptance must verify that every tab opens its page, selected icons/labels use primary, unselected items use text_secondary, and the selected tab remains consistent with the displayed page after state restoration. These checks are pending G1 work; the static UI-1 screenshot does not satisfy them.
 
 ## Verification
 
@@ -144,6 +146,41 @@ Apply text styles through `android:textAppearance`; apply widget styles through 
     android:checked="true"
     style="@style/Widget.Group6.FilterChip" />
 ```
+
+### Text and card
+
+```xml
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Widget.Group6.Card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_16"
+        android:text="@string/sample_film"
+        android:textAppearance="@style/TextAppearance.Group6.CardTitle" />
+</com.google.android.material.card.MaterialCardView>
+```
+
+### Read-only rating
+
+```xml
+<RatingBar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Widget.Group6.RatingBar.Small"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:rating="4"
+    android:contentDescription="@string/sample_rating_description" />
+```
+
+This fixed sample represents 8/10. Production code supplies the actual score divided by two and a matching localized content description. Keep rating editing in the later feature work.
+
+### Bottom navigation integration contract for G1
+
+Apply `style="@style/Widget.Group6.BottomNavigation"` to the real `com.google.android.material.bottomnavigation.BottomNavigationView`. G1 supplies its menu resource and Fragment switching. The style supplies selected/unselected colors and labeled items; it does not create menu items or navigation behavior. Do not copy the sample's `android:visibility="gone"` into the app shell. No runnable navigation example is claimed in UI-1.
 
 For production cards, supply a per-item rating content description in the layout or binding. The reusable rating style deliberately contains no sample-specific accessible label. `AppCompatImageView` is used when `app:srcCompat` and `app:tint` are needed.
 

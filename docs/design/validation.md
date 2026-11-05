@@ -33,10 +33,17 @@ The default Maven Central endpoint returned HTTP 403 for several existing depend
 ## Remaining acceptance evidence
 
 - Check large font and narrow-screen layout in Android Studio.
-- Bottom navigation is a style/label illustration only, as expressly requested; no menu directory was added.
+- UI-1 navigation scope is resolved: the user accepted static placeholders and assigned the visible real component, four-tab switching and selected-state verification to G1. No menu directory was added. G1 navigation acceptance is still pending.
 - T0 is a separate prerequisite; this UI-1 change does not include a member card.
-- GitHub CI and peer review must pass before merging into dev.
+- GitHub build check passed for implementation commit 832643b (run 42030629394). Peer review and any checks for subsequent commits must pass before merging into dev.
 
 ## Caption update
 
 The user requested that media cards omit “Read-only rating · Half-star steps”. The caption has been removed from the formal sample layout and local preview copy; rating behavior is documented only in the design guide. User-provided screenshots are preserved and therefore still show the earlier caption.
+
+## UI-1 review closeout (November 5, 2026)
+
+- Expanded every color and dimension table entry into a concrete usage rule, including the spacing scale and matching status-color pairs.
+- Added card/text and rating XML examples and clarified the G1 bottom-navigation integration contract.
+- Documented null (not rated) versus numeric zero for later page integration.
+- Documentation-only closeout: runtime resources, Java, Manifest, Gradle and existing screenshots are unchanged. Existing screenshots retain the caption/environment limitations stated in design-system.md.
