@@ -59,7 +59,7 @@ util/              小工具类
 
 ## 代码和资源规范
 
-- 界面上显示的文字一律写进 `res/values/strings.xml`（中文），不要写死在布局或 Java 里。
+- 界面上显示的文字一律写进 `res/values/strings.xml`（英文），不要写死在布局或 Java 里。
 - 颜色、字号、间距使用主题属性或 `colors.xml` / `dimens.xml` 里的资源，不要在布局里写死色值。
 - 类名用大驼峰（`LibraryFragment`），资源名用小写加下划线（`fragment_library.xml`、`item_media.xml`）。
 - 标识符用英文；注释可以用中文。
