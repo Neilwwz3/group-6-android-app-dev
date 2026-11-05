@@ -1,0 +1,106 @@
+<?xml version="1.0" ?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/diary_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/background">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/space_16">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home_eyebrow"
+            android:textAppearance="@style/TextAppearance.Group6.Caption"
+            android:textColor="@color/primary" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/diary_title"
+            android:textAppearance="@style/TextAppearance.Group6.Headline"
+            android:accessibilityHeading="true"
+            android:layout_marginTop="@dimen/space_8" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/diary_subtitle"
+            android:textAppearance="@style/TextAppearance.Group6.Body"
+            android:textColor="@color/text_secondary"
+            android:layout_marginTop="@dimen/space_8" />
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.Group6.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_24"
+            app:cardBackgroundColor="@color/primary_container"
+            app:strokeWidth="0dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/space_24">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/touch_target"
+                    android:layout_height="@dimen/touch_target"
+                    app:srcCompat="@drawable/ic_nav_diary"
+                    app:tint="@color/on_primary_container"
+                    android:importantForAccessibility="no" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/diary_empty_title"
+                    android:textAppearance="@style/TextAppearance.Group6.Title"
+                    android:layout_marginTop="@dimen/space_16"
+                    android:textColor="@color/on_primary_container" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/diary_empty_body"
+                    android:textAppearance="@style/TextAppearance.Group6.Body"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:textColor="@color/on_primary_container" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/space_24">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/diary_activity"
+                android:textAppearance="@style/TextAppearance.Group6.CardTitle" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/diary_activity_body"
+                android:textAppearance="@style/TextAppearance.Group6.Body"
+                android:layout_marginTop="@dimen/space_8"
+                android:textColor="@color/text_secondary" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/space_24">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/diary_timeline"
+                android:textAppearance="@style/TextAppearance.Group6.CardTitle" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/diary_timeline_body"
+                android:textAppearance="@style/TextAppearance.Group6.Body"
+                android:layout_marginTop="@dimen/space_8"
+                android:textColor="@color/text_secondary" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

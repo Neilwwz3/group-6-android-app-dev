@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">group-6-android-app-dev</string>
+    <string name="app_name">MovieTracker</string>
     <string name="sample_title">Design System</string>
     <string name="sample_subtitle">Material 3 · Component preview</string>
     <string name="sample_type">Typography</string>
@@ -58,4 +58,48 @@
     <string name="sample_brand">MovieTracker</string>
     <string name="sample_navigation_actions">Navigation &amp; Actions</string>
     <string name="sample_footer">UI-1 · Component showcase</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_library">Library</string>
+    <string name="nav_diary">Diary</string>
+    <string name="nav_profile">Profile</string>
+    <string name="home_title">Your next great watch.</string>
+    <string name="home_subtitle">A little space for every story.</string>
+    <string name="home_eyebrow">MOVIETRACKER</string>
+    <string name="home_empty_title">Every story starts somewhere</string>
+    <string name="home_empty_body">Keep the movies and shows you love in one place. Your next chapter starts in your library.</string>
+    <string name="explore_library">Explore library</string>
+    <string name="continue_watching">Continue watching</string>
+    <string name="continue_empty">Nothing in progress yet. Your ongoing movies and shows will appear here.</string>
+    <string name="recent_records">Recent entries</string>
+    <string name="recent_empty">Your latest viewing moments will appear here.</string>
+    <string name="library_title">Your library</string>
+    <string name="library_subtitle">The stories you keep, all in one place.</string>
+    <string name="library_empty_title">Make room for a good story</string>
+    <string name="library_empty_body">No movies or shows yet. This is where your collection will grow.</string>
+    <string name="add_title">Add a title</string>
+    <string name="diary_title">Your viewing diary</string>
+    <string name="diary_subtitle">Small moments. Memorable stories.</string>
+    <string name="diary_empty_title">A year of stories awaits</string>
+    <string name="diary_empty_body">No viewing entries yet. Your viewing days and memories will find a home here.</string>
+    <string name="diary_activity">Viewing activity</string>
+    <string name="diary_activity_body">Your viewing days will appear here as you build your diary.</string>
+    <string name="diary_timeline">Your timeline</string>
+    <string name="diary_timeline_body">Your entries will be grouped by date, with the latest first.</string>
+    <string name="profile_title">Your space</string>
+    <string name="profile_subtitle">A personal view of your movie life.</string>
+    <string name="profile_empty_title">Your story, in perspective</string>
+    <string name="profile_empty_body">Your viewing journey starts with your first title. Come back to see how it grows.</string>
+    <string name="profile_stats">Viewing overview</string>
+    <string name="profile_stats_body">Your collection, viewing time and ratings will appear here.</string>
+    <string name="profile_settings">Your collection settings</string>
+    <string name="profile_settings_body">Sample data and collection controls are coming soon.</string>
+    <string name="back">Back</string>
+    <string name="details_title">Title details</string>
+    <string name="details_placeholder">Details will appear here when you open a title from your collection.</string>
+    <string name="edit_title">Edit title</string>
+    <string name="add_placeholder">Adding titles is coming soon. For now, explore your library and the rest of MovieTracker.</string>
+    <string name="edit_placeholder">Title editing is coming soon.</string>
+    <string name="record_title">Log a watch</string>
+    <string name="record_placeholder">Logging a viewing entry is coming soon.</string>
+    <string name="shell_notice">Preview · More to come</string>
 </resources>
