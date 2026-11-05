@@ -1,6 +1,6 @@
 # 架构草案：数据库与页面划分
 
-> **状态：草案 v0（统筹起草，11 月 4 日核心需求确定后修订）**
+> **状态：v1（11 月 5 日按投票结果更新：主题包 A“观影日记”）**
 > 本文件定下两件事：本地数据库用什么、App 有哪几个大页面。具体字段和页面细节会随需求调整，但不会推翻这两项决定。
 
 ## 1. 数据库：Room
@@ -31,9 +31,9 @@
 | --- | --- | --- |
 | `androidx.room:room-runtime` + `room-compiler`（annotationProcessor） | 数据库 | 2.8.5 |
 | `androidx.lifecycle:lifecycle-viewmodel` / `lifecycle-livedata` | MVVM | 2.11.0 |
-| `androidx.navigation:navigation-fragment` / `navigation-ui` | 底部导航和页面跳转 | 2.10.2 |
+| `androidx.fragment:fragment` | 页签页面（李同学的 UI 分支已加） | 1.9.1 |
 
-统计图表**不引入图表库**，用一个自绘的简单柱状图 View 实现。
+统计图表**不引入图表库**：评分控件、热力图、环形图都是自绘 View。
 
 ### 表结构（v1 草案）
 
@@ -97,89 +97,81 @@ data/repository/
 
 ## 2. 页面划分
 
+> 11 月 5 日更新：采用李同学 `UI` 分支里已经做好的四个页签，把“观影计划”换成主题包 A 的“日记”，统计和设置并入“我的”。
+
 ### 整体结构
 
-- **一个 Activity + 多个 Fragment**：`MainActivity` 只放底部导航栏和 `NavHostFragment`。
-- 底部导航 4 个页签，用 Navigation 组件的 `nav_graph.xml` 管理跳转。
-- 二级页面（作品详情、编辑作品、记一笔）也是 Fragment，从页签页跳过去，返回键回到原页签。
+- `MainActivity` 放底部导航栏，4 个页签各是一个 Fragment，手动切换（李同学的 `UI` 分支已实现，不使用 Navigation 组件）。
+- 二级页面（作品详情、添加 / 编辑作品、记一笔）用独立的 Activity：别人通过它们的 `newIntent(...)` 静态方法打开，返回键自然回到原页面。这样每个人的页面互不影响，也不需要共同维护导航图。
+- 所有 Activity 在 G1（骨架）里一次性注册进 `AndroidManifest.xml`，之后谁都不用再改它。
 
 ```
-MainActivity
-└── BottomNavigationView
-    ├── 首页      HomeFragment
-    ├── 媒体库    LibraryFragment ──→ 作品详情 ──→ 编辑作品
-    ├── 统计      StatsFragment
-    └── 设置      SettingsFragment
-（任意页面）──→ 记一笔 AddRecordFragment
+MainActivity（底部导航）
+├── 首页   HomeFragment     ──→ 作品详情
+├── 片库   LibraryFragment  ──→ 作品详情 ──→ 添加 / 编辑作品
+│                                     └──→ 记一笔
+├── 日记   DiaryFragment    ──→ 作品详情
+└── 我的   ProfileFragment（统计 + 设置）
 ```
 
-### 四个大页面
+### 四个页签
 
 #### 首页 `ui/home/`
 
-打开 App 第一眼看到的页面，回答“我最近在看什么”。
-
-- 继续观看：状态为“在看”的作品，横向滚动卡片，剧集显示“看到第几集 / 共几集”
+- 继续观看：状态为“在看”的作品，横向滚动卡片
 - 最近记录：最近 5 条观看记录
-- 本月概览：本月看了几部、共多少小时、当前连续观影天数
-- 想看清单：随机或最新的几部“想看”
-- 悬浮按钮：记一笔
-- 没有数据时显示空状态，引导去设置页“载入示例数据”或去媒体库添加
+- 本月概览：本月看了几次、共多少小时
+- 没有数据时显示空状态，提示去“我的”载入示例数据
 
-#### 媒体库 `ui/library/`
-
-所有作品的完整列表，是数据最多的页面。
+#### 片库 `ui/library/`
 
 - 顶部搜索框（按中文名 / 原名）
-- 筛选标签：全部 / 想看 / 在看 / 已看完 / 弃坑；电影 / 剧集
-- 排序：最近更新 / 评分 / 年份
-- 列表卡片：海报、标题、“年份 · 类型 · 题材”、评分星级、状态徽章（用 UI-1 的组件）
+- 筛选：全部 / 想看 / 在看 / 已看完 / 弃坑
+- 列表卡片：海报、标题、“年份 · 类型 · 题材”、评分星级、状态徽章
 - 悬浮按钮：添加作品
-- 点卡片进入**作品详情**：基本信息、修改状态和评分、观看记录列表、编辑 / 删除
+- 点卡片进入作品详情
 
-#### 统计 `ui/stats/`
+#### 日记 `ui/diary/`（主题包 A）
 
-只读页面，全部数据来自 `watch_record` 和 `media_item`。
+- 上半部分：最近一年的观影热力图，每格一天，颜色越深当天记录越多；点一格，下方时间线跳到那一天
+- 下半部分：观影时间线，按日期分组的记录卡片，最新的在最上面
 
-- 总览数字：总作品数、已看完数、总观看时长
-- 月度柱状图：最近 12 个月每月观看次数或时长
-- 题材分布：各题材数量占比
-- 评分分布：0–10 分各区间的作品数
-- 连续观影：最长连续天数、当前连续天数
+#### 我的 `ui/profile/`
 
-#### 设置 `ui/settings/`
+- 统计：总量卡片（作品数、已看完、总时长、平均分）、题材分布环形图
+- 设置：载入示例数据、清空所有数据（都要二次确认）、关于
+- 演示之后再加：月度观影柱状图
 
-普通布局实现，不引入 Preference 库。
+### 二级页面
 
-- 数据：载入示例数据、清空所有数据（二次确认）
-- 导出 / 导入 JSON 备份（可选，看进度）
-- 关于：版本号、小组成员
+| 页面 | 包 | 作用 |
+| --- | --- | --- |
+| 作品详情 | `ui/detail/` | 基本信息、切换状态、评分、观看记录列表、编辑、删除、记一笔入口 |
+| 添加 / 编辑作品 | `ui/edit/` | 同一个页面：没传作品 id 是添加，传了是编辑 |
+| 记一笔 | `ui/record/` | 日期、时长、当次评分、短评，保存后返回 |
+
+### 通用组件 `ui/components/`
+
+| 组件 | 用在哪里 |
+| --- | --- |
+| `RatingView`：0–10 分评分控件，5 颗星，支持半星，可设为只读 | 作品详情、记一笔、片库卡片 |
+| `HeatmapView`：最近一年的观影热力图 | 日记 |
+| `DonutChartView`：环形图 | 我的 |
 
 ### 文件命名
 
-| 页面 | Fragment | 布局 | ViewModel |
+| 页面 | 类 | 布局 | ViewModel |
 | --- | --- | --- | --- |
 | 首页 | `HomeFragment` | `fragment_home.xml` | `HomeViewModel` |
-| 媒体库 | `LibraryFragment` | `fragment_library.xml`、`item_media.xml` | `LibraryViewModel` |
-| 作品详情 | `MediaDetailFragment` | `fragment_media_detail.xml`、`item_watch_record.xml` | `MediaDetailViewModel` |
-| 编辑作品 | `EditMediaFragment` | `fragment_edit_media.xml` | `EditMediaViewModel` |
-| 记一笔 | `AddRecordFragment` | `fragment_add_record.xml` | `AddRecordViewModel` |
-| 统计 | `StatsFragment` | `fragment_stats.xml` | `StatsViewModel` |
-| 设置 | `SettingsFragment` | `fragment_settings.xml` | `SettingsViewModel` |
+| 片库 | `LibraryFragment` | `fragment_library.xml`、`item_media.xml` | `LibraryViewModel` |
+| 日记 | `DiaryFragment` | `fragment_diary.xml`、`item_diary_record.xml` | `DiaryViewModel` |
+| 我的 | `ProfileFragment` | `fragment_profile.xml` | `ProfileViewModel` |
+| 作品详情 | `MediaDetailActivity` | `activity_media_detail.xml`、`item_watch_record.xml` | `MediaDetailViewModel` |
+| 添加 / 编辑作品 | `EditMediaActivity` | `activity_edit_media.xml` | `EditMediaViewModel` |
+| 记一笔 | `AddRecordActivity` | `activity_add_record.xml` | `AddRecordViewModel` |
 
-## 3. 实施顺序与分工（建议，待 11 月 7 日会议确认）
+页面读写数据的方法见 [`docs/data-api.md`](data-api.md)。
 
-| 编号 | 内容 | 负责 | 前置 |
-| --- | --- | --- | --- |
-| ARCH-1 | 加依赖；建好 Room 数据库、Entity、DAO、Repository | 统筹 | 无 |
-| ARCH-2 | `MainActivity` + 底部导航 + `nav_graph.xml` + 4 个空白 Fragment | 统筹 | ARCH-1 |
-| D-2 | 把 D-1 的 `library.json` 载入数据库（设置页按钮调用） | 杨同学 | D-1、ARCH-1 |
-| P-1 | 首页 | 李同学 | UI-1、ARCH-2 |
-| P-2 | 媒体库 + 作品详情 + 编辑作品 | 杨同学 | ARCH-2、D-2 |
-| P-3 | 统计页 + 自绘柱状图 | 待定 | ARCH-2、D-2 |
-| P-4 | 设置页（载入示例数据、清空数据、关于） | 待定 | ARCH-2、D-2 |
-| P-5 | 记一笔 | 待定 | ARCH-2 |
+## 3. 实施顺序与分工
 
-好友功能和 Jellyfin 导入已在 11 月 2 日决定不做。
-
-ARCH-1 和 ARCH-2 先合并进 `dev`，其他人在这个骨架上各自只改自己的 `ui/<功能名>/` 包和对应布局，互不冲突。
+见 [`docs/tasks/README.md`](tasks/README.md) 的第二波交付目标。好友功能和 Jellyfin 导入已在 11 月 2 日决定不做。
