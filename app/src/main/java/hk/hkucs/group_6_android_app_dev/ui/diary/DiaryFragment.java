@@ -13,6 +13,6 @@ public class DiaryFragment extends Fragment {
     public DiaryFragment() { super(R.layout.fragment_diary); }
     @Override public void onViewCreated(@NonNull View view, @Nullable Bundle state) {
         super.onViewCreated(view, state);
-        
+
     }
 }

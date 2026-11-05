@@ -37,7 +37,11 @@ EditMediaActivity.newIntent(context, mediaId);   // edit mode
 AddRecordActivity.newIntent(context, mediaId);   // non-empty existing ID
 ```
 
-Each Activity exposes EXTRA_MEDIA_ID. These are navigation contracts and placeholder screens, not completed G2/G3 features. When implementing a feature, replace its inheritance from FeaturePlaceholderActivity with its own screen as needed, while retaining the entry method and extra key.
+Each Activity exposes EXTRA_MEDIA_ID. IDs are passed unchanged: callers must supply the exact stored ID. Detail and record factories reject null/blank IDs; the edit factory accepts null for add mode and rejects blank IDs. Each destination also validates its incoming Intent before rendering: missing/null IDs are allowed only for add mode, and blank or non-String values are rejected. Invalid arguments show a resource-backed message and finish the destination, returning to the caller.
+
+This validates navigation arguments only. Checking whether an ID exists or has been deleted requires ARCH-1's observeMedia(id); feature owners must handle its null result when connecting the data layer. Success/failure behavior and data parameter boundaries remain ARCH-1 coordination items in docs/data-api.md.
+
+These are navigation contracts and placeholder screens, not completed G2/G3 features. When implementing a feature, replace its inheritance from FeaturePlaceholderActivity with its own screen as needed, while retaining the entry method and extra key.
 
 ## Dependency
 
@@ -49,8 +53,8 @@ Validated November 5, 2026 on Small_Phone, Android API 37.2 (720 × 1280). The f
 
 - assembleDebug and assembleDebugAndroidTest passed.
 - NavigationTest: 4 tests passed on the emulator. Tests cover all four tabs, repeated selection without duplicate Fragments, restoration of each selected page after Activity recreation, primary/indicator colors, Home → Library → Add → Back, and three secondary Activity entry contracts.
-- lintDebug passed with no errors. Warnings include API-28-only accessibilityHeading attributes (ignored on older devices), unused preview resources and existing dependency-update suggestions. G1 adds no suppressions and does not upgrade unrelated dependencies.
-- XML parsing, unique string names and git diff --check passed. Layouts contain no literal hex colors.
+- lintDebug passed with no errors. Warnings include API-28-only accessibilityHeading attributes (ignored on older devices), unused preview resources and existing dependency-update suggestions. No unrelated dependencies are upgraded. The follow-up locally suppresses the Bundle.get deprecation warning because raw type validation must also work on API 24.
+- XML parsing and unique string names passed. The original commit contained trailing whitespace and extra EOF blank lines; these are corrected in the navigation-validation follow-up. Layouts contain no literal hex colors.
 - Build verification used a temporary local mirror for the same official Maven artifacts because of local repository access issues. Project repository configuration is unchanged. Gradle's connectedDebugAndroidTest could not resolve its uncached UTP scheduler offline; the built test APK was installed and the same AndroidJUnitRunner suite was executed directly with adb am instrument instead.
 - Large-font, landscape and API 24 device checks remain manual reviewer checks. Activity recreation is covered; full OS process-death recovery has not been separately exercised.
 
@@ -65,3 +69,12 @@ Captured by the instrumentation suite after Activity recreation and after the na
 | Diary | Profile |
 | --- | --- |
 | ![Diary](g1/diary.png) | ![Profile](g1/profile.png) |
+
+## Navigation validation follow-up (November 5, 2026)
+
+- Reject blank IDs in all three entry factories; null remains the documented add-mode value for EditMediaActivity.
+- Validate raw incoming extras in every secondary Activity, including direct Intents that bypass the factories. Reject missing/null required IDs, blank strings and wrong value types with a message and finish(). Add mode still accepts missing/null IDs.
+- Preserve valid IDs exactly; existence checks remain the responsibility of the feature ViewModel and ARCH-1 data layer.
+- Removed trailing whitespace and redundant EOF blank lines from G1 Java files. Full diff against dev now passes git diff --check.
+- assembleDebug, assembleDebugAndroidTest and lintDebug passed using the existing temporary local mirror; resource XML parsing and unique string-name checks also passed.
+- All 6 NavigationTest tests passed on Small_Phone via AndroidJUnitRunner, including factory rejection, direct-Intent validation, add-mode compatibility and the original navigation regressions.

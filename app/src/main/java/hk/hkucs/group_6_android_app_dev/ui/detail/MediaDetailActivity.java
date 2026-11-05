@@ -14,7 +14,7 @@ public class MediaDetailActivity extends FeaturePlaceholderActivity {
         if (mediaId == null || mediaId.trim().isEmpty()) { throw new IllegalArgumentException("mediaId is required"); }
         return new Intent(context, MediaDetailActivity.class).putExtra(EXTRA_MEDIA_ID, mediaId);
     }
+    @Override protected boolean hasValidArguments() { return hasValidMediaId(EXTRA_MEDIA_ID, true); }
     @Override protected int titleResource() { return R.string.details_title; }
     @Override protected int messageResource() { return R.string.details_placeholder; }
 }
-

@@ -78,6 +78,42 @@ public class NavigationTest {
         }
     }
 
+    @Test public void factoriesRejectInvalidIds() {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        for (String id : new String[] {null, "", "   "}) {
+            assertThrows(IllegalArgumentException.class, () -> MediaDetailActivity.newIntent(context, id));
+            assertThrows(IllegalArgumentException.class, () -> AddRecordActivity.newIntent(context, id));
+            if (id != null) {
+                assertThrows(IllegalArgumentException.class, () -> EditMediaActivity.newIntent(context, id));
+            }
+        }
+        assertNull(EditMediaActivity.newIntent(context, null).getStringExtra(EditMediaActivity.EXTRA_MEDIA_ID));
+    }
+
+    @Test public void directIntentsRejectInvalidArguments() {
+        Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        for (Class<?> destination : new Class<?>[] {MediaDetailActivity.class, EditMediaActivity.class, AddRecordActivity.class}) {
+            for (String invalid : new String[] {"", "   "}) {
+                Intent intent = new Intent(context, destination).putExtra(EditMediaActivity.EXTRA_MEDIA_ID, invalid);
+                try (ActivityScenario<?> scenario = ActivityScenario.launch(intent)) {
+                    assertEquals(Lifecycle.State.DESTROYED, scenario.getState());
+                }
+            }
+            Intent wrongType = new Intent(context, destination).putExtra(EditMediaActivity.EXTRA_MEDIA_ID, 42);
+            try (ActivityScenario<?> scenario = ActivityScenario.launch(wrongType)) {
+                assertEquals(Lifecycle.State.DESTROYED, scenario.getState());
+            }
+        }
+        for (Class<?> destination : new Class<?>[] {MediaDetailActivity.class, AddRecordActivity.class}) {
+            try (ActivityScenario<?> scenario = ActivityScenario.launch(new Intent(context, destination))) {
+                assertEquals(Lifecycle.State.DESTROYED, scenario.getState());
+            }
+        }
+        try (ActivityScenario<EditMediaActivity> scenario = ActivityScenario.launch(new Intent(context, EditMediaActivity.class))) {
+            onView(withId(R.id.feature_title)).check(matches(withText(R.string.add_title)));
+        }
+    }
+
     private void capture(String filename) {
         android.app.Instrumentation instrumentation = InstrumentationRegistry.getInstrumentation();
         instrumentation.waitForIdleSync();
