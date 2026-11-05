@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="primary">#2979FF</color>
+    <color name="on_primary">#FFFFFF</color>
+    <color name="primary_container">#EAF2FF</color>
+    <color name="on_primary_container">#174B9C</color>
+    <color name="background">#F7F9FC</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="surface_variant">#EDF1F7</color>
+    <color name="text_primary">#172033</color>
+    <color name="text_secondary">#526176</color>
+    <color name="text_hint">#64748B</color>
+    <color name="outline">#DCE3ED</color>
+    <color name="rating">#986400</color>
+    <color name="status_want_text">#174B9C</color>
+    <color name="status_want_bg">#EAF2FF</color>
+    <color name="status_watching_text">#805400</color>
+    <color name="status_watching_bg">#FFF3D6</color>
+    <color name="status_watched_text">#176245</color>
+    <color name="status_watched_bg">#E0F4EA</color>
+    <color name="status_dropped_text">#8A3441</color>
+    <color name="status_dropped_bg">#FCE8EC</color>
+    <color name="error">#BA1A1A</color>
+    <color name="on_error">#FFFFFF</color>
 </resources>
