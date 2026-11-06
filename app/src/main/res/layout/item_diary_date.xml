@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:accessibilityHeading="true"
+    android:gravity="bottom"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/space_16"
+    android:paddingTop="@dimen/space_24"
+    android:paddingEnd="@dimen/space_16"
+    android:paddingBottom="@dimen/space_8">
+
+    <TextView
+        android:id="@+id/diary_date"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textAppearance="@style/TextAppearance.Group6.CardTitle" />
+
+    <TextView
+        android:id="@+id/diary_date_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.Group6.Caption"
+        android:textColor="@color/text_secondary" />
+</LinearLayout>
