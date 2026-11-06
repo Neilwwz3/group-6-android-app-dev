@@ -44,7 +44,7 @@
 | 字段 | 类型 | 说明 |
 | --- | --- | --- |
 | `id` | TEXT 主键 | 示例数据用“原名-年份”，手动添加的用 UUID |
-| `title` / `original_title` | TEXT | 中文名 / 原名 |
+| `title` / `original_title` | TEXT | 标题（英文显示名）/ 原名 |
 | `year` | INTEGER | 首映年份，可空 |
 | `type` | TEXT | `movie` / `series` |
 | `genres` / `directors` / `cast` / `tags` | TEXT | 字符串列表，用 TypeConverter 存成一列 |
@@ -125,7 +125,7 @@ MainActivity（底部导航）
 
 #### 片库 `ui/library/`
 
-- 顶部搜索框（按中文名 / 原名）
+- 顶部搜索框（按标题 / 原名）
 - 筛选：全部 / 想看 / 在看 / 已看完 / 弃坑
 - 列表卡片：海报、标题、“年份 · 类型 · 题材”、评分星级、状态徽章
 - 悬浮按钮：添加作品
