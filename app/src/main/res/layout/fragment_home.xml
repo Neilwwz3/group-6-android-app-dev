@@ -1,0 +1,116 @@
+<?xml version="1.0" ?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/home_page"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/background">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/space_16">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home_eyebrow"
+            android:textAppearance="@style/TextAppearance.Group6.Caption"
+            android:textColor="@color/primary" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home_title"
+            android:textAppearance="@style/TextAppearance.Group6.Headline"
+            android:accessibilityHeading="true"
+            android:layout_marginTop="@dimen/space_8" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/home_subtitle"
+            android:textAppearance="@style/TextAppearance.Group6.Body"
+            android:textColor="@color/text_secondary"
+            android:layout_marginTop="@dimen/space_8" />
+        <com.google.android.material.card.MaterialCardView
+            style="@style/Widget.Group6.Card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_24"
+            app:cardBackgroundColor="@color/primary_container"
+            app:strokeWidth="0dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/space_24">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/touch_target"
+                    android:layout_height="@dimen/touch_target"
+                    app:srcCompat="@drawable/ic_nav_home"
+                    app:tint="@color/on_primary_container"
+                    android:importantForAccessibility="no" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/home_empty_title"
+                    android:textAppearance="@style/TextAppearance.Group6.Title"
+                    android:layout_marginTop="@dimen/space_16"
+                    android:textColor="@color/on_primary_container" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/home_empty_body"
+                    android:textAppearance="@style/TextAppearance.Group6.Body"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:textColor="@color/on_primary_container" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/explore_library"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="@dimen/touch_target"
+            android:layout_marginTop="@dimen/space_16"
+            android:text="@string/explore_library"
+            app:backgroundTint="@color/primary"
+            android:textColor="@color/on_primary"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Group6.Button" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/space_24">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/continue_watching"
+                android:textAppearance="@style/TextAppearance.Group6.CardTitle" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/continue_empty"
+                android:textAppearance="@style/TextAppearance.Group6.Body"
+                android:layout_marginTop="@dimen/space_8"
+                android:textColor="@color/text_secondary" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/space_24">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/recent_records"
+                android:textAppearance="@style/TextAppearance.Group6.CardTitle" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/recent_empty"
+                android:textAppearance="@style/TextAppearance.Group6.Body"
+                android:layout_marginTop="@dimen/space_8"
+                android:textColor="@color/text_secondary" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

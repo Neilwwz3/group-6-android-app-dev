@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Bind Material's default indicator and elevated surface to the UI-1 palette. -->
+    <style name="Widget.Group6.BottomNavigation.Shell" parent="Widget.Group6.BottomNavigation">
+        <item name="backgroundTint">@color/surface</item>
+        <item name="android:elevation">0dp</item>
+        <item name="itemActiveIndicatorStyle">@style/Widget.Group6.NavigationIndicator</item>
+        <item name="itemTextAppearanceActive">@style/TextAppearance.Group6.Caption</item>
+        <item name="itemTextAppearanceInactive">@style/TextAppearance.Group6.Caption</item>
+    </style>
+    <style name="Widget.Group6.NavigationIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/primary_container</item>
+    </style>
+</resources>
