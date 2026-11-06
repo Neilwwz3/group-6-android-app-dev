@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_headline">32sp</dimen>
+    <dimen name="text_title">24sp</dimen>
+    <dimen name="text_card_title">16sp</dimen>
+    <dimen name="text_body">14sp</dimen>
+    <dimen name="text_caption">12sp</dimen>
+    <dimen name="space_4">4dp</dimen>
+    <dimen name="space_8">8dp</dimen>
+    <dimen name="space_12">12dp</dimen>
+    <dimen name="space_16">16dp</dimen>
+    <dimen name="space_24">24dp</dimen>
+    <dimen name="corner_card">16dp</dimen>
+    <dimen name="corner_badge">8dp</dimen>
+    <dimen name="corner_button">12dp</dimen>
+    <dimen name="badge_horizontal_padding">12dp</dimen>
+    <dimen name="badge_vertical_padding">6dp</dimen>
+    <dimen name="poster_width">88dp</dimen>
+    <dimen name="poster_height">132dp</dimen>
+    <dimen name="touch_target">48dp</dimen>
+    <dimen name="swatch_width">32dp</dimen>
+    <dimen name="icon_size">24dp</dimen>
+    <dimen name="card_outline_width">1dp</dimen>
+</resources>

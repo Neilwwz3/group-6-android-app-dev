@@ -1,0 +1,201 @@
+<?xml version='1.0' encoding='utf-8'?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/background" android:fillViewport="true" tools:theme="@style/Theme.Group6androidappdev">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="@dimen/space_16">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_brand" android:textAppearance="@style/TextAppearance.Group6.CardTitle" android:textColor="@color/primary" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_title" android:textAppearance="@style/TextAppearance.Group6.Headline" android:layout_marginTop="@dimen/space_4" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_subtitle" android:textAppearance="@style/TextAppearance.Group6.Body" />
+        <com.google.android.material.card.MaterialCardView style="@style/Widget.Group6.Card" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_16">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="@dimen/space_16">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_type" android:textAppearance="@style/TextAppearance.Group6.CardTitle" android:layout_marginBottom="@dimen/space_12" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_headline" android:textAppearance="@style/TextAppearance.Group6.Headline" android:layout_marginBottom="@dimen/space_8" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_page_title" android:textAppearance="@style/TextAppearance.Group6.Title" android:layout_marginBottom="@dimen/space_8" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_card_title" android:textAppearance="@style/TextAppearance.Group6.CardTitle" android:layout_marginBottom="@dimen/space_8" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_body" android:textAppearance="@style/TextAppearance.Group6.Body" android:layout_marginBottom="@dimen/space_8" />
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_caption" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginBottom="@dimen/space_8" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView style="@style/Widget.Group6.Card" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_16">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="@dimen/space_16">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_colors" android:textAppearance="@style/TextAppearance.Group6.CardTitle" android:layout_marginBottom="@dimen/space_12" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false">
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="@dimen/space_8" android:layout_marginBottom="@dimen/space_12">
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/space_24" android:background="@color/primary" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/palette_primary" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="@dimen/space_8" android:layout_marginBottom="@dimen/space_12">
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/space_24" android:background="@color/on_primary" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/palette_on_primary" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false">
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="@dimen/space_8" android:layout_marginBottom="@dimen/space_12">
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/space_24" android:background="@color/primary_container" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/palette_primary_container" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="@dimen/space_8" android:layout_marginBottom="@dimen/space_12">
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/space_24" android:background="@color/on_primary_container" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/palette_on_primary_container" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false">
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="@dimen/space_8" android:layout_marginBottom="@dimen/space_12">
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/space_24" android:background="@color/background" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/palette_background" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="@dimen/space_8" android:layout_marginBottom="@dimen/space_12">
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/space_24" android:background="@color/surface" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/palette_surface" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false">
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="@dimen/space_8" android:layout_marginBottom="@dimen/space_12">
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/space_24" android:background="@color/surface_variant" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/palette_surface_variant" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="@dimen/space_8" android:layout_marginBottom="@dimen/space_12">
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/space_24" android:background="@color/text_primary" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/palette_text_primary" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false">
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="@dimen/space_8" android:layout_marginBottom="@dimen/space_12">
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/space_24" android:background="@color/text_secondary" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/palette_text_secondary" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="@dimen/space_8" android:layout_marginBottom="@dimen/space_12">
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/space_24" android:background="@color/text_hint" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/palette_text_hint" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false">
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="@dimen/space_8" android:layout_marginBottom="@dimen/space_12">
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/space_24" android:background="@color/outline" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/palette_outline" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="@dimen/space_8" android:layout_marginBottom="@dimen/space_12">
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/space_24" android:background="@color/rating" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/palette_rating" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false">
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="@dimen/space_8" android:layout_marginBottom="@dimen/space_12">
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/space_24" android:background="@color/status_want_text" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/palette_status_want_text" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="@dimen/space_8" android:layout_marginBottom="@dimen/space_12">
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/space_24" android:background="@color/status_want_bg" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/palette_status_want_bg" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false">
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="@dimen/space_8" android:layout_marginBottom="@dimen/space_12">
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/space_24" android:background="@color/status_watching_text" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/palette_status_watching_text" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="@dimen/space_8" android:layout_marginBottom="@dimen/space_12">
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/space_24" android:background="@color/status_watching_bg" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/palette_status_watching_bg" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false">
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="@dimen/space_8" android:layout_marginBottom="@dimen/space_12">
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/space_24" android:background="@color/status_watched_text" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/palette_status_watched_text" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="@dimen/space_8" android:layout_marginBottom="@dimen/space_12">
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/space_24" android:background="@color/status_watched_bg" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/palette_status_watched_bg" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false">
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="@dimen/space_8" android:layout_marginBottom="@dimen/space_12">
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/space_24" android:background="@color/status_dropped_text" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/palette_status_dropped_text" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="@dimen/space_8" android:layout_marginBottom="@dimen/space_12">
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/space_24" android:background="@color/status_dropped_bg" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/palette_status_dropped_bg" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false">
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="@dimen/space_8" android:layout_marginBottom="@dimen/space_12">
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/space_24" android:background="@color/error" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/palette_error" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginEnd="@dimen/space_8" android:layout_marginBottom="@dimen/space_12">
+                        <View android:layout_width="match_parent" android:layout_height="@dimen/space_24" android:background="@color/on_error" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/palette_on_error" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView style="@style/Widget.Group6.Card" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_16">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="@dimen/space_16">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_status" android:textAppearance="@style/TextAppearance.Group6.CardTitle" android:layout_marginBottom="@dimen/space_12" />
+                <com.google.android.material.chip.ChipGroup android:layout_width="match_parent" android:layout_height="wrap_content" app:chipSpacingHorizontal="@dimen/space_8" app:chipSpacingVertical="@dimen/space_8">
+                    <TextView style="@style/Widget.Group6.StatusBadge.Want" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/status_want" />
+                    <TextView style="@style/Widget.Group6.StatusBadge.Watching" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/status_watching" />
+                    <TextView style="@style/Widget.Group6.StatusBadge.Watched" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/status_watched" />
+                    <TextView style="@style/Widget.Group6.StatusBadge.Dropped" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/status_dropped" />
+                </com.google.android.material.chip.ChipGroup>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView style="@style/Widget.Group6.Card" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_16">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="@dimen/space_16">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_filters" android:textAppearance="@style/TextAppearance.Group6.CardTitle" android:layout_marginBottom="@dimen/space_12" />
+                <com.google.android.material.chip.ChipGroup android:layout_width="match_parent" android:layout_height="wrap_content" app:singleSelection="true" app:chipSpacingHorizontal="@dimen/space_8">
+                    <com.google.android.material.chip.Chip style="@style/Widget.Group6.FilterChip" android:id="@+id/sample_filter_all" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="true" android:text="@string/sample_all" />
+                    <com.google.android.material.chip.Chip style="@style/Widget.Group6.FilterChip" android:id="@+id/sample_filter_movie" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="false" android:text="@string/sample_movie" />
+                    <com.google.android.material.chip.Chip style="@style/Widget.Group6.FilterChip" android:id="@+id/sample_filter_series" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="false" android:text="@string/sample_series" />
+                </com.google.android.material.chip.ChipGroup>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView style="@style/Widget.Group6.Card" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_16">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="@dimen/space_16">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_card" android:textAppearance="@style/TextAppearance.Group6.CardTitle" android:layout_marginBottom="@dimen/space_12" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false">
+                    <LinearLayout android:layout_width="@dimen/poster_width" android:layout_height="@dimen/poster_height" android:orientation="vertical" android:gravity="center" android:background="@drawable/sample_poster_background" android:layout_marginEnd="@dimen/space_12">
+                        <androidx.appcompat.widget.AppCompatImageView android:layout_width="@dimen/swatch_width" android:layout_height="@dimen/swatch_width" app:srcCompat="@drawable/sample_ic_library" app:tint="@color/text_secondary" android:importantForAccessibility="no" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_poster" android:textAppearance="@style/TextAppearance.Group6.Caption" android:gravity="center" android:layout_marginTop="@dimen/space_8" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical">
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_film" android:textAppearance="@style/TextAppearance.Group6.CardTitle" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_metadata" android:textAppearance="@style/TextAppearance.Group6.Caption" android:layout_marginTop="@dimen/space_4" />
+                        <RatingBar style="@style/Widget.Group6.RatingBar.Small" android:layout_width="wrap_content" android:layout_height="wrap_content" android:rating="4" android:contentDescription="@string/sample_rating_description" android:layout_marginTop="@dimen/space_8" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_rating" android:textAppearance="@style/TextAppearance.Group6.Caption" />
+                        <TextView style="@style/Widget.Group6.StatusBadge.Watched" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_8" android:text="@string/status_watched" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView style="@style/Widget.Group6.Card" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="@dimen/space_16">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="@dimen/space_16">
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_navigation_actions" android:textAppearance="@style/TextAppearance.Group6.CardTitle" android:layout_marginBottom="@dimen/space_12" />
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginBottom="@dimen/space_16">
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton style="@style/Widget.Group6.Fab" android:layout_width="wrap_content" android:layout_height="wrap_content" android:contentDescription="@string/sample_add" app:srcCompat="@drawable/sample_ic_add" />
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_add" android:textAppearance="@style/TextAppearance.Group6.Body" android:layout_marginStart="@dimen/space_12" />
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:baselineAligned="false" android:paddingTop="@dimen/space_8" android:paddingBottom="@dimen/space_8">
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:minHeight="@dimen/touch_target" android:background="@drawable/sample_nav_selected">
+                        <androidx.appcompat.widget.AppCompatImageView android:layout_width="@dimen/icon_size" android:layout_height="@dimen/icon_size" app:srcCompat="@drawable/sample_ic_home" app:tint="@color/primary" android:importantForAccessibility="no" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_home" android:textAppearance="@style/TextAppearance.Group6.Caption" android:gravity="center" android:textColor="@color/primary" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:minHeight="@dimen/touch_target" android:background="@color/surface">
+                        <androidx.appcompat.widget.AppCompatImageView android:layout_width="@dimen/icon_size" android:layout_height="@dimen/icon_size" app:srcCompat="@drawable/sample_ic_library" app:tint="@color/text_secondary" android:importantForAccessibility="no" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_library" android:textAppearance="@style/TextAppearance.Group6.Caption" android:gravity="center" android:textColor="@color/text_secondary" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:minHeight="@dimen/touch_target" android:background="@color/surface">
+                        <androidx.appcompat.widget.AppCompatImageView android:layout_width="@dimen/icon_size" android:layout_height="@dimen/icon_size" app:srcCompat="@drawable/sample_ic_diary" app:tint="@color/text_secondary" android:importantForAccessibility="no" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_diary" android:textAppearance="@style/TextAppearance.Group6.Caption" android:gravity="center" android:textColor="@color/text_secondary" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center" android:minHeight="@dimen/touch_target" android:background="@color/surface">
+                        <androidx.appcompat.widget.AppCompatImageView android:layout_width="@dimen/icon_size" android:layout_height="@dimen/icon_size" app:srcCompat="@drawable/sample_ic_profile" app:tint="@color/text_secondary" android:importantForAccessibility="no" />
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_profile" android:textAppearance="@style/TextAppearance.Group6.Caption" android:gravity="center" android:textColor="@color/text_secondary" />
+                    </LinearLayout>
+                </LinearLayout>
+                <com.google.android.material.bottomnavigation.BottomNavigationView android:id="@+id/sample_navigation" style="@style/Widget.Group6.BottomNavigation" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/sample_footer" android:textAppearance="@style/TextAppearance.Group6.Caption" android:gravity="center" android:layout_marginTop="@dimen/space_16" android:layout_marginBottom="@dimen/space_16" />
+    </LinearLayout>
+</ScrollView>
