@@ -19,15 +19,15 @@ MediaRepository repo = MediaRepository.get(application);
 
 | 类 | 值 | 界面上显示 |
 | --- | --- | --- |
-| `MediaStatus.WANT` | `"want"` | 想看 |
-| `MediaStatus.WATCHING` | `"watching"` | 在看 |
-| `MediaStatus.WATCHED` | `"watched"` | 已看完 |
-| `MediaStatus.DROPPED` | `"dropped"` | 弃坑 |
-| `MediaType.MOVIE` | `"movie"` | 电影 |
-| `MediaType.SERIES` | `"series"` | 剧集 |
-| `Genres.ALL` | 剧情、喜剧、动作、科幻、动画、悬疑、犯罪、爱情、恐怖、纪录、奇幻、战争 | 题材只能从这里选 |
+| `MediaStatus.WANT` | `"want"` | Want to Watch |
+| `MediaStatus.WATCHING` | `"watching"` | Watching |
+| `MediaStatus.WATCHED` | `"watched"` | Watched |
+| `MediaStatus.DROPPED` | `"dropped"` | Dropped |
+| `MediaType.MOVIE` | `"movie"` | Movie |
+| `MediaType.SERIES` | `"series"` | TV Show |
+| `Genres.ALL` | Drama, Comedy, Action, Sci-Fi, Animation, Mystery, Crime, Romance, Horror, Documentary, Fantasy, War | 题材只能从这里选，数据里直接存这些英文词 |
 
-显示用的中文写在 `strings.xml`（`status_want` 等），由 ARCH-1 提供。
+界面一律用英文。状态的显示文字已在 `strings.xml` 里（`status_want` 等，G1 提供）。
 
 ## 数据类
 
@@ -36,7 +36,7 @@ MediaRepository repo = MediaRepository.get(application);
 | 字段 | 类型 | 说明 |
 | --- | --- | --- |
 | `id` | `String` | 新建时留空，保存时自动生成 |
-| `title` / `originalTitle` | `String` | 中文名必填 / 原名可空 |
+| `title` / `originalTitle` | `String` | 标题必填（英文显示名）/ 原名可空 |
 | `year` | `Integer` | 可空 |
 | `type` | `String` | `MediaType` 之一 |
 | `genres` / `directors` / `cast` / `tags` | `List<String>` | 不会是 null，没有就是空列表 |
