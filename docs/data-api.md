@@ -102,5 +102,4 @@ MediaRepository repo = MediaRepository.get(application);
 | 方法 | 作用 |
 | --- | --- |
 | `SampleDataLoader.load(Context context, Runnable onDone)` | 清空现有数据，再载入 `assets/sample/library.json` |
-| `SampleDataLoader.load(Context context, Runnable onDone, Consumer<Exception> onError)` | 同上；文件不存在或格式错误时调用 `onError`，现有数据保持不变。设置页应该用这个版本，失败时提示用户 |
 | `MediaRepository.get(context).clearAll(Runnable onDone)` | 清空所有作品和记录 |
