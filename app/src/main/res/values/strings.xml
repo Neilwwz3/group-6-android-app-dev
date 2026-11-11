@@ -103,4 +103,26 @@
     <string name="record_placeholder">Logging a viewing entry is coming soon.</string>
     <string name="shell_notice">Preview · More to come</string>
     <string name="invalid_navigation_arguments">页面参数无效，请返回后重试。</string>
+    <string name="g5_profile_titles">Total titles: %1$d</string>
+    <string name="g5_profile_watched">Watched: %1$d</string>
+    <string name="g5_profile_time">Viewing time: %1$d min</string>
+    <string name="g5_profile_rating">Average rating: %1$.1f / 10</string>
+    <string name="g5_profile_no_rating">Average rating: Not rated yet</string>
+
+    <string name="g5_profile_empty">Your collection is empty. Load sample data or add a title in Library.</string>
+    <string name="g5_profile_genres">Genre distribution</string>
+    <string name="g5_profile_no_genres">No genre data yet.</string>
+    <string name="g5_profile_genre_row">● %1$s — %2$d</string>
+
+    <string name="g5_profile_load">Load sample data</string>
+    <string name="g5_profile_load_message">Loading sample data will replace all existing titles and viewing records. Continue?</string>
+    <string name="g5_profile_load_error">Could not load sample data. Your collection was kept.</string>
+    <string name="g5_profile_clear">Clear all data</string>
+    <string name="g5_profile_clear_message">This will permanently delete all titles and viewing records. Continue?</string>
+    <string name="g5_profile_working">Updating your collection</string>
+    <string name="g5_profile_cancel">Cancel</string>
+
+    <string name="g5_profile_about">About</string>
+    <string name="g5_profile_about_message">COMP7506 Group 6</string>
+    <string name="g5_profile_ok">OK</string>
 </resources>
