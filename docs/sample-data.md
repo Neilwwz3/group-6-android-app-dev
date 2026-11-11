@@ -3,7 +3,7 @@
 File: `app/src/main/assets/sample/library.json` (`version: 1`).
 This dataset is used for class demos, the intro video, and development testing. It simulates one year (2025-11 to 2026-10) of viewing history for a single user. All overviews are written in my own words and do not copy text from Douban or TMDB. No downloaded posters are used (`poster` is `null` everywhere, so the app shows a placeholder).
 
-Note: per the request, the entire dataset is in English. This deviates from the D-1 task card, which defines `title` as the Chinese name and restricts `genres` to a Chinese whitelist. Needs confirmation with the coordinator.
+The entire dataset is in English, as required by the project's English-only UI rule (see `AGENTS.md`).
 
 ## Totals
 
