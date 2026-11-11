@@ -27,23 +27,23 @@
   "items": [
     {
       "id": "interstellar-2014",
-      "title": "星际穿越",
+      "title": "Interstellar",
       "originalTitle": "Interstellar",
       "year": 2014,
       "type": "movie",
-      "genres": ["科幻", "剧情"],
-      "directors": ["克里斯托弗·诺兰"],
-      "cast": ["马修·麦康纳", "安妮·海瑟薇"],
-      "overview": "用自己的话写一两句简介。",
+      "genres": ["Sci-Fi", "Drama"],
+      "directors": ["Christopher Nolan"],
+      "cast": ["Matthew McConaughey", "Anne Hathaway"],
+      "overview": "Write one or two sentences in your own words.",
       "runtimeMinutes": 169,
       "totalEpisodes": null,
       "poster": null,
       "status": "watched",
       "rating": 9.5,
-      "tags": ["烧脑", "重看过"],
+      "tags": ["mind-bending", "rewatched"],
       "records": [
-        { "date": "2026-03-14", "episodes": null, "minutes": 169, "rating": 9.0, "note": "第一次看，后半段很震撼。" },
-        { "date": "2026-09-02", "episodes": null, "minutes": 169, "rating": 9.5, "note": "重看一遍，更喜欢了。" }
+        { "date": "2026-03-14", "episodes": null, "minutes": 169, "rating": 9.0, "note": "First watch. The second half blew me away." },
+        { "date": "2026-09-02", "episodes": null, "minutes": 169, "rating": 9.5, "note": "Rewatched it and liked it even more." }
       ]
     }
   ]
@@ -53,12 +53,12 @@
 | 字段 | 说明 |
 | --- | --- |
 | `id` | 英文小写加连字符，不能重复，建议用“原名-年份” |
-| `title` / `originalTitle` | 中文名 / 原名 |
+| `title` / `originalTitle` | 英文标题 / 原名（非英语作品填原文名，英语作品可与 title 相同） |
 | `year` | 首映年份 |
 | `type` | `"movie"` 电影，或 `"series"` 剧集 |
-| `genres` | 1–3 个，只能从这些词里选：剧情、喜剧、动作、科幻、动画、悬疑、犯罪、爱情、恐怖、纪录、奇幻、战争 |
+| `genres` | 1–3 个，只能从这些词里选：Drama, Comedy, Action, Sci-Fi, Animation, Mystery, Crime, Romance, Horror, Documentary, Fantasy, War |
 | `directors` / `cast` | 导演 / 主演（主演最多 4 个）；剧集填主创 |
-| `overview` | 一两句简介，**自己写**，不要复制豆瓣或 TMDB 的原文 |
+| `overview` | 一两句英文简介，**自己写**，不要复制豆瓣或 TMDB 的原文 |
 | `runtimeMinutes` | 电影填片长；剧集填单集平均时长 |
 | `totalEpisodes` | 剧集的总集数；电影填 `null` |
 | `poster` | 海报文件名，例如 `"interstellar-2014.png"`；没有就填 `null` |
