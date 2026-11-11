@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- G4 Diary page. Kept in its own file so edits never conflict with strings.xml. -->
+<resources>
+    <plurals name="diary_heatmap_description">
+        <item quantity="one">%d viewing day in the past year</item>
+        <item quantity="other">%d viewing days in the past year</item>
+    </plurals>
+    <plurals name="diary_day_entries">
+        <item quantity="one">%d entry</item>
+        <item quantity="other">%d entries</item>
+    </plurals>
+    <string name="diary_heatmap_hint">Tap a day to jump to it in your timeline.</string>
+    <string name="diary_legend_less">Less</string>
+    <string name="diary_legend_more">More</string>
+    <string name="diary_no_entries_on">No entries on %1$s</string>
+    <string name="diary_minutes">%1$d min</string>
+    <string name="diary_hours_minutes">%1$d h %2$d min</string>
+    <string name="diary_episode_one">Episode %1$d</string>
+    <string name="diary_episode_range">Episodes %1$d–%2$d</string>
+    <string name="diary_episode_list">Episodes %1$s</string>
+    <string name="diary_meta_separator">" · "</string>
+    <string name="diary_rating">★ %1$s</string>
+    <string name="diary_rating_description">Rated %1$s out of 10</string>
+</resources>
