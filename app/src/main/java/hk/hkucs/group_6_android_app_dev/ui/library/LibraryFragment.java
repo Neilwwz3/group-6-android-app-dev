@@ -35,8 +35,9 @@ public class LibraryFragment extends Fragment {
 
         RecyclerView list = view.findViewById(R.id.media_list);
         list.setLayoutManager(new LinearLayoutManager(requireContext()));
-        list.setAdapter(new LibraryAdapter(item ->
-                startActivity(MediaDetailActivity.newIntent(requireContext(), item.id))));
+        LibraryAdapter adapter = new LibraryAdapter(item ->
+                startActivity(MediaDetailActivity.newIntent(requireContext(), item.id)));
+        list.setAdapter(adapter);
 
         TextInputEditText search = view.findViewById(R.id.search_input);
         search.addTextChangedListener(new TextWatcher() {
@@ -69,6 +70,7 @@ public class LibraryFragment extends Fragment {
         TextView emptyTitle = view.findViewById(R.id.empty_title);
         TextView emptyBody = view.findViewById(R.id.empty_body);
         vm.getVisible().observe(getViewLifecycleOwner(), items -> {
+            adapter.submit(items);
             boolean empty = items == null || items.isEmpty();
             emptyState.setVisibility(empty ? View.VISIBLE : View.GONE);
         });
