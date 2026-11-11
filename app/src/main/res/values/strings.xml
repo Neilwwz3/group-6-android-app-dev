@@ -103,4 +103,11 @@
     <string name="record_placeholder">Logging a viewing entry is coming soon.</string>
     <string name="shell_notice">Preview · More to come</string>
     <string name="invalid_navigation_arguments">页面参数无效，请返回后重试。</string>
+    <string name="record_back">Back</string>
+    <string name="record_watch_date">Watch Date</string>
+    <string name="record_duration_minutes">Duration (minutes)</string>
+    <string name="record_rating_label">Rating</string>
+    <string name="record_short_review">Short Review</string>
+    <string name="record_save_label">Save</string>
+    <string name="record_minutes_error">Enter a whole number greater than zero.</string>
 </resources>
