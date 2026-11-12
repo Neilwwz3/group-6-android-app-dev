@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.RatingBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -47,6 +45,7 @@ public class EditMediaActivity extends AppCompatActivity {
     private TextInputLayout yearLayout;
     private TextInputLayout runtimeLayout;
     private TextInputLayout episodesLayout;
+    private TextInputLayout ratingLayout;
     private TextInputEditText titleField;
     private TextInputEditText originalField;
     private TextInputEditText yearField;
@@ -56,11 +55,10 @@ public class EditMediaActivity extends AppCompatActivity {
     private TextInputEditText overviewField;
     private TextInputEditText runtimeField;
     private TextInputEditText episodesField;
+    private TextInputEditText ratingField;
     private ChipGroup typeGroup;
     private ChipGroup genresGroup;
     private ChipGroup statusGroup;
-    private RatingBar ratingBar;
-    private TextView ratingValue;
 
     private final Set<String> selectedGenres = new LinkedHashSet<>();
     private MediaItem loaded;
@@ -126,19 +124,14 @@ public class EditMediaActivity extends AppCompatActivity {
         typeGroup = findViewById(R.id.type_group);
         genresGroup = findViewById(R.id.genres_group);
         statusGroup = findViewById(R.id.status_group);
-        ratingBar = findViewById(R.id.edit_rating_bar);
-        ratingValue = findViewById(R.id.edit_rating_value);
+        ratingLayout = findViewById(R.id.rating_layout);
+        ratingField = findViewById(R.id.edit_rating);
 
         buildGenreChips();
         typeGroup.setOnCheckedStateChangeListener((group, ids) -> updateEpisodesVisibility());
-        ratingBar.setOnRatingBarChangeListener((bar, rating, fromUser) -> {
-            if (fromUser) {
-                updateRatingLabel();
-            }
-        });
         findViewById(R.id.clear_rating).setOnClickListener(v -> {
-            ratingBar.setRating(0f);
-            updateRatingLabel();
+            ratingField.setText(null);
+            ratingLayout.setError(null);
         });
         findViewById(R.id.save_button).setOnClickListener(v -> save());
 
@@ -194,8 +187,7 @@ public class EditMediaActivity extends AppCompatActivity {
                 ? null : String.valueOf(item.runtimeMinutes));
         episodesField.setText(item.totalEpisodes == null
                 ? null : String.valueOf(item.totalEpisodes));
-        ratingBar.setRating(item.rating == null ? 0f : item.rating / 2f);
-        updateRatingLabel();
+        ratingField.setText(item.rating == null ? null : MediaMeta.score(item.rating));
         updateEpisodesVisibility();
     }
 
@@ -211,6 +203,7 @@ public class EditMediaActivity extends AppCompatActivity {
         Integer year = numberOrNull(yearField, yearLayout);
         Integer runtime = numberOrNull(runtimeField, runtimeLayout);
         Integer episodes = numberOrNull(episodesField, episodesLayout);
+        Float rating = ratingOrNull();
         if (invalidNumber) {
             return;
         }
@@ -242,8 +235,7 @@ public class EditMediaActivity extends AppCompatActivity {
         item.overview = textOrNull(overviewField);
         item.runtimeMinutes = runtime;
         item.totalEpisodes = MediaType.SERIES.equals(item.type) ? episodes : null;
-        item.rating = ratingBar.getRating() <= 0f
-                ? null : Math.min(ratingBar.getRating() * 2f, 10f);
+        item.rating = rating;
 
         vm.save(item, savedId -> finish());
     }
@@ -253,16 +245,25 @@ public class EditMediaActivity extends AppCompatActivity {
         episodesLayout.setVisibility(series ? View.VISIBLE : View.GONE);
     }
 
-    private void updateRatingLabel() {
-        float rating = ratingBar.getRating();
-        if (rating <= 0f) {
-            ratingValue.setText(R.string.not_rated);
-            ratingBar.setContentDescription(null);
-        } else {
-            String score = MediaMeta.score(rating * 2f);
-            ratingValue.setText(getString(R.string.rating_value, score));
-            ratingBar.setContentDescription(
-                    getString(R.string.rating_description, score));
+    /** Parses the 0–10 rating with one-decimal precision; blank means not rated. */
+    @Nullable
+    private Float ratingOrNull() {
+        String text = ratingField.getText().toString().trim();
+        if (text.isEmpty()) {
+            ratingLayout.setError(null);
+            return null;
+        }
+        try {
+            float value = Float.parseFloat(text);
+            if (value < 0f || value > 10f) {
+                throw new NumberFormatException();
+            }
+            ratingLayout.setError(null);
+            return Math.round(value * 10f) / 10f;
+        } catch (NumberFormatException e) {
+            ratingLayout.setError(getString(R.string.invalid_rating));
+            invalidNumber = true;
+            return null;
         }
     }
 

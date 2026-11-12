@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.LinearLayout;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +19,8 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.List;
 
@@ -42,8 +44,8 @@ public class MediaDetailActivity extends AppCompatActivity {
 
     private MediaDetailViewModel vm;
     private ChipGroup statusGroup;
-    private RatingBar ratingBar;
-    private TextView ratingValue;
+    private TextInputLayout ratingLayout;
+    private TextInputEditText ratingField;
     /** True while the UI mirrors stored data, so listeners ignore programmatic changes. */
     private boolean updatingUi;
     private boolean hadItem;
@@ -90,8 +92,8 @@ public class MediaDetailActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(view -> finish());
 
         statusGroup = findViewById(R.id.detail_status_group);
-        ratingBar = findViewById(R.id.detail_rating_bar);
-        ratingValue = findViewById(R.id.detail_rating_value);
+        ratingLayout = findViewById(R.id.detail_rating_layout);
+        ratingField = findViewById(R.id.detail_rating_input);
 
         statusGroup.setOnCheckedStateChangeListener((group, checkedIds) -> {
             if (updatingUi || checkedIds.isEmpty()) {
@@ -103,18 +105,23 @@ public class MediaDetailActivity extends AppCompatActivity {
                 vm.setStatus((String) tag);
             }
         });
-        ratingBar.setOnRatingBarChangeListener((bar, rating, fromUser) -> {
-            if (!fromUser || updatingUi) {
-                return;
+        ratingField.setOnFocusChangeListener((view, hasFocus) -> {
+            if (!hasFocus) {
+                commitRating();
             }
-            vm.setRating(rating <= 0f ? null : Math.min(rating * 2f, 10f));
-            updateRatingLabel(rating);
+        });
+        ratingField.setOnEditorActionListener((view, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                ratingField.clearFocus();
+                return true;
+            }
+            return false;
         });
         findViewById(R.id.detail_clear_rating).setOnClickListener(v -> {
             updatingUi = true;
-            ratingBar.setRating(0f);
+            ratingField.setText(null);
+            ratingLayout.setError(null);
             updatingUi = false;
-            updateRatingLabel(0f);
             vm.setRating(null);
         });
         findViewById(R.id.detail_edit).setOnClickListener(v -> {
@@ -164,20 +171,31 @@ public class MediaDetailActivity extends AppCompatActivity {
                 ((Chip) child).setChecked(item.status.equals(child.getTag()));
             }
         }
-        ratingBar.setRating(item.rating == null ? 0f : item.rating / 2f);
+        ratingField.setText(item.rating == null ? null : MediaMeta.score(item.rating));
+        ratingLayout.setError(null);
         updatingUi = false;
-        updateRatingLabel(item.rating == null ? 0f : item.rating);
     }
 
-    /** Takes the 0–10 score (0 means not rated). */
-    private void updateRatingLabel(float score) {
-        if (score <= 0f) {
-            ratingValue.setText(R.string.not_rated);
-            ratingBar.setContentDescription(null);
-        } else {
-            String text = MediaMeta.score(score);
-            ratingValue.setText(getString(R.string.rating_value, text));
-            ratingBar.setContentDescription(getString(R.string.rating_description, text));
+    /** Saves the typed 0–10 rating with one-decimal precision; blank means not rated. */
+    private void commitRating() {
+        if (updatingUi) {
+            return;
+        }
+        String text = ratingField.getText().toString().trim();
+        if (text.isEmpty()) {
+            ratingLayout.setError(null);
+            vm.setRating(null);
+            return;
+        }
+        try {
+            float value = Float.parseFloat(text);
+            if (value < 0f || value > 10f) {
+                throw new NumberFormatException();
+            }
+            ratingLayout.setError(null);
+            vm.setRating(Math.round(value * 10f) / 10f);
+        } catch (NumberFormatException e) {
+            ratingLayout.setError(getString(R.string.invalid_rating));
         }
     }
 
