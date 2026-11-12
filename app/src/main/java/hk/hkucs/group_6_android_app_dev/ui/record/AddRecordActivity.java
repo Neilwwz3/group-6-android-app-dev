@@ -3,6 +3,7 @@ package hk.hkucs.group_6_android_app_dev.ui.record;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.icu.text.DateFormat;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -38,14 +39,16 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.text.DateFormatSymbols;
+import java.text.ParsePosition;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
-import java.util.List;
-import java.util.TreeSet;
-import java.util.Locale;
+import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.Locale;
 import java.util.TimeZone;
+import java.util.TreeSet;
 
 import hk.hkucs.group_6_android_app_dev.R;
 import hk.hkucs.group_6_android_app_dev.data.db.entity.MediaItem;
@@ -142,7 +145,7 @@ public class AddRecordActivity extends AppCompatActivity {
         findViewById(R.id.record_clear_review).setOnClickListener(view ->
                 new MaterialAlertDialogBuilder(this)
                         .setTitle(R.string.record_clear_review_confirmation)
-                        .setNegativeButton(android.R.string.cancel, null)
+                        .setNegativeButton(R.string.record_dialog_cancel, null)
                         .setPositiveButton(R.string.record_clear_review,
                                 (dialog, which) -> noteInput.getText().clear())
                         .show());
@@ -373,8 +376,8 @@ public class AddRecordActivity extends AppCompatActivity {
 
         builder.setTitle(R.string.record_watched_episodes)
                 .setView(grid)
-                .setNegativeButton(android.R.string.cancel, null)
-                .setPositiveButton(android.R.string.ok, (dialog, which) -> {
+                .setNegativeButton(R.string.record_dialog_cancel, null)
+                .setPositiveButton(R.string.record_dialog_ok, (dialog, which) -> {
                     input.setText(TextUtils.join(",", selected));
                     input.setError(null);
                 })
@@ -417,6 +420,8 @@ public class AddRecordActivity extends AppCompatActivity {
                 .build();
         MaterialDatePicker<Long> picker = MaterialDatePicker.Builder.datePicker()
                 .setTitleText(R.string.record_watch_date)
+                .setNegativeButtonText(R.string.record_dialog_cancel)
+                .setPositiveButtonText(R.string.record_dialog_ok)
                 .setInputMode(MaterialDatePicker.INPUT_MODE_CALENDAR)
                 .setCalendarConstraints(constraints)
                 .setSelection(selection)
@@ -436,6 +441,8 @@ public class AddRecordActivity extends AppCompatActivity {
                 return;
             }
             View pickerView = picker.requireView();
+            // The calendar's child view is created when the dialog starts.
+            pickerView.post(() -> setEnglishMonthTitle(pickerView));
             View inputModeToggle = pickerView.findViewById(
                     com.google.android.material.R.id.mtrl_picker_header_toggle);
             if (inputModeToggle != null) {
@@ -456,6 +463,34 @@ public class AddRecordActivity extends AppCompatActivity {
                         return selection == null ? source : formatWatchDate(selection);
                     }
                 });
+            }
+        });
+    }
+
+    @SuppressWarnings("PrivateResource")
+    private static void setEnglishMonthTitle(View pickerView) {
+        TextView monthTitle = pickerView.findViewById(
+                com.google.android.material.R.id.month_navigation_fragment_toggle);
+        if (monthTitle == null) {
+            return;
+        }
+
+        DateFormat localFormat = DateFormat.getInstanceForSkeleton(
+                DateFormat.YEAR_MONTH, Locale.getDefault());
+        DateFormat englishFormat = DateFormat.getInstanceForSkeleton(
+                DateFormat.YEAR_MONTH, Locale.US);
+        localFormat.setTimeZone(android.icu.util.TimeZone.getTimeZone("UTC"));
+        englishFormat.setTimeZone(android.icu.util.TimeZone.getTimeZone("UTC"));
+        monthTitle.setTransformationMethod(new SingleLineTransformationMethod() {
+            @Override
+            public CharSequence getTransformation(CharSequence source, View view) {
+                if (TextUtils.isEmpty(source)) {
+                    return source;
+                }
+                ParsePosition position = new ParsePosition(0);
+                Date month = localFormat.parse(source.toString(), position);
+                return month != null && position.getIndex() == source.length()
+                        ? englishFormat.format(month) : source;
             }
         });
     }

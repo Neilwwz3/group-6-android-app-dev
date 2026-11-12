@@ -121,6 +121,8 @@
     <string name="record_episodes_positive">Enter positive episode numbers separated by commas.</string>
     <string name="record_clear_review">Clear</string>
     <string name="record_clear_review_confirmation">Clear this review?</string>
+    <string name="record_dialog_cancel">Cancel</string>
+    <string name="record_dialog_ok">OK</string>
     <plurals name="record_review_character_count">
         <item quantity="one">%1$d character</item>
         <item quantity="other">%1$d characters</item>
