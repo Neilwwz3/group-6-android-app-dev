@@ -15,6 +15,7 @@ import androidx.core.graphics.ColorUtils;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import hk.hkucs.group_6_android_app_dev.R;
 import hk.hkucs.group_6_android_app_dev.data.model.GenreCount;
@@ -61,7 +62,7 @@ public class DonutChartView extends View {
         for (GenreCount value : counts) {
             total += value.count;
         }
-        NumberFormat percent = NumberFormat.getPercentInstance(getResources().getConfiguration().getLocales().get(0));
+        NumberFormat percent = NumberFormat.getPercentInstance(Locale.US);
         percent.setMaximumFractionDigits(1);
         percentages.clear();
         for (GenreCount value : counts) {

@@ -30,6 +30,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 
 import hk.hkucs.group_6_android_app_dev.R;
 import hk.hkucs.group_6_android_app_dev.data.model.GenreCount;
@@ -92,7 +93,7 @@ public class ProfileFragment extends Fragment {
             return;
         }
         view.findViewById(R.id.profile_empty).setVisibility(summary.mediaCount == 0 ? View.VISIBLE : View.GONE);
-        NumberFormat integerFormat = NumberFormat.getIntegerInstance(getResources().getConfiguration().getLocales().get(0));
+        NumberFormat integerFormat = NumberFormat.getIntegerInstance(Locale.US);
         setText(view, R.id.profile_titles, integerFormat.format(summary.mediaCount));
         setText(view, R.id.profile_watched, integerFormat.format(summary.watchedCount));
         setText(view, R.id.profile_time,
@@ -100,7 +101,8 @@ public class ProfileFragment extends Fragment {
         CharSequence rating = getText(R.string.g5_profile_metric_unrated);
         if (summary.averageRating != null) {
             SpannableStringBuilder formatted = new SpannableStringBuilder(
-                    getString(R.string.g5_profile_metric_rating_value, summary.averageRating));
+                    String.format(Locale.US, getString(R.string.g5_profile_metric_rating_value),
+                            summary.averageRating));
             int suffixStart = formatted.length();
             formatted.append(getText(R.string.g5_profile_metric_rating_scale));
             formatted.setSpan(new TextAppearanceSpan(view.getContext(), R.style.TextAppearance_Group6_Caption),
@@ -127,7 +129,7 @@ public class ProfileFragment extends Fragment {
 
         chart.setCounts(counts);
         int genreTotal = counts.size();
-        NumberFormat number = NumberFormat.getIntegerInstance(getResources().getConfiguration().getLocales().get(0));
+        NumberFormat number = NumberFormat.getIntegerInstance(Locale.US);
         setText(view, R.id.profile_genre_total, number.format(genreTotal));
         setText(view, R.id.profile_genre_total_label,
                 getResources().getQuantityText(R.plurals.g5_profile_genre_total_label, genreTotal));
@@ -177,7 +179,7 @@ public class ProfileFragment extends Fragment {
         legend.addView(divider, new TableLayout.LayoutParams(
                 TableLayout.LayoutParams.MATCH_PARENT,
                 getResources().getDimensionPixelSize(R.dimen.card_outline_width)));
-        NumberFormat number = NumberFormat.getIntegerInstance(getResources().getConfiguration().getLocales().get(0));
+        NumberFormat number = NumberFormat.getIntegerInstance(Locale.US);
         for (int i = 0; i < visibleCount; i++) {
             GenreCount count = counts.get(i);
             addGenreRow(legend, count.genre, number.format(count.count),
