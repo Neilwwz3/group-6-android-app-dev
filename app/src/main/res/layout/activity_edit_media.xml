@@ -239,32 +239,22 @@
                     android:tag="dropped"
                     style="@style/Widget.Group6.FilterChip" />
             </com.google.android.material.chip.ChipGroup>
-            <TextView
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/rating_layout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_24"
-                android:text="@string/field_rating"
-                android:textAppearance="@style/TextAppearance.Group6.Caption" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_8"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
-                <RatingBar
-                    android:id="@+id/edit_rating_bar"
-                    android:layout_width="wrap_content"
+                android:hint="@string/field_rating"
+                app:helperText="@string/rating_hint">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_rating"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:numStars="5"
-                    android:stepSize="0.5" />
-                <TextView
-                    android:id="@+id/edit_rating_value"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space_12"
-                    android:text="@string/not_rated"
-                    android:textAppearance="@style/TextAppearance.Group6.Caption" />
-            </LinearLayout>
+                    android:inputType="numberDecimal"
+                    android:maxLength="4"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/clear_rating"
                 style="@style/Widget.Material3.Button.TextButton"
