@@ -171,12 +171,27 @@
                     android:text="@string/delete"
                     android:textColor="@color/error" />
             </LinearLayout>
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_24"
-                android:text="@string/records_title"
-                android:textAppearance="@style/TextAppearance.Group6.CardTitle" />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/records_title"
+                    android:textAppearance="@style/TextAppearance.Group6.CardTitle" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/detail_add_record"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_12"
+                    android:minHeight="@dimen/touch_target"
+                    android:text="@string/add_record" />
+            </LinearLayout>
             <TextView
                 android:id="@+id/records_empty"
                 android:layout_width="match_parent"

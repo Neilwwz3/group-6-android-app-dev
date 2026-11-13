@@ -6,6 +6,8 @@ import android.content.res.ColorStateList;
 import android.icu.text.DateFormat;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.method.SingleLineTransformationMethod;
@@ -20,7 +22,6 @@ import android.widget.GridView;
 import android.widget.ListAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 import java.util.TreeSet;
+import java.util.regex.Pattern;
 
 import hk.hkucs.group_6_android_app_dev.R;
 import hk.hkucs.group_6_android_app_dev.data.db.entity.MediaItem;
@@ -62,10 +64,10 @@ public class AddRecordActivity extends AppCompatActivity {
     private static final int MIN_WATCH_YEAR = 1900;
     private static final int MAX_WATCH_YEAR = 2100;
 
-    private static final String STATE_RATING_CLEARED = "rating_cleared";
+    private static final Pattern RATING_INPUT =
+            Pattern.compile("(?:[0-9](?:\\.[0-9]?)?|10(?:\\.0?)?)?");
 
     private MediaItem media;
-    private boolean ratingCleared;
 
     public static Intent newIntent(Context context, @NonNull String mediaId) {
         if (mediaId == null || mediaId.trim().isEmpty()) {
@@ -103,26 +105,24 @@ public class AddRecordActivity extends AppCompatActivity {
         findViewById(R.id.record_toolbar).setOnClickListener(view -> finish());
 
         EditText dateInput = findViewById(R.id.record_date);
-        EditText minutesInput = findViewById(R.id.record_minutes);
-        RatingBar ratingInput = findViewById(R.id.record_rating);
-        TextView ratingScore = findViewById(R.id.record_rating_score);
-        ratingCleared = savedInstanceState != null
-                && savedInstanceState.getBoolean(STATE_RATING_CLEARED);
-        if (ratingCleared) {
-            ratingInput.setRating(0f);
-        }
-        updateRatingScore(ratingScore, ratingInput.getRating());
-        ratingInput.setOnRatingBarChangeListener((bar, rating, fromUser) -> {
-            if (fromUser) {
-                ratingCleared = false;
+        dateInput.setOnFocusChangeListener((view, hasFocus) -> {
+            if (!hasFocus) {
+                String input = dateInput.getText().toString();
+                Long dateMillis = parseWatchDate(input.trim());
+                if (dateMillis != null) {
+                    String formattedDate = formatWatchDate(dateMillis);
+                    if (!formattedDate.equals(input)) {
+                        dateInput.setText(formattedDate);
+                    }
+                    dateInput.setError(null);
+                }
             }
-            updateRatingScore(ratingScore, rating);
         });
-        findViewById(R.id.record_clear_rating).setOnClickListener(view -> {
-            ratingCleared = true;
-            ratingInput.setRating(0f);
-            updateRatingScore(ratingScore, ratingInput.getRating());
-        });
+        EditText minutesInput = findViewById(R.id.record_minutes);
+        EditText ratingInput = findViewById(R.id.record_rating);
+        ratingInput.setFilters(new InputFilter[] {AddRecordActivity::filterRating});
+        findViewById(R.id.record_clear_rating).setOnClickListener(view ->
+                ratingInput.getText().clear());
         EditText noteInput = findViewById(R.id.record_note);
         TextView reviewCount = findViewById(R.id.record_review_count);
         updateReviewCount(reviewCount, noteInput.getText());
@@ -210,12 +210,14 @@ public class AddRecordActivity extends AppCompatActivity {
         });
 
         saveButton.setOnClickListener(view -> {
-            String date = dateInput.getText().toString().trim();
-            if (parseWatchDate(date) == null) {
+            Long dateMillis = parseWatchDate(dateInput.getText().toString().trim());
+            if (dateMillis == null) {
                 dateInput.setError(getString(R.string.record_date_error));
                 dateInput.requestFocus();
                 return;
             }
+            String date = formatWatchDate(dateMillis);
+            dateInput.setText(date);
             dateInput.setError(null);
 
             String minutesText = minutesInput.getText().toString().trim();
@@ -242,24 +244,36 @@ public class AddRecordActivity extends AppCompatActivity {
                 episodes = new ArrayList<>(selected);
                 episodesInput.setText(TextUtils.join(",", selected));
             }
+            String ratingText = ratingInput.getText().toString();
+            Float rating = ratingText.isEmpty() ? null : Float.valueOf(ratingText);
             viewModel.save(
                     mediaId,
                     date,
                     minutes,
-                    ratingCleared ? null : ratingInput.getRating() * 2f,
+                    rating,
                     noteInput.getText().toString().trim(), episodes);
         });
     }
 
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putBoolean(STATE_RATING_CLEARED, ratingCleared);
-    }
+    private static CharSequence filterRating(CharSequence source, int start, int end,
+                                             Spanned destination,
+                                             int replaceStart, int replaceEnd) {
+        String prefix = destination.subSequence(0, replaceStart).toString();
+        String suffix = destination.subSequence(replaceEnd, destination.length()).toString();
+        String candidate = prefix + source.subSequence(start, end) + suffix;
+        if (RATING_INPUT.matcher(candidate).matches()) {
+            return null;
+        }
 
-    private void updateRatingScore(TextView ratingScore, float stars) {
-        ratingScore.setText(ratingCleared ? getString(R.string.record_rating_not_rated)
-                : getString(R.string.record_rating_score_format, Math.round(stars * 2f)));
+        int decimalPoint = candidate.indexOf('.');
+        int keepThrough = decimalPoint + 2;
+        int insertionEnd = candidate.length() - suffix.length();
+        if (decimalPoint >= 0 && keepThrough >= replaceStart && keepThrough < insertionEnd
+                && candidate.substring(keepThrough, insertionEnd).matches("[0-9]+")
+                && RATING_INPUT.matcher(candidate.substring(0, keepThrough) + suffix).matches()) {
+            return source.subSequence(start, start + keepThrough - replaceStart);
+        }
+        return destination.subSequence(replaceStart, replaceEnd);
     }
 
     private void updateReviewCount(TextView reviewCount, CharSequence review) {
@@ -531,19 +545,19 @@ public class AddRecordActivity extends AppCompatActivity {
     }
 
     private static Long parseWatchDate(String date) {
-        if (!date.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}")) {
+        if (!date.matches("[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}")) {
             return null;
         }
 
-        int year = Integer.parseInt(date.substring(0, 4));
+        String[] parts = date.split("-");
+        int year = Integer.parseInt(parts[0]);
         if (year < MIN_WATCH_YEAR || year > MAX_WATCH_YEAR) {
             return null;
         }
 
         Calendar calendar = utcCalendar();
         calendar.setLenient(false);
-        calendar.set(year, Integer.parseInt(date.substring(5, 7)) - 1,
-                Integer.parseInt(date.substring(8, 10)));
+        calendar.set(year, Integer.parseInt(parts[1]) - 1, Integer.parseInt(parts[2]));
         try {
             return calendar.getTimeInMillis();
         } catch (IllegalArgumentException invalidDate) {
