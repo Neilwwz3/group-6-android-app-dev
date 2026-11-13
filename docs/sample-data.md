@@ -1,7 +1,7 @@
 # Sample Media Data
 
 File: `app/src/main/assets/sample/library.json` (`version: 1`).
-This dataset is used for class demos, the intro video, and development testing. It simulates one year (2025-12 to 2026-11) of viewing history for a single user. All overviews are written in my own words and do not copy text from Douban or TMDB. No downloaded posters are used: every `poster` points to a self-made placeholder PNG (400x600, gradient background plus title and year) generated locally and stored under `app/src/main/assets/sample/posters/`, so there is no copyright risk.
+This dataset is used for class demos, the intro video, and development testing. It simulates one year (2025-12 to 2026-11) of viewing history for a single user. All overviews are written in my own words and do not copy text from Douban or TMDB. Every `poster` is an asset-relative path (e.g. `sample/posters/interstellar-2014.png`) pointing to an official TMDB portrait poster resized to 400x600 PNG and stored under `app/src/main/assets/sample/posters/`. Per the coordinator's approval, metadata (year, runtime, cast, directors) and posters follow TMDB as the source of truth; three titles with ambiguous TMDB counts were replaced with unambiguous ones (How I Met Your Mother, Supernatural, Better Call Saul). No TMDB API key or other secrets are committed.
 
 Note: per the request, the entire dataset is in English. This deviates from the D-1 task card, which defines `title` as the Chinese name and restricts `genres` to a Chinese whitelist. Needs confirmation with the coordinator.
 

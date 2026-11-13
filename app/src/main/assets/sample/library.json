@@ -7,19 +7,43 @@
       "originalTitle": "Interstellar",
       "year": 2014,
       "type": "movie",
-      "genres": ["Sci-Fi", "Drama"],
-      "directors": ["Christopher Nolan"],
-      "cast": ["Matthew McConaughey", "Anne Hathaway", "Jessica Chastain"],
+      "genres": [
+        "Sci-Fi",
+        "Drama"
+      ],
+      "directors": [
+        "Christopher Nolan"
+      ],
+      "cast": [
+        "Matthew McConaughey",
+        "Anne Hathaway",
+        "Jessica Chastain"
+      ],
       "overview": "As Earth's environment collapses, a team of astronauts travels through a wormhole to find humanity a new home, anchored by the bond between a father and his daughter across time.",
       "runtimeMinutes": 169,
       "totalEpisodes": null,
-      "poster": "interstellar-2014.png",
+      "poster": "sample/posters/interstellar-2014.png",
       "status": "watched",
       "rating": 9.5,
-      "tags": ["mind-bending", "rewatched"],
+      "tags": [
+        "mind-bending",
+        "rewatched"
+      ],
       "records": [
-        { "date": "2026-03-14", "episodes": null, "minutes": 169, "rating": 9.0, "note": "First watch, the last act hit hard." },
-        { "date": "2026-09-02", "episodes": null, "minutes": 169, "rating": 9.5, "note": "Rewatched it and liked it even more." }
+        {
+          "date": "2026-03-14",
+          "episodes": null,
+          "minutes": 169,
+          "rating": 9.0,
+          "note": "First watch, the last act hit hard."
+        },
+        {
+          "date": "2026-09-02",
+          "episodes": null,
+          "minutes": 169,
+          "rating": 9.5,
+          "note": "Rewatched it and liked it even more."
+        }
       ]
     },
     {
@@ -28,19 +52,42 @@
       "originalTitle": "The Shawshank Redemption",
       "year": 1994,
       "type": "movie",
-      "genres": ["Drama", "Crime"],
-      "directors": ["Frank Darabont"],
-      "cast": ["Tim Robbins", "Morgan Freeman"],
+      "genres": [
+        "Drama",
+        "Crime"
+      ],
+      "directors": [
+        "Frank Darabont"
+      ],
+      "cast": [
+        "Tim Robbins",
+        "Morgan Freeman"
+      ],
       "overview": "A banker wrongly imprisoned holds onto hope over decades and engineers his own quiet redemption through patience and wit.",
       "runtimeMinutes": 142,
       "totalEpisodes": null,
-      "poster": "shawshank-1994.png",
+      "poster": "sample/posters/shawshank-1994.png",
       "status": "watched",
       "rating": 9.7,
-      "tags": ["classic", "uplifting"],
+      "tags": [
+        "classic",
+        "uplifting"
+      ],
       "records": [
-        { "date": "2026-05-10", "episodes": null, "minutes": 142, "rating": 9.5, "note": "First watch, the prison-yard hope scene stayed with me." },
-        { "date": "2026-11-06", "episodes": null, "minutes": 142, "rating": 9.7, "note": "Gets more powerful as it goes." }
+        {
+          "date": "2026-05-10",
+          "episodes": null,
+          "minutes": 142,
+          "rating": 9.5,
+          "note": "First watch, the prison-yard hope scene stayed with me."
+        },
+        {
+          "date": "2026-11-06",
+          "episodes": null,
+          "minutes": 142,
+          "rating": 9.7,
+          "note": "Gets more powerful as it goes."
+        }
       ]
     },
     {
@@ -49,19 +96,43 @@
       "originalTitle": "Inception",
       "year": 2010,
       "type": "movie",
-      "genres": ["Sci-Fi", "Action", "Mystery"],
-      "directors": ["Christopher Nolan"],
-      "cast": ["Leonardo DiCaprio", "Joseph Gordon-Levitt"],
+      "genres": [
+        "Sci-Fi",
+        "Action",
+        "Mystery"
+      ],
+      "directors": [
+        "Christopher Nolan"
+      ],
+      "cast": [
+        "Leonardo DiCaprio",
+        "Joseph Gordon-Levitt"
+      ],
       "overview": "A crew of thieves enters people's dreams to plant an idea, and the nested layers of dreams pull the audience in too.",
       "runtimeMinutes": 148,
       "totalEpisodes": null,
-      "poster": "inception-2010.png",
+      "poster": "sample/posters/inception-2010.png",
       "status": "watched",
       "rating": 9.0,
-      "tags": ["mind-bending", "rewatched"],
+      "tags": [
+        "mind-bending",
+        "rewatched"
+      ],
       "records": [
-        { "date": "2025-12-20", "episodes": null, "minutes": 148, "rating": 8.5, "note": "A bit hard to follow the rules on first watch." },
-        { "date": "2026-06-14", "episodes": null, "minutes": 148, "rating": 9.0, "note": "Once I got the structure, the rewatch was a thrill ride." }
+        {
+          "date": "2025-12-20",
+          "episodes": null,
+          "minutes": 148,
+          "rating": 8.5,
+          "note": "A bit hard to follow the rules on first watch."
+        },
+        {
+          "date": "2026-06-14",
+          "episodes": null,
+          "minutes": 148,
+          "rating": 9.0,
+          "note": "Once I got the structure, the rewatch was a thrill ride."
+        }
       ]
     },
     {
@@ -70,19 +141,43 @@
       "originalTitle": "Gisaengchung",
       "year": 2019,
       "type": "movie",
-      "genres": ["Drama", "Mystery"],
-      "directors": ["Bong Joon-ho"],
-      "cast": ["Song Kang-ho", "Lee Sun-kyun", "Cho Yeo-jeong"],
+      "genres": [
+        "Drama",
+        "Mystery"
+      ],
+      "directors": [
+        "Bong Joon-ho"
+      ],
+      "cast": [
+        "Song Kang-ho",
+        "Lee Sun-kyun",
+        "Cho Yeo-jeong"
+      ],
       "overview": "A poor family schemes their way into serving a wealthy household, until an unexpected discovery exposes something far deeper.",
       "runtimeMinutes": 133,
       "totalEpisodes": null,
-      "poster": "parasite-2019.png",
+      "poster": "sample/posters/parasite-2019.png",
       "status": "watched",
       "rating": 8.8,
-      "tags": ["twist", "rewatched"],
+      "tags": [
+        "twist",
+        "rewatched"
+      ],
       "records": [
-        { "date": "2026-02-08", "episodes": null, "minutes": 132, "rating": 8.5, "note": "Half comedy at first, chilling by the end." },
-        { "date": "2026-08-19", "episodes": null, "minutes": 132, "rating": 8.8, "note": "Rewatching, you spot foreshadowing everywhere." }
+        {
+          "date": "2026-02-08",
+          "episodes": null,
+          "minutes": 132,
+          "rating": 8.5,
+          "note": "Half comedy at first, chilling by the end."
+        },
+        {
+          "date": "2026-08-19",
+          "episodes": null,
+          "minutes": 132,
+          "rating": 8.8,
+          "note": "Rewatching, you spot foreshadowing everywhere."
+        }
       ]
     },
     {
@@ -91,18 +186,36 @@
       "originalTitle": "Bawang Bieji",
       "year": 1993,
       "type": "movie",
-      "genres": ["Drama", "Romance", "War"],
-      "directors": ["Chen Kaige"],
-      "cast": ["Leslie Cheung", "Zhang Fengyi", "Gong Li"],
+      "genres": [
+        "Drama",
+        "Romance",
+        "War"
+      ],
+      "directors": [
+        "Chen Kaige"
+      ],
+      "cast": [
+        "Leslie Cheung",
+        "Zhang Fengyi",
+        "Gong Li"
+      ],
       "overview": "The decades-long bond and rivalry between two Peking opera performers, weaving personal fate together with a century of upheaval.",
       "runtimeMinutes": 171,
       "totalEpisodes": null,
-      "poster": "farewell-my-concubine-1993.png",
+      "poster": "sample/posters/farewell-my-concubine-1993.png",
       "status": "watched",
       "rating": 9.6,
-      "tags": ["classic"],
+      "tags": [
+        "classic"
+      ],
       "records": [
-        { "date": "2026-04-05", "episodes": null, "minutes": 171, "rating": 9.6, "note": "Leslie Cheung's role is unforgettable." }
+        {
+          "date": "2026-04-05",
+          "episodes": null,
+          "minutes": 171,
+          "rating": 9.6,
+          "note": "Leslie Cheung's role is unforgettable."
+        }
       ]
     },
     {
@@ -111,19 +224,41 @@
       "originalTitle": "The Godfather",
       "year": 1972,
       "type": "movie",
-      "genres": ["Crime", "Drama"],
-      "directors": ["Francis Ford Coppola"],
-      "cast": ["Marlon Brando", "Al Pacino"],
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "directors": [
+        "Francis Ford Coppola"
+      ],
+      "cast": [
+        "Marlon Brando",
+        "Al Pacino"
+      ],
       "overview": "The succession within a mafia family, and the story of a son slowly drawn into his father's world.",
       "runtimeMinutes": 175,
       "totalEpisodes": null,
-      "poster": "godfather-1972.png",
+      "poster": "sample/posters/godfather-1972.png",
       "status": "watched",
       "rating": 9.2,
-      "tags": ["classic"],
+      "tags": [
+        "classic"
+      ],
       "records": [
-        { "date": "2026-07-01", "episodes": null, "minutes": 175, "rating": 9.0, "note": "The opening wedding is deceptively relaxed." },
-        { "date": "2026-11-09", "episodes": null, "minutes": 175, "rating": 9.2, "note": "Slow pace, but every scene carries weight." }
+        {
+          "date": "2026-07-01",
+          "episodes": null,
+          "minutes": 175,
+          "rating": 9.0,
+          "note": "The opening wedding is deceptively relaxed."
+        },
+        {
+          "date": "2026-11-09",
+          "episodes": null,
+          "minutes": 175,
+          "rating": 9.2,
+          "note": "Slow pace, but every scene carries weight."
+        }
       ]
     },
     {
@@ -132,19 +267,42 @@
       "originalTitle": "Sen to Chihiro no Kamikakushi",
       "year": 2001,
       "type": "movie",
-      "genres": ["Animation", "Fantasy"],
-      "directors": ["Hayao Miyazaki"],
-      "cast": ["Rumi Hiiragi", "Miyu Irino"],
+      "genres": [
+        "Animation",
+        "Fantasy"
+      ],
+      "directors": [
+        "Hayao Miyazaki"
+      ],
+      "cast": [
+        "Rumi Hiiragi",
+        "Miyu Irino"
+      ],
       "overview": "A young girl wanders into the world of spirits and, to save her parents, slowly finds her own courage working in a bathhouse.",
       "runtimeMinutes": 125,
       "totalEpisodes": null,
-      "poster": "spirited-away-2001.png",
+      "poster": "sample/posters/spirited-away-2001.png",
       "status": "watched",
       "rating": 9.0,
-      "tags": ["uplifting", "rewatched"],
+      "tags": [
+        "uplifting",
+        "rewatched"
+      ],
       "records": [
-        { "date": "2026-09-20", "episodes": null, "minutes": 125, "rating": 8.8, "note": "Every frame looks like a painting." },
-        { "date": "2026-11-01", "episodes": null, "minutes": 125, "rating": 9.0, "note": "Only on the rewatch did I notice how lonely No-Face is." }
+        {
+          "date": "2026-09-20",
+          "episodes": null,
+          "minutes": 125,
+          "rating": 8.8,
+          "note": "Every frame looks like a painting."
+        },
+        {
+          "date": "2026-11-01",
+          "episodes": null,
+          "minutes": 125,
+          "rating": 9.0,
+          "note": "Only on the rewatch did I notice how lonely No-Face is."
+        }
       ]
     },
     {
@@ -153,19 +311,42 @@
       "originalTitle": "Kimi no Na wa.",
       "year": 2016,
       "type": "movie",
-      "genres": ["Animation", "Romance", "Drama"],
-      "directors": ["Makoto Shinkai"],
-      "cast": ["Ryunosuke Kamiki", "Mone Kamishiraishi"],
+      "genres": [
+        "Animation",
+        "Romance",
+        "Drama"
+      ],
+      "directors": [
+        "Makoto Shinkai"
+      ],
+      "cast": [
+        "Ryunosuke Kamiki",
+        "Mone Kamishiraishi"
+      ],
       "overview": "A boy in Tokyo and a girl in the countryside mysteriously swap bodies, and a bond across time begins to unfold.",
       "runtimeMinutes": 106,
       "totalEpisodes": null,
-      "poster": "your-name-2016.png",
+      "poster": "sample/posters/your-name-2016.png",
       "status": "watched",
       "rating": 8.6,
-      "tags": ["gorgeous"],
+      "tags": [
+        "gorgeous"
+      ],
       "records": [
-        { "date": "2026-03-01", "episodes": null, "minutes": 106, "rating": 8.4, "note": "The body-swap gimmick is charming." },
-        { "date": "2026-11-02", "episodes": null, "minutes": 106, "rating": 8.6, "note": "The soundtrack adds so much." }
+        {
+          "date": "2026-03-01",
+          "episodes": null,
+          "minutes": 106,
+          "rating": 8.4,
+          "note": "The body-swap gimmick is charming."
+        },
+        {
+          "date": "2026-11-02",
+          "episodes": null,
+          "minutes": 106,
+          "rating": 8.6,
+          "note": "The soundtrack adds so much."
+        }
       ]
     },
     {
@@ -174,19 +355,42 @@
       "originalTitle": "Zootopia",
       "year": 2016,
       "type": "movie",
-      "genres": ["Animation", "Comedy"],
-      "directors": ["Byron Howard", "Rich Moore"],
-      "cast": ["Ginnifer Goodwin", "Jason Bateman"],
+      "genres": [
+        "Animation",
+        "Comedy"
+      ],
+      "directors": [
+        "Byron Howard",
+        "Rich Moore"
+      ],
+      "cast": [
+        "Ginnifer Goodwin",
+        "Jason Bateman"
+      ],
       "overview": "A rabbit cop and a con-artist fox team up to solve a disappearance in a city where all animals live together.",
       "runtimeMinutes": 109,
       "totalEpisodes": null,
-      "poster": "zootopia-2016.png",
+      "poster": "sample/posters/zootopia-2016.png",
       "status": "watched",
       "rating": 8.4,
-      "tags": ["feel-good"],
+      "tags": [
+        "feel-good"
+      ],
       "records": [
-        { "date": "2026-01-06", "episodes": null, "minutes": 108, "rating": 8.2, "note": "Fun premise, light and easy to watch." },
-        { "date": "2026-11-11", "episodes": null, "minutes": 108, "rating": 8.4, "note": "The sloth scene is hilarious." }
+        {
+          "date": "2026-01-06",
+          "episodes": null,
+          "minutes": 108,
+          "rating": 8.2,
+          "note": "Fun premise, light and easy to watch."
+        },
+        {
+          "date": "2026-11-11",
+          "episodes": null,
+          "minutes": 108,
+          "rating": 8.4,
+          "note": "The sloth scene is hilarious."
+        }
       ]
     },
     {
@@ -195,19 +399,43 @@
       "originalTitle": "Rang Zi Dan Fei",
       "year": 2010,
       "type": "movie",
-      "genres": ["Drama", "Comedy", "Action"],
-      "directors": ["Jiang Wen"],
-      "cast": ["Jiang Wen", "Ge You", "Chow Yun-fat"],
+      "genres": [
+        "Drama",
+        "Comedy",
+        "Action"
+      ],
+      "directors": [
+        "Jiang Wen"
+      ],
+      "cast": [
+        "Jiang Wen",
+        "Ge You",
+        "Chow Yun-fat"
+      ],
       "overview": "A bandit poses as a county magistrate and battles a local tyrant, with every line of dialogue seeming to hide a second meaning.",
       "runtimeMinutes": 132,
       "totalEpisodes": null,
-      "poster": "let-bullets-fly-2010.png",
+      "poster": "sample/posters/let-bullets-fly-2010.png",
       "status": "watched",
       "rating": 8.9,
-      "tags": ["sharp-dialogue"],
+      "tags": [
+        "sharp-dialogue"
+      ],
       "records": [
-        { "date": "2026-05-22", "episodes": null, "minutes": 132, "rating": 8.7, "note": "The dialogue is fast and full of wordplay." },
-        { "date": "2026-11-04", "episodes": null, "minutes": 132, "rating": 8.9, "note": "So dense with ideas it's worth another watch." }
+        {
+          "date": "2026-05-22",
+          "episodes": null,
+          "minutes": 132,
+          "rating": 8.7,
+          "note": "The dialogue is fast and full of wordplay."
+        },
+        {
+          "date": "2026-11-04",
+          "episodes": null,
+          "minutes": 132,
+          "rating": 8.9,
+          "note": "So dense with ideas it's worth another watch."
+        }
       ]
     },
     {
@@ -216,18 +444,34 @@
       "originalTitle": "Schindler's List",
       "year": 1993,
       "type": "movie",
-      "genres": ["War", "Drama"],
-      "directors": ["Steven Spielberg"],
-      "cast": ["Liam Neeson", "Ben Kingsley"],
+      "genres": [
+        "War",
+        "Drama"
+      ],
+      "directors": [
+        "Steven Spielberg"
+      ],
+      "cast": [
+        "Liam Neeson",
+        "Ben Kingsley"
+      ],
       "overview": "A businessman spends his fortune to save over a thousand Jewish people from the concentration camps.",
       "runtimeMinutes": 195,
       "totalEpisodes": null,
-      "poster": "schindlers-list-1993.png",
+      "poster": "sample/posters/schindlers-list-1993.png",
       "status": "watched",
       "rating": 9.3,
-      "tags": ["heavy"],
+      "tags": [
+        "heavy"
+      ],
       "records": [
-        { "date": "2026-07-18", "episodes": null, "minutes": 195, "rating": 9.3, "note": "That flash of red in the black-and-white footage." }
+        {
+          "date": "2026-07-18",
+          "episodes": null,
+          "minutes": 195,
+          "rating": 9.3,
+          "note": "That flash of red in the black-and-white footage."
+        }
       ]
     },
     {
@@ -236,13 +480,21 @@
       "originalTitle": "Titanic",
       "year": 1997,
       "type": "movie",
-      "genres": ["Romance", "Drama"],
-      "directors": ["James Cameron"],
-      "cast": ["Leonardo DiCaprio", "Kate Winslet"],
+      "genres": [
+        "Romance",
+        "Drama"
+      ],
+      "directors": [
+        "James Cameron"
+      ],
+      "cast": [
+        "Leonardo DiCaprio",
+        "Kate Winslet"
+      ],
       "overview": "A first-class passenger and a poor painter fall in love aboard the great ship as it sails toward the iceberg.",
       "runtimeMinutes": 194,
       "totalEpisodes": null,
-      "poster": "titanic-1997.png",
+      "poster": "sample/posters/titanic-1997.png",
       "status": "want",
       "rating": null,
       "tags": [],
@@ -254,13 +506,20 @@
       "originalTitle": "Forrest Gump",
       "year": 1994,
       "type": "movie",
-      "genres": ["Drama", "Romance"],
-      "directors": ["Robert Zemeckis"],
-      "cast": ["Tom Hanks"],
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "directors": [
+        "Robert Zemeckis"
+      ],
+      "cast": [
+        "Tom Hanks"
+      ],
       "overview": "A simple-hearted man runs through decades of American history, always thinking of the girl he loves.",
       "runtimeMinutes": 142,
       "totalEpisodes": null,
-      "poster": "forrest-gump-1994.png",
+      "poster": "sample/posters/forrest-gump-1994.png",
       "status": "want",
       "rating": null,
       "tags": [],
@@ -272,13 +531,22 @@
       "originalTitle": "Leon",
       "year": 1994,
       "type": "movie",
-      "genres": ["Drama", "Action", "Crime"],
-      "directors": ["Luc Besson"],
-      "cast": ["Jean Reno", "Natalie Portman"],
+      "genres": [
+        "Drama",
+        "Action",
+        "Crime"
+      ],
+      "directors": [
+        "Luc Besson"
+      ],
+      "cast": [
+        "Jean Reno",
+        "Natalie Portman"
+      ],
       "overview": "A lone hitman takes in his neighbor's young daughter, and the two change each other as they live together.",
       "runtimeMinutes": 111,
       "totalEpisodes": null,
-      "poster": "leon-1994.png",
+      "poster": "sample/posters/leon-1994.png",
       "status": "want",
       "rating": null,
       "tags": [],
@@ -290,13 +558,22 @@
       "originalTitle": "The Matrix",
       "year": 1999,
       "type": "movie",
-      "genres": ["Sci-Fi", "Action"],
-      "directors": ["Lilly Wachowski", "Lana Wachowski"],
-      "cast": ["Keanu Reeves", "Laurence Fishburne"],
+      "genres": [
+        "Sci-Fi",
+        "Action"
+      ],
+      "directors": [
+        "Lilly Wachowski",
+        "Lana Wachowski"
+      ],
+      "cast": [
+        "Keanu Reeves",
+        "Laurence Fishburne"
+      ],
       "overview": "A programmer learns the world is a machine-woven illusion and is pulled into a war over what is real.",
       "runtimeMinutes": 136,
       "totalEpisodes": null,
-      "poster": "the-matrix-1999.png",
+      "poster": "sample/posters/the-matrix-1999.png",
       "status": "want",
       "rating": null,
       "tags": [],
@@ -308,13 +585,22 @@
       "originalTitle": "The Wandering Earth",
       "year": 2019,
       "type": "movie",
-      "genres": ["Sci-Fi", "Action"],
-      "directors": ["Frant Gwo"],
-      "cast": ["Qu Chuxiao", "Wu Jing", "Li Guangjie"],
+      "genres": [
+        "Sci-Fi",
+        "Action"
+      ],
+      "directors": [
+        "Frant Gwo"
+      ],
+      "cast": [
+        "Qu Chuxiao",
+        "Wu Jing",
+        "Li Guangjie"
+      ],
       "overview": "As the sun is about to die, humanity propels the whole Earth to escape the solar system, and runs into a Jupiter crisis along the way.",
       "runtimeMinutes": 126,
       "totalEpisodes": null,
-      "poster": "wandering-earth-2019.png",
+      "poster": "sample/posters/wandering-earth-2019.png",
       "status": "want",
       "rating": null,
       "tags": [],
@@ -326,13 +612,22 @@
       "originalTitle": "Pulp Fiction",
       "year": 1994,
       "type": "movie",
-      "genres": ["Crime", "Drama"],
-      "directors": ["Quentin Tarantino"],
-      "cast": ["John Travolta", "Uma Thurman", "Samuel L. Jackson"],
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "directors": [
+        "Quentin Tarantino"
+      ],
+      "cast": [
+        "John Travolta",
+        "Uma Thurman",
+        "Samuel L. Jackson"
+      ],
       "overview": "Several mob stories are shuffled out of order and stitched together by dialogue and dark humor.",
       "runtimeMinutes": 154,
       "totalEpisodes": null,
-      "poster": "pulp-fiction-1994.png",
+      "poster": "sample/posters/pulp-fiction-1994.png",
       "status": "want",
       "rating": null,
       "tags": [],
@@ -344,13 +639,23 @@
       "originalTitle": "Dahua Xiyou Zhi Dasheng Quqin",
       "year": 1995,
       "type": "movie",
-      "genres": ["Romance", "Fantasy", "Comedy"],
-      "directors": ["Jeffrey Lau"],
-      "cast": ["Stephen Chow", "Athena Chu", "Ng Man-tat"],
+      "genres": [
+        "Romance",
+        "Fantasy",
+        "Comedy"
+      ],
+      "directors": [
+        "Jeffrey Lau"
+      ],
+      "cast": [
+        "Stephen Chow",
+        "Athena Chu",
+        "Ng Man-tat"
+      ],
       "overview": "Joker travels through time to save the one he loves, and in the end must put on the golden circlet and become the Monkey King.",
       "runtimeMinutes": 99,
       "totalEpisodes": null,
-      "poster": "a-chinese-odyssey-2-1995.png",
+      "poster": "sample/posters/a-chinese-odyssey-2-1995.png",
       "status": "want",
       "rating": null,
       "tags": [],
@@ -362,18 +667,34 @@
       "originalTitle": "Ready Player One",
       "year": 2018,
       "type": "movie",
-      "genres": ["Sci-Fi", "Action"],
-      "directors": ["Steven Spielberg"],
-      "cast": ["Tye Sheridan", "Olivia Cooke"],
+      "genres": [
+        "Sci-Fi",
+        "Action"
+      ],
+      "directors": [
+        "Steven Spielberg"
+      ],
+      "cast": [
+        "Tye Sheridan",
+        "Olivia Cooke"
+      ],
       "overview": "An adventure to find an easter egg inside a virtual world, packed with pop-culture references.",
       "runtimeMinutes": 140,
       "totalEpisodes": null,
-      "poster": "ready-player-one-2018.png",
+      "poster": "sample/posters/ready-player-one-2018.png",
       "status": "dropped",
       "rating": 4.5,
-      "tags": ["unfinished"],
+      "tags": [
+        "unfinished"
+      ],
       "records": [
-        { "date": "2026-06-28", "episodes": null, "minutes": 60, "rating": 4.5, "note": "Too many references but a thin story, dropped halfway." }
+        {
+          "date": "2026-06-28",
+          "episodes": null,
+          "minutes": 140,
+          "rating": 4.5,
+          "note": "Too many references but a thin story, dropped halfway."
+        }
       ]
     },
     {
@@ -382,18 +703,35 @@
       "originalTitle": "Avengers: Endgame",
       "year": 2019,
       "type": "movie",
-      "genres": ["Action", "Sci-Fi"],
-      "directors": ["Anthony Russo", "Joe Russo"],
-      "cast": ["Robert Downey Jr.", "Chris Evans"],
+      "genres": [
+        "Action",
+        "Sci-Fi"
+      ],
+      "directors": [
+        "Anthony Russo",
+        "Joe Russo"
+      ],
+      "cast": [
+        "Robert Downey Jr.",
+        "Chris Evans"
+      ],
       "overview": "The heroes assemble one last time to try to undo the destruction Thanos caused.",
       "runtimeMinutes": 181,
       "totalEpisodes": null,
-      "poster": "avengers-endgame-2019.png",
+      "poster": "sample/posters/avengers-endgame-2019.png",
       "status": "dropped",
       "rating": 4.0,
-      "tags": ["unfinished"],
+      "tags": [
+        "unfinished"
+      ],
       "records": [
-        { "date": "2026-02-14", "episodes": null, "minutes": 70, "rating": 4.0, "note": "Hadn't seen the earlier films, too much to follow, dropped it." }
+        {
+          "date": "2026-02-14",
+          "episodes": null,
+          "minutes": 181,
+          "rating": 4.0,
+          "note": "Hadn't seen the earlier films, too much to follow, dropped it."
+        }
       ]
     },
     {
@@ -402,25 +740,169 @@
       "originalTitle": "Game of Thrones",
       "year": 2011,
       "type": "series",
-      "genres": ["Fantasy", "Drama", "War"],
-      "directors": ["David Benioff", "D. B. Weiss"],
-      "cast": ["Peter Dinklage", "Kit Harington", "Nikolaj Coster-Waldau", "Lena Headey"],
+      "genres": [
+        "Fantasy",
+        "Drama",
+        "War"
+      ],
+      "directors": [
+        "David Benioff",
+        "D. B. Weiss"
+      ],
+      "cast": [
+        "Peter Dinklage",
+        "Kit Harington",
+        "Nikolaj Coster-Waldau",
+        "Lena Headey"
+      ],
       "overview": "Noble families fight for the Iron Throne while a threat from the North quietly closes in.",
       "runtimeMinutes": 58,
       "totalEpisodes": 73,
-      "poster": "game-of-thrones-2011.png",
+      "poster": "sample/posters/game-of-thrones-2011.png",
       "status": "watched",
       "rating": 8.5,
-      "tags": ["epic", "completed"],
+      "tags": [
+        "epic",
+        "completed"
+      ],
       "records": [
-        { "date": "2026-01-05", "episodes": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "minutes": 580, "rating": 8.0, "note": "Binged the whole first season in one sitting." },
-        { "date": "2026-01-07", "episodes": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "minutes": 580, "rating": null, "note": "" },
-        { "date": "2026-01-08", "episodes": [21, 22, 23, 24, 25, 26, 27, 28, 29, 30], "minutes": 580, "rating": null, "note": "" },
-        { "date": "2026-01-09", "episodes": [31, 32, 33, 34, 35, 36, 37, 38, 39, 40], "minutes": 580, "rating": null, "note": "" },
-        { "date": "2026-01-10", "episodes": [41, 42, 43, 44, 45, 46, 47, 48, 49, 50], "minutes": 580, "rating": null, "note": "" },
-        { "date": "2026-01-11", "episodes": [51, 52, 53, 54, 55, 56, 57, 58, 59, 60], "minutes": 580, "rating": null, "note": "" },
-        { "date": "2026-01-12", "episodes": [61, 62, 63, 64, 65, 66, 67], "minutes": 406, "rating": null, "note": "" },
-        { "date": "2026-03-16", "episodes": [68, 69, 70, 71, 72, 73], "minutes": 348, "rating": 8.5, "note": "The ending felt rushed, but overall still worth it." }
+        {
+          "date": "2026-01-05",
+          "episodes": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "minutes": 580,
+          "rating": 8.0,
+          "note": "Binged the whole first season in one sitting."
+        },
+        {
+          "date": "2026-01-07",
+          "episodes": [
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "minutes": 580,
+          "rating": null,
+          "note": ""
+        },
+        {
+          "date": "2026-01-08",
+          "episodes": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "minutes": 580,
+          "rating": null,
+          "note": ""
+        },
+        {
+          "date": "2026-01-09",
+          "episodes": [
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "minutes": 580,
+          "rating": null,
+          "note": ""
+        },
+        {
+          "date": "2026-01-10",
+          "episodes": [
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "minutes": 580,
+          "rating": null,
+          "note": ""
+        },
+        {
+          "date": "2026-01-11",
+          "episodes": [
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60
+          ],
+          "minutes": 580,
+          "rating": null,
+          "note": ""
+        },
+        {
+          "date": "2026-01-12",
+          "episodes": [
+            61,
+            62,
+            63,
+            64,
+            65,
+            66,
+            67
+          ],
+          "minutes": 406,
+          "rating": null,
+          "note": ""
+        },
+        {
+          "date": "2026-03-16",
+          "episodes": [
+            68,
+            69,
+            70,
+            71,
+            72,
+            73
+          ],
+          "minutes": 348,
+          "rating": 8.5,
+          "note": "The ending felt rushed, but overall still worth it."
+        }
       ]
     },
     {
@@ -429,22 +911,132 @@
       "originalTitle": "Breaking Bad",
       "year": 2008,
       "type": "series",
-      "genres": ["Crime", "Drama"],
-      "directors": ["Vince Gilligan"],
-      "cast": ["Bryan Cranston", "Aaron Paul", "Anna Gunn", "RJ Mitte"],
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "directors": [
+        "Vince Gilligan"
+      ],
+      "cast": [
+        "Bryan Cranston",
+        "Aaron Paul",
+        "Anna Gunn",
+        "RJ Mitte"
+      ],
       "overview": "A chemistry teacher with a terminal illness turns to making drugs, and slowly becomes someone truly frightening.",
       "runtimeMinutes": 47,
       "totalEpisodes": 62,
-      "poster": "breaking-bad-2008.png",
+      "poster": "sample/posters/breaking-bad-2008.png",
       "status": "watched",
       "rating": 9.4,
-      "tags": ["completed", "masterpiece"],
+      "tags": [
+        "completed",
+        "masterpiece"
+      ],
       "records": [
-        { "date": "2026-04-12", "episodes": [1, 2, 3, 4, 5, 6, 7], "minutes": 329, "rating": 9.0, "note": "Slow start, but episode 7 got me hooked." },
-        { "date": "2026-04-20", "episodes": [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "minutes": 611, "rating": null, "note": "" },
-        { "date": "2026-05-03", "episodes": [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33], "minutes": 611, "rating": null, "note": "" },
-        { "date": "2026-05-15", "episodes": [34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46], "minutes": 611, "rating": null, "note": "" },
-        { "date": "2026-05-28", "episodes": [47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62], "minutes": 752, "rating": 9.4, "note": "The finale wraps it up so cleanly." }
+        {
+          "date": "2026-04-12",
+          "episodes": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "minutes": 329,
+          "rating": 9.0,
+          "note": "Slow start, but episode 7 got me hooked."
+        },
+        {
+          "date": "2026-04-20",
+          "episodes": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "minutes": 611,
+          "rating": null,
+          "note": ""
+        },
+        {
+          "date": "2026-05-03",
+          "episodes": [
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33
+          ],
+          "minutes": 611,
+          "rating": null,
+          "note": ""
+        },
+        {
+          "date": "2026-05-15",
+          "episodes": [
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46
+          ],
+          "minutes": 611,
+          "rating": null,
+          "note": ""
+        },
+        {
+          "date": "2026-05-28",
+          "episodes": [
+            47,
+            48,
+            49,
+            50,
+            51,
+            52,
+            53,
+            54,
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62
+          ],
+          "minutes": 752,
+          "rating": 9.4,
+          "note": "The finale wraps it up so cleanly."
+        }
       ]
     },
     {
@@ -453,61 +1045,243 @@
       "originalTitle": "Man Chang De Ji Jie",
       "year": 2023,
       "type": "series",
-      "genres": ["Mystery", "Drama", "Crime"],
-      "directors": ["Xin Shuang"],
-      "cast": ["Fan Wei", "Qin Hao", "Chen Minghao", "Li Gengxi"],
+      "genres": [
+        "Mystery",
+        "Drama",
+        "Crime"
+      ],
+      "directors": [
+        "Xin Shuang"
+      ],
+      "cast": [
+        "Fan Wei",
+        "Qin Hao",
+        "Chen Minghao",
+        "Li Gengxi"
+      ],
       "overview": "A dismemberment case spanning many years ties together the fates of several ordinary people in an aging industrial town in the Northeast.",
       "runtimeMinutes": 67,
       "totalEpisodes": 12,
-      "poster": "the-long-season-2023.png",
+      "poster": "sample/posters/the-long-season-2023.png",
       "status": "watched",
       "rating": 9.4,
-      "tags": ["domestic-gem"],
+      "tags": [
+        "domestic-gem"
+      ],
       "records": [
-        { "date": "2026-08-03", "episodes": [1, 2, 3, 4, 5, 6], "minutes": 360, "rating": 9.3, "note": "The pacing of the storytelling is so comfortable." },
-        { "date": "2026-08-05", "episodes": [7, 8, 9, 10, 11, 12], "minutes": 360, "rating": 9.4, "note": "That final line: look forward, don't look back." }
+        {
+          "date": "2026-08-03",
+          "episodes": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "minutes": 360,
+          "rating": 9.3,
+          "note": "The pacing of the storytelling is so comfortable."
+        },
+        {
+          "date": "2026-08-05",
+          "episodes": [
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "minutes": 360,
+          "rating": 9.4,
+          "note": "That final line: look forward, don't look back."
+        }
       ]
     },
-        {
+    {
       "id": "himym-2007",
       "title": "How I Met Your Mother",
       "originalTitle": "How I Met Your Mother",
       "year": 2007,
       "type": "series",
-      "genres": ["Comedy", "Romance"],
-      "directors": ["Craig Thomas", "Carter Bays"],
-      "cast": ["Josh Radnor", "Neil Patrick Harris", "Jason Segel", "Alyson Hannigan"],
+      "genres": [
+        "Comedy",
+        "Romance"
+      ],
+      "directors": [
+        "Craig Thomas",
+        "Carter Bays"
+      ],
+      "cast": [
+        "Josh Radnor",
+        "Neil Patrick Harris",
+        "Jason Segel",
+        "Alyson Hannigan"
+      ],
       "overview": "Years later, a father tells his kids the long story of how he met their mother, retold episode by episode with his three best friends in a Manhattan bar.",
       "runtimeMinutes": 22,
       "totalEpisodes": 208,
-      "poster": "himym-2007.png",
+      "poster": "sample/posters/himym-2007.png",
       "status": "watching",
       "rating": 8.7,
-      "tags": ["comfort-watch"],
+      "tags": [
+        "comfort-watch"
+      ],
       "records": [
-        { "date": "2026-06-05", "episodes": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24], "minutes": 528, "rating": 8.5, "note": "Finished season one, Barney steals every scene." },
-        { "date": "2026-07-25", "episodes": [25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40], "minutes": 352, "rating": 8.7, "note": "Mid season two, the slap bet arc is gold." }
+        {
+          "date": "2026-06-05",
+          "episodes": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ],
+          "minutes": 528,
+          "rating": 8.5,
+          "note": "Finished season one, Barney steals every scene."
+        },
+        {
+          "date": "2026-07-25",
+          "episodes": [
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40
+          ],
+          "minutes": 352,
+          "rating": 8.7,
+          "note": "Mid season two, the slap bet arc is gold."
+        }
       ]
     },
-        {
+    {
       "id": "supernatural-2005",
       "title": "Supernatural",
       "originalTitle": "Supernatural",
       "year": 2005,
       "type": "series",
-      "genres": ["Drama", "Fantasy", "Horror"],
-      "directors": ["Eric Kripke"],
-      "cast": ["Jared Padalecki", "Jensen Ackles", "Misha Collins"],
+      "genres": [
+        "Drama",
+        "Fantasy",
+        "Horror"
+      ],
+      "directors": [
+        "Eric Kripke"
+      ],
+      "cast": [
+        "Jared Padalecki",
+        "Jensen Ackles",
+        "Misha Collins"
+      ],
       "overview": "Two brothers drive across America hunting the monsters that took their parents, with family, grief and the open road doing the real damage.",
       "runtimeMinutes": 45,
       "totalEpisodes": 327,
-      "poster": "supernatural-2005.png",
+      "poster": "sample/posters/supernatural-2005.png",
       "status": "watching",
       "rating": 9.1,
-      "tags": ["intense"],
+      "tags": [
+        "intense"
+      ],
       "records": [
-        { "date": "2026-02-22", "episodes": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25], "minutes": 1125, "rating": 9.0, "note": "Season one is bleak and brilliant." },
-        { "date": "2026-09-10", "episodes": [26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50], "minutes": 1125, "rating": 9.1, "note": "Into season three, the show hits its stride." }
+        {
+          "date": "2026-02-22",
+          "episodes": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25
+          ],
+          "minutes": 1125,
+          "rating": 9.0,
+          "note": "Season one is bleak and brilliant."
+        },
+        {
+          "date": "2026-09-10",
+          "episodes": [
+            26,
+            27,
+            28,
+            29,
+            30,
+            31,
+            32,
+            33,
+            34,
+            35,
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45,
+            46,
+            47,
+            48,
+            49,
+            50
+          ],
+          "minutes": 1125,
+          "rating": 9.1,
+          "note": "Into season three, the show hits its stride."
+        }
       ]
     },
     {
@@ -516,40 +1290,137 @@
       "originalTitle": "Black Mirror",
       "year": 2011,
       "type": "series",
-      "genres": ["Sci-Fi", "Mystery", "Drama"],
-      "directors": ["Charlie Brooker"],
+      "genres": [
+        "Sci-Fi",
+        "Mystery",
+        "Drama"
+      ],
+      "directors": [
+        "Charlie Brooker"
+      ],
       "cast": [],
       "overview": "Each episode is a standalone story about how technology twists people and everyday life.",
       "runtimeMinutes": 55,
       "totalEpisodes": 33,
-      "poster": "black-mirror-2011.png",
+      "poster": "sample/posters/black-mirror-2011.png",
       "status": "watching",
       "rating": 8.3,
-      "tags": ["anthology"],
+      "tags": [
+        "anthology"
+      ],
       "records": [
-        { "date": "2026-03-28", "episodes": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], "minutes": 715, "rating": 8.2, "note": "Got through the first three seasons, several episodes linger." },
-        { "date": "2026-10-02", "episodes": [14, 15, 16, 17, 18], "minutes": 275, "rating": 8.3, "note": "Halfway into season four." }
+        {
+          "date": "2026-03-28",
+          "episodes": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13
+          ],
+          "minutes": 715,
+          "rating": 8.2,
+          "note": "Got through the first three seasons, several episodes linger."
+        },
+        {
+          "date": "2026-10-02",
+          "episodes": [
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "minutes": 275,
+          "rating": 8.3,
+          "note": "Halfway into season four."
+        }
       ]
     },
-        {
+    {
       "id": "better-call-saul-2015",
       "title": "Better Call Saul",
       "originalTitle": "Better Call Saul",
       "year": 2015,
       "type": "series",
-      "genres": ["Crime", "Drama"],
-      "directors": ["Vince Gilligan", "Peter Gould"],
-      "cast": ["Bob Odenkirk", "Jonathan Banks", "Rhea Seehorn", "Tony Dalton"],
+      "genres": [
+        "Crime",
+        "Drama"
+      ],
+      "directors": [
+        "Vince Gilligan",
+        "Peter Gould"
+      ],
+      "cast": [
+        "Bob Odenkirk",
+        "Jonathan Banks",
+        "Rhea Seehorn",
+        "Tony Dalton"
+      ],
       "overview": "Small-time lawyer Jimmy McGill bends every rule on his way to becoming Saul Goodman, while a quiet tragedy unfolds alongside him in Albuquerque.",
       "runtimeMinutes": 47,
       "totalEpisodes": 63,
-      "poster": "better-call-saul-2015.png",
+      "poster": "sample/posters/better-call-saul-2015.png",
       "status": "watching",
       "rating": 9.0,
-      "tags": ["intrigue"],
+      "tags": [
+        "intrigue"
+      ],
       "records": [
-        { "date": "2026-05-08", "episodes": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], "minutes": 705, "rating": 8.8, "note": "The slow burn is completely worth it." },
-        { "date": "2026-06-19", "episodes": [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], "minutes": 705, "rating": 9.0, "note": "Kim Wexler is the best written character on TV." }
+        {
+          "date": "2026-05-08",
+          "episodes": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "minutes": 705,
+          "rating": 8.8,
+          "note": "The slow burn is completely worth it."
+        },
+        {
+          "date": "2026-06-19",
+          "episodes": [
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "minutes": 705,
+          "rating": 9.0,
+          "note": "Kim Wexler is the best written character on TV."
+        }
       ]
     },
     {
@@ -558,20 +1429,74 @@
       "originalTitle": "Stranger Things",
       "year": 2016,
       "type": "series",
-      "genres": ["Sci-Fi", "Mystery"],
-      "directors": ["Ross Duffer", "Matt Duffer"],
-      "cast": ["Winona Ryder", "David Harbour", "Millie Bobby Brown", "Finn Wolfhard"],
+      "genres": [
+        "Sci-Fi",
+        "Mystery"
+      ],
+      "directors": [
+        "Ross Duffer",
+        "Matt Duffer"
+      ],
+      "cast": [
+        "Winona Ryder",
+        "David Harbour",
+        "Millie Bobby Brown",
+        "Finn Wolfhard"
+      ],
       "overview": "A boy in a small town vanishes, and his friends' search cracks open an upside-down world full of monsters.",
       "runtimeMinutes": 52,
       "totalEpisodes": 42,
-      "poster": "stranger-things-2016.png",
+      "poster": "sample/posters/stranger-things-2016.png",
       "status": "watching",
       "rating": 8.2,
-      "tags": ["retro"],
+      "tags": [
+        "retro"
+      ],
       "records": [
-        { "date": "2026-08-11", "episodes": [1, 2, 3, 4, 5, 6, 7, 8], "minutes": 416, "rating": 8.0, "note": "Season one nails the atmosphere." },
-        { "date": "2026-09-25", "episodes": [9, 10, 11, 12, 13, 14, 15, 16, 17], "minutes": 468, "rating": 8.2, "note": "Near the end of season two." },
-        { "date": "2026-10-18", "episodes": [18, 19, 20], "minutes": 156, "rating": 8.2, "note": "Just started season three." }
+        {
+          "date": "2026-08-11",
+          "episodes": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "minutes": 416,
+          "rating": 8.0,
+          "note": "Season one nails the atmosphere."
+        },
+        {
+          "date": "2026-09-25",
+          "episodes": [
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ],
+          "minutes": 468,
+          "rating": 8.2,
+          "note": "Near the end of season two."
+        },
+        {
+          "date": "2026-10-18",
+          "episodes": [
+            18,
+            19,
+            20
+          ],
+          "minutes": 156,
+          "rating": 8.2,
+          "note": "Just started season three."
+        }
       ]
     },
     {
@@ -580,19 +1505,75 @@
       "originalTitle": "The Big Bang Theory",
       "year": 2007,
       "type": "series",
-      "genres": ["Comedy"],
-      "directors": ["Chuck Lorre", "Bill Prady"],
-      "cast": ["Johnny Galecki", "Jim Parsons", "Kaley Cuoco", "Simon Helberg"],
+      "genres": [
+        "Comedy"
+      ],
+      "directors": [
+        "Chuck Lorre",
+        "Bill Prady"
+      ],
+      "cast": [
+        "Johnny Galecki",
+        "Jim Parsons",
+        "Kaley Cuoco",
+        "Simon Helberg"
+      ],
       "overview": "The daily life of a group of geeky guys and their girl next door, mining laughs from nerd references and banter.",
       "runtimeMinutes": 22,
       "totalEpisodes": 279,
-      "poster": "the-big-bang-theory-2007.png",
+      "poster": "sample/posters/the-big-bang-theory-2007.png",
       "status": "dropped",
       "rating": 4.5,
-      "tags": ["dropped"],
+      "tags": [
+        "dropped"
+      ],
       "records": [
-        { "date": "2026-04-02", "episodes": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24], "minutes": 528, "rating": 5.0, "note": "The jokes lean too much on nerd references I don't get." },
-        { "date": "2026-04-15", "episodes": [25, 26, 27, 28, 29, 30], "minutes": 132, "rating": 4.5, "note": "Still couldn't get into season two, dropped it." }
+        {
+          "date": "2026-04-02",
+          "episodes": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24
+          ],
+          "minutes": 528,
+          "rating": 5.0,
+          "note": "The jokes lean too much on nerd references I don't get."
+        },
+        {
+          "date": "2026-04-15",
+          "episodes": [
+            25,
+            26,
+            27,
+            28,
+            29,
+            30
+          ],
+          "minutes": 132,
+          "rating": 4.5,
+          "note": "Still couldn't get into season two, dropped it."
+        }
       ]
     },
     {
@@ -601,13 +1582,23 @@
       "originalTitle": "Chernobyl",
       "year": 2019,
       "type": "series",
-      "genres": ["Drama", "Mystery"],
-      "directors": ["Craig Mazin"],
-      "cast": ["Jared Harris", "Stellan Skarsgård", "Emily Watson", "Paul Ritter"],
+      "genres": [
+        "Drama",
+        "Mystery"
+      ],
+      "directors": [
+        "Craig Mazin"
+      ],
+      "cast": [
+        "Jared Harris",
+        "Stellan Skarsgård",
+        "Emily Watson",
+        "Paul Ritter"
+      ],
       "overview": "A five-part miniseries recreating the nuclear plant disaster, and the struggle between lies and truth that followed.",
       "runtimeMinutes": 65,
       "totalEpisodes": 5,
-      "poster": "chernobyl-2019.png",
+      "poster": "sample/posters/chernobyl-2019.png",
       "status": "want",
       "rating": null,
       "tags": [],
