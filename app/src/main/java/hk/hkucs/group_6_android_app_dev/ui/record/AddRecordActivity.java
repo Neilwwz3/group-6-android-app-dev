@@ -105,6 +105,19 @@ public class AddRecordActivity extends AppCompatActivity {
         findViewById(R.id.record_toolbar).setOnClickListener(view -> finish());
 
         EditText dateInput = findViewById(R.id.record_date);
+        dateInput.setOnFocusChangeListener((view, hasFocus) -> {
+            if (!hasFocus) {
+                String input = dateInput.getText().toString();
+                Long dateMillis = parseWatchDate(input.trim());
+                if (dateMillis != null) {
+                    String formattedDate = formatWatchDate(dateMillis);
+                    if (!formattedDate.equals(input)) {
+                        dateInput.setText(formattedDate);
+                    }
+                    dateInput.setError(null);
+                }
+            }
+        });
         EditText minutesInput = findViewById(R.id.record_minutes);
         EditText ratingInput = findViewById(R.id.record_rating);
         ratingInput.setFilters(new InputFilter[] {AddRecordActivity::filterRating});
@@ -197,12 +210,14 @@ public class AddRecordActivity extends AppCompatActivity {
         });
 
         saveButton.setOnClickListener(view -> {
-            String date = dateInput.getText().toString().trim();
-            if (parseWatchDate(date) == null) {
+            Long dateMillis = parseWatchDate(dateInput.getText().toString().trim());
+            if (dateMillis == null) {
                 dateInput.setError(getString(R.string.record_date_error));
                 dateInput.requestFocus();
                 return;
             }
+            String date = formatWatchDate(dateMillis);
+            dateInput.setText(date);
             dateInput.setError(null);
 
             String minutesText = minutesInput.getText().toString().trim();
@@ -530,19 +545,19 @@ public class AddRecordActivity extends AppCompatActivity {
     }
 
     private static Long parseWatchDate(String date) {
-        if (!date.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}")) {
+        if (!date.matches("[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}")) {
             return null;
         }
 
-        int year = Integer.parseInt(date.substring(0, 4));
+        String[] parts = date.split("-");
+        int year = Integer.parseInt(parts[0]);
         if (year < MIN_WATCH_YEAR || year > MAX_WATCH_YEAR) {
             return null;
         }
 
         Calendar calendar = utcCalendar();
         calendar.setLenient(false);
-        calendar.set(year, Integer.parseInt(date.substring(5, 7)) - 1,
-                Integer.parseInt(date.substring(8, 10)));
+        calendar.set(year, Integer.parseInt(parts[1]) - 1, Integer.parseInt(parts[2]));
         try {
             return calendar.getTimeInMillis();
         } catch (IllegalArgumentException invalidDate) {

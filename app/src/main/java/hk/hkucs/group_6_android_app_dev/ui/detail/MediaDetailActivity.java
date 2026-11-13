@@ -33,6 +33,7 @@ import hk.hkucs.group_6_android_app_dev.R;
 import hk.hkucs.group_6_android_app_dev.data.db.entity.MediaItem;
 import hk.hkucs.group_6_android_app_dev.data.db.entity.WatchRecord;
 import hk.hkucs.group_6_android_app_dev.ui.edit.EditMediaActivity;
+import hk.hkucs.group_6_android_app_dev.ui.record.AddRecordActivity;
 import hk.hkucs.group_6_android_app_dev.util.MediaMeta;
 import hk.hkucs.group_6_android_app_dev.util.StatusBadge;
 
@@ -131,6 +132,12 @@ public class MediaDetailActivity extends AppCompatActivity {
             }
         });
         findViewById(R.id.detail_delete).setOnClickListener(v -> confirmDelete());
+        findViewById(R.id.detail_add_record).setOnClickListener(v -> {
+            MediaItem item = vm.getItem().getValue();
+            if (item != null) {
+                startActivity(AddRecordActivity.newIntent(this, item.id));
+            }
+        });
 
         vm = new ViewModelProvider(this).get(MediaDetailViewModel.class);
         vm.setMediaId(getIntent().getStringExtra(EXTRA_MEDIA_ID));
