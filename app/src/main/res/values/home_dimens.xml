@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="home_watching_card_width">136dp</dimen>
+    <dimen name="home_watching_poster_height">168dp</dimen>
+</resources>
