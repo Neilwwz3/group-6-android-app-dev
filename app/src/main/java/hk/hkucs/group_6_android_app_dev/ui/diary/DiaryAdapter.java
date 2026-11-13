@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ import hk.hkucs.group_6_android_app_dev.data.db.entity.WatchRecord;
 import hk.hkucs.group_6_android_app_dev.data.model.MediaType;
 import hk.hkucs.group_6_android_app_dev.data.model.RecordWithMedia;
 import hk.hkucs.group_6_android_app_dev.ui.components.HeatmapView;
+import hk.hkucs.group_6_android_app_dev.util.PosterLoader;
 
 /**
  * The whole Diary page as one list: the heatmap card first, then one date header per day with
@@ -196,6 +198,7 @@ class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     static final class RecordHolder extends RecyclerView.ViewHolder {
         private final TextView poster;
+        private final ImageView posterImage;
         private final TextView title;
         private final TextView meta;
         private final TextView rating;
@@ -204,6 +207,7 @@ class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         RecordHolder(View view) {
             super(view);
             poster = view.findViewById(R.id.diary_record_poster);
+            posterImage = view.findViewById(R.id.diary_record_poster_image);
             title = view.findViewById(R.id.diary_record_title);
             meta = view.findViewById(R.id.diary_record_meta);
             rating = view.findViewById(R.id.diary_record_rating);
@@ -217,6 +221,7 @@ class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             title.setText(mediaTitle);
             poster.setText(mediaTitle.isEmpty() ? "" : mediaTitle.substring(0, 1).toUpperCase(Locale.ENGLISH));
+            PosterLoader.load(itemView.getContext(), item.mediaPoster, posterImage, poster);
 
             String metaText = metaLine(res, item);
             meta.setText(metaText);
