@@ -12,15 +12,26 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="@dimen/space_16">
-        <TextView
-            android:id="@+id/poster_letter"
+        <FrameLayout
             android:layout_width="@dimen/poster_width"
-            android:layout_height="@dimen/poster_height"
-            android:background="@drawable/poster_placeholder"
-            android:gravity="center"
-            android:textAppearance="@style/TextAppearance.Group6.Title"
-            android:textColor="@color/text_secondary"
-            android:importantForAccessibility="no" />
+            android:layout_height="@dimen/poster_height">
+            <TextView
+                android:id="@+id/poster_letter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/poster_placeholder"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.Group6.Title"
+                android:textColor="@color/text_secondary"
+                android:importantForAccessibility="no" />
+            <ImageView
+                android:id="@+id/poster_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:visibility="gone"
+                android:importantForAccessibility="no" />
+        </FrameLayout>
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
