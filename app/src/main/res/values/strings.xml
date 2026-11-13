@@ -93,9 +93,6 @@
     <string name="profile_stats_body">Your collection, viewing time and ratings will appear here.</string>
     <string name="profile_settings">Your collection settings</string>
     <string name="profile_settings_body">Sample data and collection controls are coming soon.</string>
-    <string name="load_sample_data">Load sample data</string>
-    <string name="load_sample_data_done">Sample data loaded.</string>
-    <string name="load_sample_data_failed">Could not load sample data.</string>
     <string name="back">Back</string>
     <string name="details_title">Title details</string>
     <string name="details_placeholder">Details will appear here when you open a title from your collection.</string>

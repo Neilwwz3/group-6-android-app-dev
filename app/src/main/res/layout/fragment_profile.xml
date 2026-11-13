@@ -66,12 +66,6 @@
                     android:textColor="@color/on_primary_container" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/load_sample_data"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_24"
-            android:text="@string/load_sample_data" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
