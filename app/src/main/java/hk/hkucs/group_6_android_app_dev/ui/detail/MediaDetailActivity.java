@@ -34,6 +34,7 @@ import hk.hkucs.group_6_android_app_dev.data.db.entity.MediaItem;
 import hk.hkucs.group_6_android_app_dev.data.db.entity.WatchRecord;
 import hk.hkucs.group_6_android_app_dev.ui.edit.EditMediaActivity;
 import hk.hkucs.group_6_android_app_dev.util.MediaMeta;
+import hk.hkucs.group_6_android_app_dev.util.PosterLoader;
 import hk.hkucs.group_6_android_app_dev.util.StatusBadge;
 
 /** Title details: change status and rating, see records, edit and delete. */
@@ -163,6 +164,8 @@ public class MediaDetailActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.detail_poster_letter)).setText(
                 item.title.isEmpty() ? "?"
                         : item.title.substring(0, 1).toUpperCase(java.util.Locale.US));
+        PosterLoader.load(this, item.poster,
+                findViewById(R.id.detail_poster_image), findViewById(R.id.detail_poster_letter));
 
         updatingUi = true;
         for (int i = 0; i < statusGroup.getChildCount(); i++) {
