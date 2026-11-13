@@ -85,7 +85,6 @@
     <string name="diary_activity_body">Your viewing days will appear here as you build your diary.</string>
     <string name="diary_timeline">Your timeline</string>
     <string name="diary_timeline_body">Your entries will be grouped by date, with the latest first.</string>
-
     <string name="profile_title">Your Space</string>
     <string name="profile_subtitle">A personal view of your movie life.</string>
     <string name="profile_empty_title">Your story, in perspective</string>
@@ -100,21 +99,83 @@
     <string name="edit_title">Edit title</string>
     <string name="add_placeholder">Adding titles is coming soon. For now, explore your library and the rest of MovieTracker.</string>
     <string name="edit_placeholder">Title editing is coming soon.</string>
-    <string name="record_title">Log a watch</string>
+    <string name="record_title">Log a Watch</string>
     <string name="record_placeholder">Logging a viewing entry is coming soon.</string>
     <string name="shell_notice">Preview · More to come</string>
-    <string name="invalid_navigation_arguments">页面参数无效，请返回后重试。</string>
+    <string name="invalid_navigation_arguments">Unable to open this page. Please go back and try again.</string>
+    <string name="record_back">Back</string>
+    <string name="record_watch_date">Watch Date</string>
+    <string name="record_date_hint">YYYY-MM-DD</string>
+    <string name="record_open_calendar">Calendar</string>
+    <string name="record_date_error">Enter a valid date in YYYY-MM-DD format (1900–2100).</string>
+    <string name="record_duration_minutes">Duration (minutes)</string>
+    <string name="record_rating_label">Rating</string>
+    <string name="record_clear_rating">Clear rating</string>
+    <string name="record_rating_not_rated">Not rated</string>
+    <string name="record_short_review">Short Review</string>
+    <string name="record_save_label">Save</string>
+    <string name="record_minutes_error">Enter a whole number greater than zero.</string>
+    <string name="record_watched_episodes">Watched Episodes</string>
+    <string name="record_select_episodes">Select</string>
+    <string name="record_episodes_range">Enter episode numbers from 1 to %1$d, separated by commas.</string>
+    <string name="record_episodes_positive">Enter positive episode numbers separated by commas.</string>
+    <string name="record_clear_review">Clear</string>
+    <string name="record_clear_review_confirmation">Clear this review?</string>
+    <string name="record_dialog_cancel">Cancel</string>
+    <string name="record_dialog_ok">OK</string>
+    <plurals name="record_review_character_count">
+        <item quantity="one">%1$d character</item>
+        <item quantity="other">%1$d characters</item>
+    </plurals>
+    <string name="record_rating_score_format">%1$d/10</string>
+    <string name="search_hint">Search titles</string>
+    <string name="filter_all">All</string>
+    <string name="no_results_title">No matches</string>
+    <string name="no_results_body">Try a different search or filter.</string>
+    <string name="type_movie">Movie</string>
+    <string name="type_series">TV Show</string>
+    <string name="not_rated">Not rated</string>
+    <string name="rating_value">%1$s/10</string>
+    <string name="rating_description">Rated %1$s out of 10</string>
+    <string name="invalid_number">Enter a valid number</string>
+    <string name="title_required">Enter a title</string>
+    <string name="comma_separated">Comma separated</string>
+    <string name="field_title">Title</string>
+    <string name="field_original_title">Original title</string>
+    <string name="field_year">Year</string>
+    <string name="field_type">Type</string>
+    <string name="field_genres">Genres</string>
+    <string name="field_directors">Directors</string>
+    <string name="field_cast">Cast</string>
+    <string name="field_overview">Overview</string>
+    <string name="field_runtime">Runtime (minutes)</string>
+    <string name="field_episodes">Total episodes</string>
+    <string name="field_tags">Tags</string>
+    <string name="field_status">Status</string>
+    <string name="field_rating">Rating</string>
+    <string name="clear_rating">Clear rating</string>
+    <string name="rating_hint">0 to 10, one decimal allowed</string>
+    <string name="invalid_rating">Enter a number from 0 to 10</string>
+    <string name="save">Save</string>
+    <string name="records_title">Viewing records</string>
+    <string name="records_empty">No viewing entries yet.</string>
+    <string name="record_minutes">%1$d min</string>
+    <string name="record_episodes">Episodes %1$s</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="delete_confirm_title">Delete this title?</string>
+    <string name="delete_confirm_message">Its viewing records will be deleted too. This cannot be undone.</string>
+    <string name="cancel">Cancel</string>
+
     <string name="g5_profile_titles">Total titles: %1$d</string>
     <string name="g5_profile_watched">Watched: %1$d</string>
     <string name="g5_profile_time">Viewing time: %1$d min</string>
     <string name="g5_profile_rating">Average rating: %1$.1f / 10</string>
     <string name="g5_profile_no_rating">Average rating: Not rated yet</string>
-
     <string name="g5_profile_empty">Your collection is empty. Load sample data or add a title in Library.</string>
     <string name="g5_profile_genres">Genre Distribution</string>
     <string name="g5_profile_no_genres">No genre data yet.</string>
     <string name="g5_profile_genre_row">● %1$s — %2$d</string>
-
     <string name="g5_profile_load">Load Sample Data</string>
     <string name="g5_profile_load_message">Loading sample data will replace all existing titles and viewing records. Continue?</string>
     <string name="g5_profile_load_error">Could not load sample data. Your collection was kept.</string>
@@ -122,11 +183,9 @@
     <string name="g5_profile_clear_message">This will permanently delete all titles and viewing records. Continue?</string>
     <string name="g5_profile_working">Updating your collection</string>
     <string name="g5_profile_cancel">Cancel</string>
-
     <string name="g5_profile_about">About</string>
     <string name="g5_profile_about_message">COMP7506 Group 6</string>
     <string name="g5_profile_ok">OK</string>
-
     <string name="g5_profile_metric_titles">Total titles</string>
     <string name="g5_profile_metric_watched">Watched</string>
     <string name="g5_profile_metric_time">Viewing time</string>
@@ -142,10 +201,11 @@
     <string name="g5_profile_show_all_genres">Show all genres</string>
     <string name="g5_profile_show_fewer_genres">Show fewer genres</string>
     <string name="g5_profile_genre_share_note">Percentages are based on genre occurrences. A title can count toward more than one genre.</string>
-
-    <string name="g5_profile_metric_logged_movies">Movies logged</string>
-    <string name="g5_profile_metric_logged_series">TV shows logged</string>
-
     <string name="g5_profile_overview_prompt">Every watch adds up.</string>
     <string name="g5_profile_genres_prompt">Which genre steals the show?</string>
+    <string name="g5_profile_genre_column">Genre</string>
+    <string name="g5_profile_titles_column">Titles</string>
+    <string name="g5_profile_share_column">Share</string>
+    <string name="g5_profile_all_genres_title">All genres</string>
+    <string name="g5_profile_close_genres">Close</string>
 </resources>

@@ -3,11 +3,16 @@ package hk.hkucs.group_6_android_app_dev.ui.profile;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.TextAppearanceSpan;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.Typeface;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +21,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.view.ViewCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.widget.TextViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -32,8 +38,9 @@ import hk.hkucs.group_6_android_app_dev.ui.components.DonutChartView;
 
 public class ProfileFragment extends Fragment {
     private static final int GENRE_PREVIEW_SIZE = 3;
+    private static final int MIN_SIDE_BY_SIDE_WIDTH_DP = 300;
+    private static final float MAX_SIDE_BY_SIDE_FONT_SCALE = 1.1f;
     private AlertDialog dialog;
-    private boolean genresExpanded;
 
     public ProfileFragment() {
         super(R.layout.fragment_profile);
@@ -43,16 +50,17 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle state) {
         super.onViewCreated(view, state);
         ProfileViewModel model = new ViewModelProvider(this).get(ProfileViewModel.class);
+        LinearLayout genreLayout = view.findViewById(R.id.profile_genre_layout);
+        genreLayout.addOnLayoutChangeListener((layout, left, top, right, bottom,
+                                               oldLeft, oldTop, oldRight, oldBottom) -> {
+            if (right - left != oldRight - oldLeft) {
+                updateGenreLayout(genreLayout);
+            }
+        });
         View load = view.findViewById(R.id.profile_load);
         View clear = view.findViewById(R.id.profile_clear);
 
         model.getSummary().observe(getViewLifecycleOwner(), summary -> renderSummary(view, summary));
-        model.getLoggedTitleCounts().observe(getViewLifecycleOwner(), counts -> {
-            NumberFormat number = NumberFormat.getIntegerInstance(
-                    getResources().getConfiguration().getLocales().get(0));
-            setText(view, R.id.profile_logged_movies, number.format(counts.movies));
-            setText(view, R.id.profile_logged_series, number.format(counts.series));
-        });
         model.getGenreCounts().observe(getViewLifecycleOwner(), counts -> renderGenres(view, counts));
         model.getBusy().observe(getViewLifecycleOwner(), busy -> {
             boolean running = Boolean.TRUE.equals(busy);
@@ -104,18 +112,16 @@ public class ProfileFragment extends Fragment {
 
     private void renderGenres(View view, List<GenreCount> counts) {
         DonutChartView chart = view.findViewById(R.id.profile_chart);
-        LinearLayout legend = view.findViewById(R.id.profile_legend);
+        TableLayout legend = view.findViewById(R.id.profile_legend);
         boolean hasGenres = counts != null && !counts.isEmpty();
-        view.findViewById(R.id.profile_chart_container).setVisibility(hasGenres ? View.VISIBLE : View.GONE);
+        view.findViewById(R.id.profile_genre_layout).setVisibility(hasGenres ? View.VISIBLE : View.GONE);
         legend.setVisibility(hasGenres ? View.VISIBLE : View.GONE);
         view.findViewById(R.id.profile_no_genres).setVisibility(hasGenres ? View.GONE : View.VISIBLE);
         View toggle = view.findViewById(R.id.profile_toggle_genres);
         if (!hasGenres) {
-            genresExpanded = false;
             legend.removeAllViews();
             toggle.setVisibility(View.GONE);
             toggle.setOnClickListener(null);
-            view.findViewById(R.id.profile_genre_share_note).setVisibility(View.GONE);
             return;
         }
 
@@ -126,71 +132,149 @@ public class ProfileFragment extends Fragment {
         setText(view, R.id.profile_genre_total_label,
                 getResources().getQuantityText(R.plurals.g5_profile_genre_total_label, genreTotal));
         ViewCompat.setScreenReaderFocusable(view.findViewById(R.id.profile_genre_center), true);
-        toggle.setOnClickListener(button -> {
-            genresExpanded = !genresExpanded;
-            renderGenreLegend(view, legend, chart, counts);
-        });
-        renderGenreLegend(view, legend, chart, counts);
+        toggle.setOnClickListener(button -> showAllGenres(chart, counts));
+        toggle.setVisibility(counts.size() > GENRE_PREVIEW_SIZE ? View.VISIBLE : View.GONE);
+        updateGenreLayout(view.findViewById(R.id.profile_genre_layout));
+        renderGenreLegend(legend, chart, counts, Math.min(GENRE_PREVIEW_SIZE, counts.size()), true);
     }
 
-    private void renderGenreLegend(View view, LinearLayout legend, DonutChartView chart, List<GenreCount> counts) {
-        boolean canExpand = counts.size() > GENRE_PREVIEW_SIZE;
-        boolean expanded = canExpand && genresExpanded;
-        int visibleCount = expanded ? counts.size() : Math.min(GENRE_PREVIEW_SIZE, counts.size());
+    private void showAllGenres(DonutChartView chart, List<GenreCount> counts) {
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext());
+        ScrollView scroll = new ScrollView(builder.getContext());
+        int inset = getResources().getDimensionPixelSize(R.dimen.space_24);
+        int titleSpacing = getResources().getDimensionPixelSize(R.dimen.space_8);
+        scroll.setPaddingRelative(inset, titleSpacing, inset, 0);
+
+        LinearLayout content = new LinearLayout(builder.getContext());
+        content.setOrientation(LinearLayout.VERTICAL);
+        scroll.addView(content, new ScrollView.LayoutParams(
+                ScrollView.LayoutParams.MATCH_PARENT, ScrollView.LayoutParams.WRAP_CONTENT));
+        TableLayout legend = new TableLayout(builder.getContext());
+        legend.setColumnShrinkable(0, true);
+        legend.setColumnStretchable(0, true);
+        content.addView(legend, new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        renderGenreLegend(legend, chart, counts, counts.size(), false);
+
+        TextView note = new TextView(builder.getContext());
+        TextViewCompat.setTextAppearance(note, R.style.TextAppearance_Group6_Caption);
+        note.setText(R.string.g5_profile_genre_share_note);
+        content.addView(note);
+        dialog = builder.setTitle(R.string.g5_profile_all_genres_title)
+                .setView(scroll)
+                .setPositiveButton(R.string.g5_profile_close_genres, null)
+                .show();
+    }
+
+    private void renderGenreLegend(TableLayout legend, DonutChartView chart, List<GenreCount> counts,
+                                   int visibleCount, boolean insetGenre) {
         legend.removeAllViews();
+        addGenreRow(legend, getText(R.string.g5_profile_genre_column),
+                getText(R.string.g5_profile_titles_column), getText(R.string.g5_profile_share_column), null, insetGenre);
+        View divider = new View(legend.getContext());
+        divider.setBackgroundColor(ContextCompat.getColor(legend.getContext(), R.color.outline));
+        divider.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+        legend.addView(divider, new TableLayout.LayoutParams(
+                TableLayout.LayoutParams.MATCH_PARENT,
+                getResources().getDimensionPixelSize(R.dimen.card_outline_width)));
+        NumberFormat number = NumberFormat.getIntegerInstance(getResources().getConfiguration().getLocales().get(0));
         for (int i = 0; i < visibleCount; i++) {
-            addGenreRow(legend, counts.get(i), chart.getSegmentColor(i), chart.getPercentage(i));
+            GenreCount count = counts.get(i);
+            addGenreRow(legend, count.genre, number.format(count.count),
+                    chart.getPercentage(i), chart.getSegmentColor(i), insetGenre);
         }
-        view.findViewById(R.id.profile_toggle_genres).setVisibility(canExpand ? View.VISIBLE : View.GONE);
-        setText(view, R.id.profile_toggle_genres,
-                getText(expanded ? R.string.g5_profile_show_fewer_genres : R.string.g5_profile_show_all_genres));
-        view.findViewById(R.id.profile_genre_share_note).setVisibility(expanded ? View.VISIBLE : View.GONE);
     }
 
-    private void addGenreRow(LinearLayout legend, GenreCount count, int color, String percentage) {
-        int dotSize = getResources().getDimensionPixelSize(R.dimen.space_8);
-        int spacing = getResources().getDimensionPixelSize(R.dimen.space_12);
-        int verticalPadding = getResources().getDimensionPixelSize(R.dimen.space_4);
+    private void updateGenreLayout(LinearLayout layout) {
+        float widthDp = layout.getWidth() / getResources().getDisplayMetrics().density;
+        boolean sideBySide = widthDp >= MIN_SIDE_BY_SIDE_WIDTH_DP
+                && getResources().getConfiguration().fontScale <= MAX_SIDE_BY_SIDE_FONT_SCALE;
+        int orientation = sideBySide ? LinearLayout.HORIZONTAL : LinearLayout.VERTICAL;
+        if (layout.getOrientation() == orientation && layout.getWidth() > 0) {
+            return;
+        }
+        layout.setOrientation(orientation);
+        int chartHeight = getResources().getDimensionPixelSize(R.dimen.poster_height);
+        LinearLayout.LayoutParams chartParams = new LinearLayout.LayoutParams(
+                sideBySide ? 0 : LinearLayout.LayoutParams.MATCH_PARENT, chartHeight,
+                sideBySide ? 2f : 0f);
+        LinearLayout.LayoutParams detailsParams = new LinearLayout.LayoutParams(
+                sideBySide ? 0 : LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT, sideBySide ? 3f : 0f);
+        if (sideBySide) {
+            int spacing = getResources().getDimensionPixelSize(R.dimen.space_4);
+            detailsParams.setMarginStart(spacing);
+            detailsParams.setMarginEnd(spacing);
+        } else {
+            detailsParams.topMargin = getResources().getDimensionPixelSize(R.dimen.space_16);
+        }
+        layout.findViewById(R.id.profile_chart_container).setLayoutParams(chartParams);
+        View details = layout.findViewById(R.id.profile_genre_details);
+        details.setLayoutParams(detailsParams);
+        details.setTranslationY(sideBySide
+                ? getResources().getDimension(R.dimen.space_8) : 0f);
+    }
 
-        LinearLayout row = new LinearLayout(legend.getContext());
+    private void addGenreRow(TableLayout legend, CharSequence name, CharSequence quantity,
+                             CharSequence share, Integer color, boolean insetGenre) {
+        boolean header = color == null;
+        int dotSize = getResources().getDimensionPixelSize(R.dimen.space_8);
+        int spacing = getResources().getDimensionPixelSize(R.dimen.space_8);
+        int verticalPadding = getResources().getDimensionPixelSize(R.dimen.space_4);
+        int textAppearance = header ? R.style.TextAppearance_Group6_Caption
+                : R.style.TextAppearance_Group6_Body;
+
+        TableRow row = new TableRow(legend.getContext());
         row.setGravity(Gravity.CENTER_VERTICAL);
         row.setPadding(0, verticalPadding, 0, verticalPadding);
+        ViewCompat.setAccessibilityHeading(row, header);
         ViewCompat.setScreenReaderFocusable(row, true);
 
+        LinearLayout genreCell = new LinearLayout(row.getContext());
+        genreCell.setGravity(Gravity.CENTER_VERTICAL);
+        if (insetGenre) {
+            genreCell.setPaddingRelative(getResources().getDimensionPixelSize(R.dimen.space_24), 0, 0, 0);
+        }
         View dot = new View(row.getContext());
-        GradientDrawable circle = new GradientDrawable();
-        circle.setShape(GradientDrawable.OVAL);
-        circle.setColor(color);
-        dot.setBackground(circle);
+        if (header) {
+            dot.setVisibility(View.INVISIBLE);
+        } else {
+            GradientDrawable circle = new GradientDrawable();
+            circle.setShape(GradientDrawable.OVAL);
+            circle.setColor(color);
+            dot.setBackground(circle);
+        }
         dot.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
         LinearLayout.LayoutParams dotParams = new LinearLayout.LayoutParams(dotSize, dotSize);
         dotParams.setMarginEnd(spacing);
-        row.addView(dot, dotParams);
+        genreCell.addView(dot, dotParams);
 
-        TextView name = new TextView(row.getContext());
-        TextViewCompat.setTextAppearance(name, R.style.TextAppearance_Group6_Body);
-        name.setText(count.genre);
-        row.addView(name, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
+        TextView genreLabel = createGenreCell(row, name, textAppearance, Gravity.START, header);
+        genreLabel.setSingleLine(true);
+        genreLabel.setEllipsize(TextUtils.TruncateAt.END);
+        genreCell.addView(genreLabel, new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        row.addView(genreCell, new TableRow.LayoutParams());
 
-        TextView quantity = new TextView(row.getContext());
-        TextViewCompat.setTextAppearance(quantity, R.style.TextAppearance_Group6_Body);
-        quantity.setText(NumberFormat.getIntegerInstance().format(count.count));
-        LinearLayout.LayoutParams quantityParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        quantityParams.setMarginStart(spacing);
-        row.addView(quantity, quantityParams);
+        TextView quantityLabel = createGenreCell(row, quantity, textAppearance, Gravity.CENTER_HORIZONTAL, header);
+        quantityLabel.setPaddingRelative(spacing / 2, 0, spacing / 2, 0);
+        row.addView(quantityLabel, new TableRow.LayoutParams());
 
-        TextView share = new TextView(row.getContext());
-        TextViewCompat.setTextAppearance(share, R.style.TextAppearance_Group6_Caption);
-        share.setGravity(Gravity.END);
-        share.setMinEms(4);
-        share.setText(percentage);
-        LinearLayout.LayoutParams shareParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        shareParams.setMarginStart(spacing);
-        row.addView(share, shareParams);
-        legend.addView(row, new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        TextView shareLabel = createGenreCell(row, share, textAppearance, Gravity.END, header);
+        shareLabel.setPaddingRelative(spacing, 0, 0, 0);
+        row.addView(shareLabel, new TableRow.LayoutParams());
+        legend.addView(row);
+    }
+
+    private TextView createGenreCell(View parent, CharSequence text, int appearance, int gravity, boolean header) {
+        TextView cell = new TextView(parent.getContext());
+        TextViewCompat.setTextAppearance(cell, appearance);
+        cell.setGravity(gravity | Gravity.CENTER_VERTICAL);
+        if (header) {
+            cell.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
+        }
+        cell.setText(text);
+        return cell;
     }
 
     private static void setText(View view, int id, CharSequence text) {
