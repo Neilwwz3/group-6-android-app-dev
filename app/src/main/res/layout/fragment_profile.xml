@@ -46,32 +46,167 @@
                     android:text="@string/profile_stats" />
 
                 <TextView
-                    android:id="@+id/profile_titles"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="@style/TextAppearance.Group6.Body"
-                    android:layout_marginTop="@dimen/space_8" />
+                    android:layout_marginTop="@dimen/space_4"
+                    android:text="@string/g5_profile_overview_prompt"
+                    android:textAppearance="@style/TextAppearance.Group6.Caption" />
 
-                <TextView
-                    android:id="@+id/profile_watched"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="@style/TextAppearance.Group6.Body"
-                    android:layout_marginTop="@dimen/space_8" />
+                    android:layout_marginTop="@dimen/space_16"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="@dimen/space_12">
 
-                <TextView
-                    android:id="@+id/profile_time"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="@style/TextAppearance.Group6.Body"
-                    android:layout_marginTop="@dimen/space_8" />
+                        <TextView
+                            android:id="@+id/profile_titles"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textAppearance="@style/TextAppearance.Group6.Title" />
 
-                <TextView
-                    android:id="@+id/profile_average"
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_4"
+                            android:gravity="center"
+                            android:text="@string/g5_profile_metric_titles"
+                            android:textAppearance="@style/TextAppearance.Group6.Caption" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/profile_watched"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textAppearance="@style/TextAppearance.Group6.Title" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_4"
+                            android:gravity="center"
+                            android:text="@string/g5_profile_metric_watched"
+                            android:textAppearance="@style/TextAppearance.Group6.Caption" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="@style/TextAppearance.Group6.Body"
-                    android:layout_marginTop="@dimen/space_8" />
+                    android:layout_marginTop="@dimen/space_16"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="@dimen/space_12">
+
+                        <TextView
+                            android:id="@+id/profile_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textAppearance="@style/TextAppearance.Group6.Title" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_4"
+                            android:gravity="center"
+                            android:text="@string/g5_profile_metric_time"
+                            android:textAppearance="@style/TextAppearance.Group6.Caption" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/profile_average"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textAppearance="@style/TextAppearance.Group6.Title" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_4"
+                            android:gravity="center"
+                            android:text="@string/g5_profile_metric_average"
+                            android:textAppearance="@style/TextAppearance.Group6.Caption" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_16"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="@dimen/space_12">
+
+                        <TextView
+                            android:id="@+id/profile_logged_movies"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textAppearance="@style/TextAppearance.Group6.Title" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_4"
+                            android:gravity="center"
+                            android:text="@string/g5_profile_metric_logged_movies"
+                            android:textAppearance="@style/TextAppearance.Group6.Caption" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/profile_logged_series"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textAppearance="@style/TextAppearance.Group6.Title" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/space_4"
+                            android:gravity="center"
+                            android:text="@string/g5_profile_metric_logged_series"
+                            android:textAppearance="@style/TextAppearance.Group6.Caption" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -91,20 +226,77 @@
                     android:textAppearance="@style/TextAppearance.Group6.Title"
                     android:text="@string/g5_profile_genres" />
 
-                <hk.hkucs.group_6_android_app_dev.ui.components.DonutChartView
-                    android:id="@+id/profile_chart"
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_4"
+                    android:text="@string/g5_profile_genres_prompt"
+                    android:textAppearance="@style/TextAppearance.Group6.Caption" />
+
+                <FrameLayout
+                    android:id="@+id/profile_chart_container"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/poster_height"
-                    android:layout_marginTop="@dimen/space_12"
-                    android:importantForAccessibility="no"
-                    android:visibility="gone" />
+                    android:layout_marginTop="@dimen/space_24"
+                    android:visibility="gone">
 
-                <TextView
+                    <hk.hkucs.group_6_android_app_dev.ui.components.DonutChartView
+                        android:id="@+id/profile_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:importantForAccessibility="no" />
+
+                    <LinearLayout
+                        android:id="@+id/profile_genre_center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/profile_genre_total"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:textAppearance="@style/TextAppearance.Group6.Headline"
+                            android:textFontWeight="600" />
+
+                        <TextView
+                            android:id="@+id/profile_genre_total_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.Group6.Caption" />
+                    </LinearLayout>
+                </FrameLayout>
+
+                <LinearLayout
                     android:id="@+id/profile_legend"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAppearance="@style/TextAppearance.Group6.Body"
-                    android:layout_marginTop="@dimen/space_8" />
+                    android:layout_marginStart="@dimen/space_12"
+                    android:layout_marginEnd="@dimen/space_12"
+                    android:layout_marginTop="@dimen/space_16"
+                    android:orientation="vertical"
+                    android:visibility="gone" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/profile_toggle_genres"
+                    style="@style/Widget.Material3.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/touch_target"
+                    android:textAllCaps="false"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/profile_genre_share_note"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_4"
+                    android:text="@string/g5_profile_genre_share_note"
+                    android:textAppearance="@style/TextAppearance.Group6.Caption"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/profile_no_genres"
@@ -134,18 +326,41 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/profile_load"
+                    style="@style/Widget.Material3.Button.TextButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="@dimen/touch_target"
+                    android:layout_height="@dimen/touch_target"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:gravity="start|center_vertical"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
                     android:text="@string/g5_profile_load"
+                    android:textAllCaps="false"
+                    android:textAppearance="@style/TextAppearance.Group6.Body"
+                    android:textColor="@color/text_primary"
                     app:shapeAppearance="@style/ShapeAppearance.Group6.Button" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/card_outline_width"
+                    android:background="@color/outline"
+                    android:importantForAccessibility="no" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/profile_clear"
+                    style="@style/Widget.Material3.Button.TextButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:minHeight="@dimen/touch_target"
+                    android:layout_height="@dimen/touch_target"
+                    android:gravity="start|center_vertical"
+                    android:paddingStart="0dp"
+                    android:paddingEnd="0dp"
+                    android:paddingTop="0dp"
+                    android:paddingBottom="0dp"
                     android:text="@string/g5_profile_clear"
+                    android:textAllCaps="false"
+                    android:textAppearance="@style/TextAppearance.Group6.Body"
+                    android:textColor="@color/error"
                     app:shapeAppearance="@style/ShapeAppearance.Group6.Button" />
 
                 <com.google.android.material.progressindicator.LinearProgressIndicator

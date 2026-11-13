@@ -10,7 +10,9 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.ColorUtils;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,26 +26,31 @@ public class DonutChartView extends View {
             R.color.rating,
             R.color.status_dropped_text,
             R.color.text_secondary,
-            R.color.on_primary_container,
-            R.color.error,
-            R.color.text_hint,
-            R.color.text_primary,
             R.color.status_watched_bg,
+            R.color.error,
             R.color.status_watching_bg,
-            R.color.status_dropped_bg
+            R.color.text_hint,
+            R.color.status_dropped_bg,
+            R.color.text_primary,
+            R.color.status_watching_text
     };
 
     private final int[] colors = new int[PALETTE.length];
     private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final RectF bounds = new RectF();
     private final List<GenreCount> counts = new ArrayList<>();
+    private final List<String> percentages = new ArrayList<>();
+    private final float gapWidth;
     private long total;
 
     public DonutChartView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         paint.setStyle(Paint.Style.STROKE);
+        gapWidth = getResources().getDimension(R.dimen.space_4);
+        int surface = ContextCompat.getColor(context, R.color.surface);
         for (int i = 0; i < PALETTE.length; i++) {
-            colors[i] = ContextCompat.getColor(context, PALETTE[i]);
+            int color = ContextCompat.getColor(context, PALETTE[i]);
+            colors[i] = i == 0 ? color : ColorUtils.blendARGB(color, surface, 0.35f);
         }
     }
 
@@ -54,7 +61,17 @@ public class DonutChartView extends View {
         for (GenreCount value : counts) {
             total += value.count;
         }
+        NumberFormat percent = NumberFormat.getPercentInstance(getResources().getConfiguration().getLocales().get(0));
+        percent.setMaximumFractionDigits(1);
+        percentages.clear();
+        for (GenreCount value : counts) {
+            percentages.add(percent.format(total == 0 ? 0 : (double) value.count / total));
+        }
         invalidate();
+    }
+
+    public String getPercentage(int index) {
+        return percentages.get(index);
     }
 
     public int getSegmentColor(int index) {
@@ -71,21 +88,29 @@ public class DonutChartView extends View {
             return;
         }
 
-        float strokeWidth = diameter / 5f;
+        float strokeWidth = diameter / 6f;
         float radius = (diameter - strokeWidth) / 2f;
         float centerX = getPaddingLeft() + width / 2f;
         float centerY = getPaddingTop() + height / 2f;
         bounds.set(centerX - radius, centerY - radius, centerX + radius, centerY + radius);
         paint.setStrokeWidth(strokeWidth);
 
-        long cumulativeCount = 0;
-        float start = -90f;
-        for (int i = 0; i < counts.size(); i++) {
-            cumulativeCount += counts.get(i).count;
-            float end = -90f + 360f * cumulativeCount / total;
-            paint.setColor(getSegmentColor(i));
-            canvas.drawArc(bounds, start, end - start, false, paint);
-            start = end;
+        if (counts.size() == 1) {
+            paint.setColor(getSegmentColor(0));
+            canvas.drawOval(bounds, paint);
+        } else {
+            float gapAngle = (float) Math.toDegrees(gapWidth / radius);
+            long cumulativeCount = 0;
+            float start = -90f;
+            for (int i = 0; i < counts.size(); i++) {
+                cumulativeCount += counts.get(i).count;
+                float end = -90f + 360f * cumulativeCount / total;
+                float sweep = end - start;
+                float gap = Math.min(gapAngle, sweep / 4f);
+                paint.setColor(getSegmentColor(i));
+                canvas.drawArc(bounds, start + gap / 2f, sweep - gap, false, paint);
+                start = end;
+            }
         }
     }
 }
