@@ -1,116 +1,278 @@
-<?xml version="1.0" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/home_page"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:fillViewport="true">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="@dimen/space_16">
+
         <TextView
+            android:id="@+id/home_eyebrow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/home_eyebrow"
             android:textAppearance="@style/TextAppearance.Group6.Caption"
             android:textColor="@color/primary" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/home_title"
-            android:textAppearance="@style/TextAppearance.Group6.Headline"
+            android:layout_marginTop="@dimen/space_8"
             android:accessibilityHeading="true"
-            android:layout_marginTop="@dimen/space_8" />
+            android:text="@string/home_title"
+            android:textAppearance="@style/TextAppearance.Group6.Headline" />
+
         <TextView
+            android:id="@+id/home_subtitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
             android:text="@string/home_subtitle"
             android:textAppearance="@style/TextAppearance.Group6.Body"
-            android:textColor="@color/text_secondary"
-            android:layout_marginTop="@dimen/space_8" />
-        <com.google.android.material.card.MaterialCardView
-            style="@style/Widget.Group6.Card"
+            android:textColor="@color/text_secondary" />
+
+        <LinearLayout
+            android:id="@+id/home_welcome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_24"
-            app:cardBackgroundColor="@color/primary_container"
-            app:strokeWidth="0dp">
-            <LinearLayout
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.Group6.Card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/space_24">
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="@dimen/touch_target"
-                    android:layout_height="@dimen/touch_target"
-                    app:srcCompat="@drawable/ic_nav_home"
-                    app:tint="@color/on_primary_container"
-                    android:importantForAccessibility="no" />
-                <TextView
+                app:cardBackgroundColor="@color/primary_container"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/home_empty_title"
-                    android:textAppearance="@style/TextAppearance.Group6.Title"
-                    android:layout_marginTop="@dimen/space_16"
-                    android:textColor="@color/on_primary_container" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/home_empty_body"
-                    android:textAppearance="@style/TextAppearance.Group6.Body"
-                    android:layout_marginTop="@dimen/space_8"
-                    android:textColor="@color/on_primary_container" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/explore_library"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:minHeight="@dimen/touch_target"
-            android:layout_marginTop="@dimen/space_16"
-            android:text="@string/explore_library"
-            app:backgroundTint="@color/primary"
-            android:textColor="@color/on_primary"
-            app:shapeAppearanceOverlay="@style/ShapeAppearance.Group6.Button" />
+                    android:orientation="vertical"
+                    android:padding="@dimen/space_24">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/touch_target"
+                        android:layout_height="@dimen/touch_target"
+                        android:importantForAccessibility="no"
+                        app:srcCompat="@drawable/ic_nav_home"
+                        app:tint="@color/on_primary_container" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_16"
+                        android:text="@string/home_empty_title"
+                        android:textAppearance="@style/TextAppearance.Group6.Title"
+                        android:textColor="@color/on_primary_container" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_8"
+                        android:text="@string/home_empty_body"
+                        android:textAppearance="@style/TextAppearance.Group6.Body"
+                        android:textColor="@color/on_primary_container" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
         <LinearLayout
+            android:id="@+id/home_dashboard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="@dimen/space_24">
+            android:visibility="gone">
+
+            <com.google.android.material.card.MaterialCardView
+                style="@style/Widget.Group6.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_24"
+                app:cardBackgroundColor="@color/primary_container"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/space_16">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:accessibilityHeading="true"
+                        android:text="@string/home_month_title"
+                        android:textAppearance="@style/TextAppearance.Group6.CardTitle"
+                        android:textColor="@color/on_primary_container" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_4"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/home_month_previous"
+                            android:layout_width="@dimen/touch_target"
+                            android:layout_height="@dimen/touch_target"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="@string/home_previous_month"
+                            android:padding="@dimen/space_12"
+                            app:srcCompat="@drawable/ic_home_month_previous"
+                            app:tint="@color/home_month_arrow_tint" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/home_month_selector"
+                            style="@style/Widget.Material3.Button.TextButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:minHeight="@dimen/touch_target"
+                            android:text="@string/home_month_selector_placeholder"
+                            android:textColor="@color/on_primary_container"
+                            app:icon="@drawable/ic_home_month_calendar"
+                            app:iconGravity="textStart"
+                            app:iconTint="@color/on_primary_container"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearance.Group6.Button" />
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/home_month_next"
+                            android:layout_width="@dimen/touch_target"
+                            android:layout_height="@dimen/touch_target"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="@string/home_next_month"
+                            android:padding="@dimen/space_12"
+                            app:srcCompat="@drawable/ic_home_month_next"
+                            app:tint="@color/home_month_arrow_tint" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_12"
+                        android:baselineAligned="false"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/home_month_count"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="@style/TextAppearance.Group6.Title"
+                                android:textColor="@color/on_primary_container" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/space_4"
+                                android:text="@string/home_month_entries_label"
+                                android:textAppearance="@style/TextAppearance.Group6.Caption"
+                                android:textColor="@color/on_primary_container" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space_16"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/home_month_hours"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textAppearance="@style/TextAppearance.Group6.Title"
+                                android:textColor="@color/on_primary_container" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/space_4"
+                                android:text="@string/home_month_time_label"
+                                android:textAppearance="@style/TextAppearance.Group6.Caption"
+                                android:textColor="@color/on_primary_container" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_24"
+                android:accessibilityHeading="true"
                 android:text="@string/continue_watching"
-                android:textAppearance="@style/TextAppearance.Group6.CardTitle" />
+                android:textAppearance="@style/TextAppearance.Group6.Title" />
+
             <TextView
+                android:id="@+id/home_watching_empty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8"
                 android:text="@string/continue_empty"
                 android:textAppearance="@style/TextAppearance.Group6.Body"
-                android:layout_marginTop="@dimen/space_8"
-                android:textColor="@color/text_secondary" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="@dimen/space_24">
+                android:textColor="@color/text_secondary"
+                android:visibility="gone" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/home_watching_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_12"
+                android:nestedScrollingEnabled="false"
+                android:orientation="horizontal"
+                android:visibility="gone" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_24"
+                android:accessibilityHeading="true"
                 android:text="@string/recent_records"
-                android:textAppearance="@style/TextAppearance.Group6.CardTitle" />
+                android:textAppearance="@style/TextAppearance.Group6.Title" />
+
             <TextView
+                android:id="@+id/home_recent_empty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8"
                 android:text="@string/recent_empty"
                 android:textAppearance="@style/TextAppearance.Group6.Body"
-                android:layout_marginTop="@dimen/space_8"
-                android:textColor="@color/text_secondary" />
+                android:textColor="@color/text_secondary"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/home_recent_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
         </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/explore_library"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_12"
+            android:minHeight="@dimen/touch_target"
+            android:text="@string/explore_library"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Group6.Button" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
