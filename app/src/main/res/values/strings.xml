@@ -112,6 +112,7 @@
     <string name="record_rating_label">Rating</string>
     <string name="record_clear_rating">Clear rating</string>
     <string name="record_rating_not_rated">Not rated</string>
+    <string name="record_rating_help">0 to 10, one decimal allowed</string>
     <string name="record_short_review">Short Review</string>
     <string name="record_save_label">Save</string>
     <string name="record_minutes_error">Enter a whole number greater than zero.</string>

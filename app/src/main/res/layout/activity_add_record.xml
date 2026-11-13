@@ -145,43 +145,25 @@
                 android:textAppearance="@style/TextAppearance.Group6.Body" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_16"
-            android:labelFor="@id/record_rating"
-            android:text="@string/record_rating_label"
-            android:textColor="@color/text_primary"
-            android:textAppearance="@style/TextAppearance.Group6.CardTitle" />
+            android:hint="@string/record_rating_label"
+            app:expandedHintEnabled="false"
+            app:helperText="@string/record_rating_help">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.AppCompatRatingBar
+            <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/record_rating"
-                style="@style/Widget.AppCompat.RatingBar"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:isIndicator="false"
-                android:numStars="5"
-                android:progressTint="?attr/colorSecondary"
-                android:progressBackgroundTint="@color/outline"
-                android:rating="5"
-                android:secondaryProgressTint="@color/outline"
-                android:stepSize="0.5" />
-
-            <TextView
-                android:id="@+id/record_rating_score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/space_8"
-                android:textAppearance="@style/TextAppearance.Group6.Body"
-                android:textColor="@color/text_secondary"
-                tools:text="10/10" />
-        </LinearLayout>
+                android:minHeight="@dimen/touch_target"
+                android:inputType="numberDecimal"
+                android:singleLine="true"
+                android:textColor="@color/text_primary"
+                android:textAppearance="@style/TextAppearance.Group6.Body" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/record_clear_rating"
