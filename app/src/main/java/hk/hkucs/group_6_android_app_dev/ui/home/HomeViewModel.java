@@ -20,6 +20,10 @@ import hk.hkucs.group_6_android_app_dev.data.repository.MediaRepository;
 
 public class HomeViewModel extends AndroidViewModel {
     final LiveData<List<MediaItem>> watching;
+    /** "Want to Watch" titles, the pool for tonight's pick. */
+    final LiveData<List<MediaItem>> wanted;
+    /** Id of the title currently picked; survives rotation. */
+    String pickId;
     final LiveData<List<RecordWithMedia>> recent;
     final LiveData<StatsSummary> monthSummary;
     final LiveData<StatsSummary> summary;
@@ -31,6 +35,7 @@ public class HomeViewModel extends AndroidViewModel {
         super(application);
         MediaRepository repository = MediaRepository.get(application);
         watching = repository.observeMediaByStatus(MediaStatus.WATCHING);
+        wanted = repository.observeMediaByStatus(MediaStatus.WANT);
         recent = repository.observeRecentRecords(5);
         monthSummary = Transformations.switchMap(month, repository::observeMonthSummary);
         summary = repository.observeSummary();

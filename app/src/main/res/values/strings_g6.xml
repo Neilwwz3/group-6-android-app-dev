@@ -15,8 +15,8 @@
         <item quantity="one">%d entry</item>
         <item quantity="other">%d entries</item>
     </plurals>
-    <string name="profile_hours_minutes">%1$d h %2$d min</string>
-    <string name="profile_minutes_only">%1$d min</string>
+    <string name="profile_hours_minutes">%1$d h %2$d min</string>
+    <string name="profile_minutes_only">%1$d min</string>
     <string name="profile_monthly_description">Bar chart of hours watched per month. Selected: %1$s, %2$s</string>
 
     <!-- Profile: highlights -->
@@ -59,4 +59,9 @@
     <string name="library_sort_title">Title A–Z</string>
     <string name="library_sort_year">Newest release</string>
     <string name="filter_with_count">%1$s · %2$d</string>
+    <!-- Home: tonight's pick -->
+    <string name="home_pick_title">Tonight\'s pick</string>
+    <string name="home_pick_prompt">Can\'t decide? Let your watchlist choose.</string>
+    <string name="home_pick_shuffle">Shuffle</string>
+    <string name="home_pick_description">Tonight\'s pick: %1$s. %2$s</string>
 </resources>

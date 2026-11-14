@@ -23,16 +23,22 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 import java.util.TimeZone;
+import hk.hkucs.group_6_android_app_dev.data.db.entity.MediaItem;
 import hk.hkucs.group_6_android_app_dev.MainActivity;
 import hk.hkucs.group_6_android_app_dev.R;
 import hk.hkucs.group_6_android_app_dev.data.model.MediaType;
 import hk.hkucs.group_6_android_app_dev.data.model.RecordWithMedia;
 import hk.hkucs.group_6_android_app_dev.data.model.StatsSummary;
 import hk.hkucs.group_6_android_app_dev.ui.detail.MediaDetailActivity;
+import hk.hkucs.group_6_android_app_dev.util.MediaMeta;
+import hk.hkucs.group_6_android_app_dev.util.RecordFormat;
 import hk.hkucs.group_6_android_app_dev.util.PosterLoader;
 
 public class HomeFragment extends Fragment {
+    private final Random random = new Random();
+    private List<MediaItem> wanted = java.util.Collections.emptyList();
     public HomeFragment() {
         super(R.layout.fragment_home);
     }
@@ -77,6 +83,97 @@ public class HomeFragment extends Fragment {
             watchHours.setText(formatDuration(summary.totalMinutes));
         });
         model.summary.observe(getViewLifecycleOwner(), summary -> updateContent(view, summary));
+
+        view.findViewById(R.id.home_pick_shuffle).setOnClickListener(v -> {
+            model.pickId = nextPick(model.pickId);
+            showPick(view, model.pickId, true);
+        });
+        view.findViewById(R.id.home_pick_card).setOnClickListener(v -> {
+            if (model.pickId != null) {
+                openDetails(model.pickId);
+            }
+        });
+        model.wanted.observe(getViewLifecycleOwner(), items -> {
+            wanted = items == null ? java.util.Collections.emptyList() : items;
+            if (model.pickId == null || findWanted(model.pickId) == null) {
+                model.pickId = nextPick(null);
+            }
+            showPick(view, model.pickId, false);
+        });
+    }
+
+    /** A random wanted title other than {@code current} when there is a choice. */
+    @Nullable
+    private String nextPick(@Nullable String current) {
+        if (wanted.isEmpty()) {
+            return null;
+        }
+        if (wanted.size() == 1) {
+            return wanted.get(0).id;
+        }
+        String next;
+        do {
+            next = wanted.get(random.nextInt(wanted.size())).id;
+        } while (next.equals(current));
+        return next;
+    }
+
+    @Nullable
+    private MediaItem findWanted(@Nullable String id) {
+        for (MediaItem item : wanted) {
+            if (item.id.equals(id)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    private void showPick(View view, @Nullable String id, boolean animate) {
+        MediaItem item = findWanted(id);
+        View section = view.findViewById(R.id.home_pick_section);
+        section.setVisibility(item == null ? View.GONE : View.VISIBLE);
+        if (item == null) {
+            return;
+        }
+        View poster = view.findViewById(R.id.home_pick_poster_card);
+        View text = view.findViewById(R.id.home_pick_text);
+        Runnable bind = () -> {
+            TextView letter = view.findViewById(R.id.home_pick_letter);
+            letter.setText(item.title.isEmpty() ? ""
+                    : item.title.substring(0, 1).toUpperCase(Locale.US));
+            PosterLoader.load(requireContext(), item.poster,
+                    view.findViewById(R.id.home_pick_poster), letter);
+            ((TextView) view.findViewById(R.id.home_pick_name)).setText(item.title);
+            String meta = MediaMeta.line(requireContext(), item);
+            if (item.runtimeMinutes != null && item.runtimeMinutes > 0
+                    && !MediaType.SERIES.equals(item.type)) {
+                meta = getString(R.string.records_summary, meta,
+                        RecordFormat.duration(getResources(), item.runtimeMinutes));
+            }
+            ((TextView) view.findViewById(R.id.home_pick_meta)).setText(meta);
+            TextView overview = view.findViewById(R.id.home_pick_overview);
+            overview.setText(item.overview);
+            overview.setVisibility(item.overview == null || item.overview.trim().isEmpty()
+                    ? View.GONE : View.VISIBLE);
+            view.findViewById(R.id.home_pick_card).setContentDescription(
+                    getString(R.string.home_pick_description, item.title, meta));
+        };
+        if (!animate) {
+            bind.run();
+            return;
+        }
+        // Flip the poster and fade the text out, swap the title, then bring both back.
+        float distance = 8 * getResources().getDisplayMetrics().density;
+        poster.animate().cancel();
+        text.animate().cancel();
+        text.animate().alpha(0f).translationX(-distance).setDuration(120).start();
+        poster.animate().rotationY(90f).setDuration(140).withEndAction(() -> {
+            bind.run();
+            poster.setRotationY(-90f);
+            poster.animate().rotationY(0f).setDuration(160).start();
+            text.setTranslationX(distance);
+            text.animate().alpha(1f).translationX(0f).setDuration(160).start();
+        }).start();
     }
 
     private void updateContent(View view, StatsSummary summary) {
