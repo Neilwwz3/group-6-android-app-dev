@@ -63,6 +63,80 @@
                 android:textAppearance="@style/TextAppearance.Group6.Body"
                 android:textColor="@color/text_secondary" />
 
+            <LinearLayout
+                android:id="@+id/diary_stats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/space_16"
+                android:layout_marginTop="@dimen/space_12"
+                android:layout_marginEnd="@dimen/space_16"
+                android:baselineAligned="false"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/diary_stat_longest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.Group6.CardTitle"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/diary_stat_longest"
+                        android:textAppearance="@style/TextAppearance.Group6.Caption" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/diary_stat_current"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.Group6.CardTitle"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/diary_stat_current"
+                        android:textAppearance="@style/TextAppearance.Group6.Caption" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/diary_stat_busiest_box"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="?attr/selectableItemBackground"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/diary_stat_busiest"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="@style/TextAppearance.Group6.CardTitle"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/diary_stat_busiest_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/diary_stat_busiest"
+                        android:textAppearance="@style/TextAppearance.Group6.Caption" />
+                </LinearLayout>
+            </LinearLayout>
+
             <HorizontalScrollView
                 android:id="@+id/diary_heatmap_scroll"
                 android:layout_width="match_parent"

@@ -21,6 +21,7 @@ public final class PosterLoader {
 
     private static final ExecutorService IO = Executors.newSingleThreadExecutor();
     private static final Handler MAIN = new Handler(Looper.getMainLooper());
+    private static final long FADE_MS = 220;
     private static final LruCache<String, Bitmap> CACHE = new LruCache<String, Bitmap>(
             (int) (Runtime.getRuntime().maxMemory() / 8)) {
         @Override
@@ -46,7 +47,7 @@ public final class PosterLoader {
         }
         Bitmap cached = CACHE.get(file);
         if (cached != null) {
-            show(image, fallback, cached);
+            show(image, fallback, cached, false);
             return;
         }
         image.setVisibility(View.GONE);
@@ -59,16 +60,24 @@ public final class PosterLoader {
                     CACHE.put(file, bmp);
                 }
                 if (file.equals(image.getTag()) && bmp != null) {
-                    show(image, fallback, bmp);
+                    show(image, fallback, bmp, true);
                 }
             });
         });
     }
 
-    private static void show(ImageView image, View fallback, Bitmap bmp) {
+    /** Fades the poster in when it arrives after a decode, so it never pops in abruptly. */
+    private static void show(ImageView image, View fallback, Bitmap bmp, boolean fade) {
         image.setImageBitmap(bmp);
         image.setVisibility(View.VISIBLE);
         fallback.setVisibility(View.GONE);
+        image.animate().cancel();
+        if (fade) {
+            image.setAlpha(0f);
+            image.animate().alpha(1f).setDuration(FADE_MS).start();
+        } else {
+            image.setAlpha(1f);
+        }
     }
 
     @Nullable
