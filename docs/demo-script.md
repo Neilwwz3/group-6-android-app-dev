@@ -30,6 +30,11 @@
 1. **添加作品：** Library → **Add a title** → 填一部示例数据里没有的电影（例如 `Dune: Part Two`，2024，Movie，Sci-Fi）→ 保存 → 在片库里找到它。
 2. **编辑和删除：** 在刚加的作品详情里点 **Edit** 改年份；再点 **Delete** 并确认，回到片库它已消失。
 3. **空状态：** Profile → **Clear all data** → 依次切到 Home、Library、Diary、Profile，展示每页的空状态提示 → 再 **Load sample data** 恢复。
+4. **今晚看什么：** Home 往下滑到 **Tonight's pick** → 点 **Shuffle** 换几次 → 点卡片进详情。讲解词："Can't decide? MovieTracker picks something from your watchlist."
+5. **排序：** Library → 点 **Sort** → 选 **Highest rated**，列表重新排列。
+6. **月度柱状图和亮点：** Profile → **Monthly activity** 点不同月份的柱子；下面的 **Highlights** 点 Top rated 进详情。
+7. **剧集进度和记录操作：** Home 的 Continue watching 点 **Supernatural** → 看进度条 → 在一条记录右边的 ⋮ 选 **Share entry**，或 **Delete entry** 再点 **Undo** 恢复。
+8. **深色模式：** 系统设置里切到深色主题，App 跟着变。
 
 ## G6 验收清单
 
@@ -41,3 +46,4 @@
 - [ ] 主线第 4 步：The Matrix 的状态自动变成 Watched，Profile 里的 Watched 数加 1
 - [ ] 所有界面文字和日期都是英文
 - [ ] 横竖屏切换、按返回键、切到后台再切回来，页面内容不丢、不崩溃
+- [ ] 可选扩展 4–8 步走完，App 不崩溃；深色模式下每页文字都看得清
