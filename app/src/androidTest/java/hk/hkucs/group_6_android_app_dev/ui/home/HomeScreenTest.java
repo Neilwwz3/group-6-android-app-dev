@@ -92,10 +92,10 @@ public class HomeScreenTest {
             onView(withId(R.id.home_watching_list))
                     .check(matches(withEffectiveVisibility(VISIBLE)));
             onView(withId(R.id.home_month_count))
-                    .check(matches(withText(context.getString(R.string.home_month_count, 6))));
+                    .check(matches(withText(context.getString(R.string.home_month_count, 11))));
             onView(withId(R.id.home_month_hours))
                     .check(matches(withText(context.getString(
-                            R.string.home_month_hours_minutes, 13, 8))));
+                            R.string.home_month_whole_hours, 24))));
             onView(withId(R.id.home_month_selector))
                     .check(matches(withText("November 2026")));
             onView(withId(R.id.home_month_next)).check(matches(isNotEnabled()));
