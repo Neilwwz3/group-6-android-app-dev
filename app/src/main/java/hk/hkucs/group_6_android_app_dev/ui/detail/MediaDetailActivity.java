@@ -1,5 +1,6 @@
 package hk.hkucs.group_6_android_app_dev.ui.detail;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.appbar.MaterialToolbar;
@@ -50,6 +52,10 @@ public class MediaDetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_MEDIA_ID =
             "hk.hkucs.group_6_android_app_dev.extra.MEDIA_ID";
+    private static final String EXTRA_SHARED_POSTER =
+            "hk.hkucs.group_6_android_app_dev.extra.SHARED_POSTER";
+    /** Longest wait for the poster before the shared transition starts anyway. */
+    private static final long SHARED_POSTER_TIMEOUT_MS = 400;
 
     /** How long "Undo" stays on screen after deleting an entry. */
     private static final int UNDO_MS = 5000;
@@ -70,6 +76,21 @@ public class MediaDetailActivity extends AppCompatActivity {
             throw new IllegalArgumentException("mediaId is required");
         }
         return new Intent(context, MediaDetailActivity.class).putExtra(EXTRA_MEDIA_ID, mediaId);
+    }
+
+    /**
+     * Opens the details page. When {@code poster} is given, it grows into the details poster.
+     */
+    public static void open(@NonNull Activity activity, @NonNull String mediaId,
+            @Nullable View poster) {
+        Intent intent = newIntent(activity, mediaId);
+        if (poster == null) {
+            activity.startActivity(intent);
+            return;
+        }
+        intent.putExtra(EXTRA_SHARED_POSTER, true);
+        activity.startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(
+                activity, poster, "poster_" + mediaId).toBundle());
     }
 
     /** A nonblank String ID is required here. */
@@ -113,6 +134,15 @@ public class MediaDetailActivity extends AppCompatActivity {
             }
             return false;
         });
+
+        String mediaId = getIntent().getStringExtra(EXTRA_MEDIA_ID);
+        findViewById(R.id.detail_poster_image).setTransitionName("poster_" + mediaId);
+        if (getIntent().getBooleanExtra(EXTRA_SHARED_POSTER, false)) {
+            // Wait until the poster is bound (it is usually cached) so it can grow into place.
+            supportPostponeEnterTransition();
+            root.postDelayed(this::supportStartPostponedEnterTransition,
+                    SHARED_POSTER_TIMEOUT_MS);
+        }
 
         statusGroup = findViewById(R.id.detail_status_group);
         ratingLayout = findViewById(R.id.detail_rating_layout);
@@ -194,6 +224,8 @@ public class MediaDetailActivity extends AppCompatActivity {
                         : item.title.substring(0, 1).toUpperCase(java.util.Locale.US));
         PosterLoader.load(this, item.poster,
                 findViewById(R.id.detail_poster_image), findViewById(R.id.detail_poster_letter));
+        View poster = findViewById(R.id.detail_poster_image);
+        poster.post(this::supportStartPostponedEnterTransition);
 
         updatingUi = true;
         for (int i = 0; i < statusGroup.getChildCount(); i++) {

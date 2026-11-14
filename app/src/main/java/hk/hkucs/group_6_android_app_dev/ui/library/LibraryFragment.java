@@ -52,8 +52,8 @@ public class LibraryFragment extends Fragment {
 
         RecyclerView list = view.findViewById(R.id.media_list);
         list.setLayoutManager(new LinearLayoutManager(requireContext()));
-        LibraryAdapter adapter = new LibraryAdapter(item ->
-                startActivity(MediaDetailActivity.newIntent(requireContext(), item.id)));
+        LibraryAdapter adapter = new LibraryAdapter((item, poster) ->
+                MediaDetailActivity.open(requireActivity(), item.id, poster));
         list.setAdapter(adapter);
 
         TextInputEditText search = view.findViewById(R.id.search_input);
