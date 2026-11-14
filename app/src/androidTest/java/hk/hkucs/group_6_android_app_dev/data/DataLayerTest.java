@@ -92,6 +92,24 @@ public class DataLayerTest {
     }
 
     @Test
+    public void addRecord_ratesAnUnratedTitleButKeepsAnExistingRating() {
+        String unrated = repo.saveMediaNow(media(MediaType.MOVIE, MediaStatus.WANT));
+        MediaItem ratedItem = media(MediaType.MOVIE, MediaStatus.WATCHED);
+        ratedItem.rating = 7f;
+        String rated = repo.saveMediaNow(ratedItem);
+
+        WatchRecord first = record(unrated, "2026-11-01");
+        first.rating = 9f;
+        repo.addRecordNow(first);
+        WatchRecord second = record(rated, "2026-11-01");
+        second.rating = 9f;
+        repo.addRecordNow(second);
+
+        assertEquals(Float.valueOf(9f), db.mediaDao().getById(unrated).rating);
+        assertEquals(Float.valueOf(7f), db.mediaDao().getById(rated).rating);
+    }
+
+    @Test
     public void deleteRecord_thenRestore_putsTheSameRecordBackWithoutChangingStatus() {
         String id = repo.saveMediaNow(media(MediaType.MOVIE, MediaStatus.WANT));
         repo.addRecordNow(record(id, "2026-11-01"));

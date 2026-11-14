@@ -128,7 +128,7 @@ public class MediaRepository {
 
     /**
      * Saves the record. A "want" item becomes "watched" (movie) or "watching" (series), since
-     * the user has now started it.
+     * the user has now started it. An unrated item takes this record's rating.
      */
     public void addRecord(@NonNull WatchRecord record, @Nullable Runnable onDone) {
         writer.execute(() -> {
@@ -245,6 +245,9 @@ public class MediaRepository {
                 String next = MediaType.SERIES.equals(media.type)
                         ? MediaStatus.WATCHING : MediaStatus.WATCHED;
                 db.mediaDao().updateStatus(media.id, next, now());
+            }
+            if (media != null && media.rating == null && record.rating != null) {
+                db.mediaDao().updateRating(media.id, record.rating, now());
             }
         });
     }

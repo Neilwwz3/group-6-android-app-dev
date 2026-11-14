@@ -87,7 +87,7 @@ MediaRepository repo = MediaRepository.get(application);
 | `observeRecentRecords(int limit)` | `LiveData<List<RecordWithMedia>>` | 首页“最近记录” |
 | `observeTimeline()` | `LiveData<List<RecordWithMedia>>`，全部记录，最新的在前 | 日记时间线 |
 | `observeDailyCounts(String fromDate, String toDate)` | `LiveData<Map<String, Integer>>`：日期 → 当天记录数，没有记录的日期不出现 | 日记热力图 |
-| `addRecord(WatchRecord record, Runnable onDone)` | 保存记录。如果作品原来是“想看”：电影自动改为“已看完”，剧集自动改为“在看” | 记一笔 |
+| `addRecord(WatchRecord record, Runnable onDone)` | 保存记录。如果作品原来是“想看”：电影自动改为“已看完”，剧集自动改为“在看”；作品还没评分、这条记录有评分时，作品评分取这条记录的评分 | 记一笔 |
 | `deleteRecord(long recordId, Runnable onDone)` | 删除一条记录；作品状态不变 | 作品详情 |
 | `restoreRecord(WatchRecord record, Runnable onDone)` | 撤销删除：按原 id 放回这条记录，不改作品状态 | 作品详情 |
 
