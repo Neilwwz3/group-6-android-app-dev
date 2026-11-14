@@ -87,7 +87,9 @@ MediaRepository repo = MediaRepository.get(application);
 | `observeRecentRecords(int limit)` | `LiveData<List<RecordWithMedia>>` | 首页“最近记录” |
 | `observeTimeline()` | `LiveData<List<RecordWithMedia>>`，全部记录，最新的在前 | 日记时间线 |
 | `observeDailyCounts(String fromDate, String toDate)` | `LiveData<Map<String, Integer>>`：日期 → 当天记录数，没有记录的日期不出现 | 日记热力图 |
-| `addRecord(WatchRecord record, Runnable onDone)` | 保存记录。如果作品原来是“想看”：电影自动改为“已看完”，剧集自动改为“在看” | 记一笔 |
+| `addRecord(WatchRecord record, Runnable onDone)` | 保存记录。如果作品原来是“想看”：电影自动改为“已看完”，剧集自动改为“在看”；作品还没评分、这条记录有评分时，作品评分取这条记录的评分 | 记一笔 |
+| `deleteRecord(long recordId, Runnable onDone)` | 删除一条记录；作品状态不变 | 作品详情 |
+| `restoreRecord(WatchRecord record, Runnable onDone)` | 撤销删除：按原 id 放回这条记录，不改作品状态 | 作品详情 |
 
 ### 统计
 
@@ -96,6 +98,7 @@ MediaRepository repo = MediaRepository.get(application);
 | `observeSummary()` | `LiveData<StatsSummary>`，全部数据 | 我的 |
 | `observeMonthSummary(String yearMonth)` | `LiveData<StatsSummary>`，例如 `"2026-11"`，只算这个月的记录 | 首页“本月概览” |
 | `observeGenreCounts()` | `LiveData<List<GenreCount>>`，数量多的在前 | 我的·题材环形图 |
+| `observeMonthlyTotals(String fromDate)` | `LiveData<List<MonthTotal>>`：每月的记录数 `count` 和总分钟 `minutes`，`month` 形如 `"2026-11"`，旧的在前；没有记录的月份不出现 | 我的·月度柱状图 |
 
 ### 示例数据
 

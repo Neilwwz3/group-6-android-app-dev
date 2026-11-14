@@ -21,4 +21,13 @@
     <string name="diary_meta_separator">" · "</string>
     <string name="diary_rating">★ %1$s</string>
     <string name="diary_rating_description">Rated %1$s out of 10</string>
+    <string name="diary_stat_longest">Longest streak</string>
+    <string name="diary_stat_current">Current streak</string>
+    <string name="diary_stat_busiest">Busiest day</string>
+    <string name="diary_stat_none">–</string>
+    <plurals name="diary_stat_days">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plurals>
+    <string name="diary_stats_description">Longest streak %1$s, current streak %2$s, busiest day %3$s</string>
 </resources>

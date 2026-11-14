@@ -60,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
         if (!isTab(id) || manager.isStateSaved()) { return false; }
         Fragment target = manager.findFragmentByTag(tag(id));
         FragmentTransaction transaction = manager.beginTransaction().setReorderingAllowed(true);
+        if (selectedTab != id) {
+            // Cross-fade between tabs; reselecting the same tab stays still.
+            transaction.setCustomAnimations(R.anim.tab_enter, R.anim.tab_exit);
+        }
         for (int tab : TABS) {
             Fragment page = manager.findFragmentByTag(tag(tab));
             if (page != null && page != target) {

@@ -28,6 +28,7 @@ import hk.hkucs.group_6_android_app_dev.data.model.DayCount;
 import hk.hkucs.group_6_android_app_dev.data.model.GenreCount;
 import hk.hkucs.group_6_android_app_dev.data.model.MediaStatus;
 import hk.hkucs.group_6_android_app_dev.data.model.MediaType;
+import hk.hkucs.group_6_android_app_dev.data.model.MonthTotal;
 import hk.hkucs.group_6_android_app_dev.data.model.RecordWithMedia;
 import hk.hkucs.group_6_android_app_dev.data.model.StatsSummary;
 
@@ -127,11 +128,32 @@ public class MediaRepository {
 
     /**
      * Saves the record. A "want" item becomes "watched" (movie) or "watching" (series), since
-     * the user has now started it.
+     * the user has now started it. An unrated item takes this record's rating.
      */
     public void addRecord(@NonNull WatchRecord record, @Nullable Runnable onDone) {
         writer.execute(() -> {
             addRecordNow(record);
+            post(onDone);
+        });
+    }
+
+    /** Deletes one watch record. The title's status stays as it is. */
+    public void deleteRecord(long recordId, @Nullable Runnable onDone) {
+        writer.execute(() -> {
+            db.watchRecordDao().deleteById(recordId);
+            post(onDone);
+        });
+    }
+
+    /**
+     * Puts back a record removed with {@link #deleteRecord}, keeping its id and creation time
+     * (for "Undo"). Unlike {@link #addRecord} it never changes the title's status.
+     */
+    public void restoreRecord(@NonNull WatchRecord record, @Nullable Runnable onDone) {
+        writer.execute(() -> {
+            if (db.mediaDao().getById(record.mediaId) != null) {
+                db.watchRecordDao().insert(record);
+            }
             post(onDone);
         });
     }
@@ -145,6 +167,12 @@ public class MediaRepository {
     /** Totals for one month's records, e.g. {@code "2026-11"}. */
     public LiveData<StatsSummary> observeMonthSummary(String yearMonth) {
         return db.watchRecordDao().observeMonthSummary(yearMonth);
+    }
+
+    /** Record count and minutes per month ({@code YYYY-MM}), oldest first, for records on or
+     * after {@code fromDate}. Months without records are absent. */
+    public LiveData<List<MonthTotal>> observeMonthlyTotals(String fromDate) {
+        return db.watchRecordDao().observeMonthlyTotals(fromDate);
     }
 
     /** Genres by number of media items, most common first. */
@@ -217,6 +245,9 @@ public class MediaRepository {
                 String next = MediaType.SERIES.equals(media.type)
                         ? MediaStatus.WATCHING : MediaStatus.WATCHED;
                 db.mediaDao().updateStatus(media.id, next, now());
+            }
+            if (media != null && media.rating == null && record.rating != null) {
+                db.mediaDao().updateRating(media.id, record.rating, now());
             }
         });
     }

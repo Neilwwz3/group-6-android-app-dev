@@ -1,11 +1,13 @@
 package hk.hkucs.group_6_android_app_dev.ui.components;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,6 +45,10 @@ public class DonutChartView extends View {
     private final List<String> percentages = new ArrayList<>();
     private final float gapWidth;
     private long total;
+    /** 0 to 1 while the ring sweeps in the first time it gets data. */
+    private float sweep = 1f;
+    private boolean hasAnimated;
+    private ValueAnimator animator;
 
     public DonutChartView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -68,6 +74,17 @@ public class DonutChartView extends View {
         for (GenreCount value : counts) {
             percentages.add(percent.format(total == 0 ? 0 : (double) value.count / total));
         }
+        if (!hasAnimated && total > 0) {
+            hasAnimated = true;
+            animator = ValueAnimator.ofFloat(0f, 1f);
+            animator.setDuration(900);
+            animator.setInterpolator(new DecelerateInterpolator(1.5f));
+            animator.addUpdateListener(a -> {
+                sweep = (float) a.getAnimatedValue();
+                invalidate();
+            });
+            animator.start();
+        }
         invalidate();
     }
 
@@ -77,6 +94,15 @@ public class DonutChartView extends View {
 
     public int getSegmentColor(int index) {
         return colors[index % colors.length];
+    }
+
+    @Override
+    protected void onDetachedFromWindow() {
+        if (animator != null) {
+            animator.cancel();
+            sweep = 1f;
+        }
+        super.onDetachedFromWindow();
     }
 
     @Override
@@ -96,9 +122,14 @@ public class DonutChartView extends View {
         bounds.set(centerX - radius, centerY - radius, centerX + radius, centerY + radius);
         paint.setStrokeWidth(strokeWidth);
 
+        float limit = -90f + 360f * sweep;
         if (counts.size() == 1) {
             paint.setColor(getSegmentColor(0));
-            canvas.drawOval(bounds, paint);
+            if (sweep >= 1f) {
+                canvas.drawOval(bounds, paint);
+            } else {
+                canvas.drawArc(bounds, -90f, 360f * sweep, false, paint);
+            }
         } else {
             float gapAngle = (float) Math.toDegrees(gapWidth / radius);
             long cumulativeCount = 0;
@@ -106,10 +137,13 @@ public class DonutChartView extends View {
             for (int i = 0; i < counts.size(); i++) {
                 cumulativeCount += counts.get(i).count;
                 float end = -90f + 360f * cumulativeCount / total;
-                float sweep = end - start;
-                float gap = Math.min(gapAngle, sweep / 4f);
-                paint.setColor(getSegmentColor(i));
-                canvas.drawArc(bounds, start + gap / 2f, sweep - gap, false, paint);
+                float segment = end - start;
+                float gap = Math.min(gapAngle, segment / 4f);
+                float drawn = Math.min(end, limit) - start - gap;
+                if (drawn > 0) {
+                    paint.setColor(getSegmentColor(i));
+                    canvas.drawArc(bounds, start + gap / 2f, drawn, false, paint);
+                }
                 start = end;
             }
         }

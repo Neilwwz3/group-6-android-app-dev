@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/Widget.Group6.Card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -18,15 +19,30 @@
         android:orientation="horizontal"
         android:padding="@dimen/space_12">
 
-        <TextView
-            android:id="@+id/diary_record_poster"
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="48dp"
             android:layout_height="72dp"
-            android:background="@drawable/sample_poster_background"
-            android:gravity="center"
-            android:importantForAccessibility="no"
-            android:textAppearance="@style/TextAppearance.Group6.Title"
-            android:textColor="@color/text_secondary" />
+            app:cardBackgroundColor="@color/surface_variant"
+            app:cardCornerRadius="@dimen/corner_badge"
+            app:strokeWidth="0dp">
+
+            <TextView
+                android:id="@+id/diary_record_poster"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:importantForAccessibility="no"
+                android:textAppearance="@style/TextAppearance.Group6.Title"
+                android:textColor="@color/text_secondary" />
+
+            <ImageView
+                android:id="@+id/diary_record_poster_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:importantForAccessibility="no"
+                android:scaleType="centerCrop"
+                android:visibility="gone" />
+        </com.google.android.material.card.MaterialCardView>
 
         <LinearLayout
             android:layout_width="0dp"

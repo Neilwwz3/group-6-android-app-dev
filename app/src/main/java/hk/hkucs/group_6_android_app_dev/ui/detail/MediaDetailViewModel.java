@@ -62,6 +62,14 @@ public class MediaDetailViewModel extends AndroidViewModel {
         }
     }
 
+    public void deleteRecord(@NonNull WatchRecord record) {
+        repo.deleteRecord(record.id, null);
+    }
+
+    public void restoreRecord(@NonNull WatchRecord record) {
+        repo.restoreRecord(record, null);
+    }
+
     public void delete(@Nullable Runnable onDone) {
         String id = mediaId.getValue();
         if (id != null) {

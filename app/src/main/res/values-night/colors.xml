@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- G6: dark palette, same names as values/colors.xml. Picked for contrast on dark surfaces. -->
+<resources>
+    <color name="primary">#8AB4FF</color>
+    <color name="on_primary">#0A2350</color>
+    <color name="primary_container">#1D2D4D</color>
+    <color name="on_primary_container">#D6E3FF</color>
+    <color name="background">#0F141B</color>
+    <color name="surface">#171C24</color>
+    <color name="surface_variant">#252C38</color>
+    <color name="text_primary">#E6EAF2</color>
+    <color name="text_secondary">#AEB8C7</color>
+    <color name="text_hint">#8A95A6</color>
+    <color name="outline">#323B49</color>
+    <color name="rating">#F2C14E</color>
+    <color name="status_want_text">#B7CEFF</color>
+    <color name="status_want_bg">#1F2E4D</color>
+    <color name="status_watching_text">#FFD27A</color>
+    <color name="status_watching_bg">#3A2E12</color>
+    <color name="status_watched_text">#8FD9B4</color>
+    <color name="status_watched_bg">#173328</color>
+    <color name="status_dropped_text">#F3A3B0</color>
+    <color name="status_dropped_bg">#3D1C23</color>
+    <color name="error">#FFB4AB</color>
+    <color name="on_error">#690005</color>
+</resources>

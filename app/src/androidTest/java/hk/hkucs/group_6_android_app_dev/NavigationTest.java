@@ -69,8 +69,8 @@ public class NavigationTest {
         try (ActivityScenario<MainActivity> scenario = ActivityScenario.launch(MainActivity.class)) {
             onView(withId(R.id.explore_library)).perform(scrollTo(), click());
             onView(withId(R.id.library_page)).check(matches(isDisplayed()));
-            onView(withId(R.id.add_title)).perform(scrollTo(), click());
-            onView(withId(R.id.feature_title)).check(matches(withText(R.string.add_title)));
+            onView(withId(R.id.add_title)).perform(click());
+            onView(withId(R.id.edit_toolbar)).check(matches(hasDescendant(withText(R.string.add_title))));
             androidx.test.espresso.Espresso.pressBack();
             onView(withId(R.id.library_page)).check(matches(isDisplayed()));
             androidx.test.espresso.Espresso.pressBack();
@@ -110,7 +110,7 @@ public class NavigationTest {
             }
         }
         try (ActivityScenario<EditMediaActivity> scenario = ActivityScenario.launch(new Intent(context, EditMediaActivity.class))) {
-            onView(withId(R.id.feature_title)).check(matches(withText(R.string.add_title)));
+            onView(withId(R.id.edit_toolbar)).check(matches(hasDescendant(withText(R.string.add_title))));
         }
     }
 
@@ -129,16 +129,14 @@ public class NavigationTest {
 
     @Test public void secondaryEntryContractsCarryTheMediaId() {
         Context context = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        Intent edit = EditMediaActivity.newIntent(context, "test-title");
-        assertEquals("test-title", edit.getStringExtra(EditMediaActivity.EXTRA_MEDIA_ID));
-        try (ActivityScenario<EditMediaActivity> scenario = ActivityScenario.launch(edit)) {
-            onView(withId(R.id.feature_title)).check(matches(withText(R.string.edit_title)));
-        }
+        // The placeholder pages are gone; these pages now load real data, so only the
+        // details page is opened here (it waits for its title instead of closing).
+        assertEquals("test-title", EditMediaActivity.newIntent(context, "test-title")
+                .getStringExtra(EditMediaActivity.EXTRA_MEDIA_ID));
+        assertEquals("test-title", AddRecordActivity.newIntent(context, "test-title")
+                .getStringExtra(AddRecordActivity.EXTRA_MEDIA_ID));
         try (ActivityScenario<MediaDetailActivity> scenario = ActivityScenario.launch(MediaDetailActivity.newIntent(context, "test-title"))) {
-            onView(withId(R.id.feature_title)).check(matches(withText(R.string.details_title)));
-        }
-        try (ActivityScenario<AddRecordActivity> scenario = ActivityScenario.launch(AddRecordActivity.newIntent(context, "test-title"))) {
-            onView(withId(R.id.feature_title)).check(matches(withText(R.string.record_title)));
+            onView(withId(R.id.detail_toolbar)).check(matches(hasDescendant(withText(R.string.details_title))));
         }
     }
 }

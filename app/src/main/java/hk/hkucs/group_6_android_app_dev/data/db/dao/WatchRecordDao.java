@@ -9,6 +9,7 @@ import java.util.List;
 
 import hk.hkucs.group_6_android_app_dev.data.db.entity.WatchRecord;
 import hk.hkucs.group_6_android_app_dev.data.model.DayCount;
+import hk.hkucs.group_6_android_app_dev.data.model.MonthTotal;
 import hk.hkucs.group_6_android_app_dev.data.model.RecordWithMedia;
 import hk.hkucs.group_6_android_app_dev.data.model.StatsSummary;
 
@@ -50,6 +51,14 @@ public interface WatchRecordDao {
             + "FROM watch_record r JOIN media_item m ON m.id = r.media_id "
             + "WHERE r.date LIKE :yearMonth || '-%'")
     LiveData<StatsSummary> observeMonthSummary(String yearMonth);
+
+    @Query("SELECT substr(date, 1, 7) AS month, COUNT(*) AS count, "
+            + "IFNULL(SUM(minutes), 0) AS minutes FROM watch_record "
+            + "WHERE date >= :fromDate GROUP BY month ORDER BY month")
+    LiveData<List<MonthTotal>> observeMonthlyTotals(String fromDate);
+
+    @Query("DELETE FROM watch_record WHERE id = :id")
+    void deleteById(long id);
 
     @Query("DELETE FROM watch_record WHERE media_id = :mediaId")
     void deleteForMedia(String mediaId);

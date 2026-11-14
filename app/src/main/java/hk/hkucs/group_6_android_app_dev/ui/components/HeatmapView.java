@@ -43,6 +43,7 @@ public class HeatmapView extends View {
 
     private final Paint cellPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint selectedPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint todayPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint labelPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final RectF rect = new RectF();
     private final int[] levelColors = new int[LEVEL_ALPHA.length];
@@ -83,6 +84,10 @@ public class HeatmapView extends View {
         selectedPaint.setStyle(Paint.Style.STROKE);
         selectedPaint.setStrokeWidth(2 * density);
         selectedPaint.setColor(ContextCompat.getColor(context, R.color.text_primary));
+
+        todayPaint.setStyle(Paint.Style.STROKE);
+        todayPaint.setStrokeWidth(1.5f * density);
+        todayPaint.setColor(ContextCompat.getColor(context, R.color.primary));
 
         labelPaint.setColor(ContextCompat.getColor(context, R.color.text_secondary));
         labelPaint.setTextSize(getResources().getDimension(R.dimen.text_caption));
@@ -184,6 +189,8 @@ public class HeatmapView extends View {
                 canvas.drawRoundRect(rect, radius, radius, cellPaint);
                 if (key.equals(selectedDate)) {
                     canvas.drawRoundRect(rect, radius, radius, selectedPaint);
+                } else if (key.equals(todayKey)) {
+                    canvas.drawRoundRect(rect, radius, radius, todayPaint);
                 }
                 day.add(Calendar.DAY_OF_MONTH, 1);
             }

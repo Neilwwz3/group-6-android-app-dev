@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- G6 demo polish. Kept in its own file so edits never conflict with strings.xml. -->
+<resources>
+    <!-- Charts -->
+    <string name="chart_hours_short">%1$dh</string>
+    <string name="chart_minutes_short">%1$dm</string>
+
+    <!-- Profile: monthly activity -->
+    <string name="profile_monthly_title">Monthly activity</string>
+    <string name="profile_monthly_prompt">Hours watched over the last 12 months.</string>
+    <string name="profile_monthly_hint">Tap a bar to see that month.</string>
+    <string name="profile_monthly_none">No entries this month</string>
+    <string name="profile_monthly_detail">%1$s · %2$s</string>
+    <plurals name="profile_entries">
+        <item quantity="one">%d entry</item>
+        <item quantity="other">%d entries</item>
+    </plurals>
+    <string name="profile_hours_minutes">%1$d h %2$d min</string>
+    <string name="profile_minutes_only">%1$d min</string>
+    <string name="profile_monthly_description">Bar chart of hours watched per month. Selected: %1$s, %2$s</string>
+
+    <!-- Profile: highlights -->
+    <string name="profile_highlights_title">Highlights</string>
+    <string name="profile_highlights_prompt">The stand-outs of your collection.</string>
+    <string name="profile_top_rated">Top rated</string>
+    <string name="profile_most_logged">Most logged</string>
+    <string name="profile_rating_value">★ %1$s / 10</string>
+    <string name="profile_split_title">Movies vs TV</string>
+    <string name="profile_split_movies">Movies · %1$s</string>
+    <string name="profile_split_series">TV shows · %1$s</string>
+    <string name="profile_split_description">Movies %1$s, TV shows %2$s of your viewing time</string>
+    <!-- Title details -->
+    <string name="detail_share">Share</string>
+    <string name="detail_progress">Episode progress · %1$d of %2$d</string>
+    <string name="records_summary">%1$s · %2$s</string>
+    <string name="records_rating_trend">Rating %1$s → %2$s</string>
+    <string name="record_more">More options for this entry</string>
+    <string name="record_share">Share entry</string>
+    <string name="record_delete">Delete entry</string>
+    <string name="record_deleted">Entry deleted</string>
+    <string name="undo">Undo</string>
+    <string name="record_rating_star">★ %1$s/10</string>
+    <string name="share_chooser">Share via</string>
+    <string name="share_title_year">%1$s (%2$d)</string>
+    <string name="share_title_rated">%1$s: I rate it %2$s/10.</string>
+    <string name="share_title_unrated">%1$s is on my list.</string>
+    <string name="share_record">Watched %1$s on %2$s.</string>
+    <string name="share_record_rating">Rated %1$s/10.</string>
+    <string name="share_record_note">“%1$s”</string>
+    <string name="share_signature">Tracked with MovieTracker.</string>
+    <!-- Library -->
+    <plurals name="library_count">
+        <item quantity="one">%d title</item>
+        <item quantity="other">%d titles</item>
+    </plurals>
+    <string name="library_sort_label">Sort: %1$s</string>
+    <string name="library_sort_recent">Recently updated</string>
+    <string name="library_sort_rating">Highest rated</string>
+    <string name="library_sort_title">Title A–Z</string>
+    <string name="library_sort_year">Newest release</string>
+    <string name="filter_with_count">%1$s · %2$d</string>
+    <!-- Home: tonight's pick -->
+    <string name="home_pick_title">Tonight\'s pick</string>
+    <string name="home_pick_prompt">Can\'t decide? Let your watchlist choose.</string>
+    <string name="home_pick_shuffle">Shuffle</string>
+    <string name="home_pick_description">Tonight\'s pick: %1$s. %2$s</string>
+</resources>

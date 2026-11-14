@@ -8,6 +8,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,7 +25,8 @@ import hk.hkucs.group_6_android_app_dev.util.StatusBadge;
 public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.Holder> {
 
     public interface OnItemClickListener {
-        void onItemClick(MediaItem item);
+        /** {@code poster} is the card's poster when it is showing, for a shared transition. */
+        void onItemClick(MediaItem item, @Nullable View poster);
     }
 
     private final List<MediaItem> items = new ArrayList<>();
@@ -74,7 +76,9 @@ public class LibraryAdapter extends RecyclerView.Adapter<LibraryAdapter.Holder> 
             holder.score.setText(holder.itemView.getContext().getString(
                     R.string.rating_value, MediaMeta.score(item.rating)));
         }
-        holder.itemView.setOnClickListener(v -> onClick.onItemClick(item));
+        holder.posterImage.setTransitionName("poster_" + item.id);
+        holder.itemView.setOnClickListener(v -> onClick.onItemClick(item,
+                holder.posterImage.getVisibility() == View.VISIBLE ? holder.posterImage : null));
     }
 
     static class Holder extends RecyclerView.ViewHolder {

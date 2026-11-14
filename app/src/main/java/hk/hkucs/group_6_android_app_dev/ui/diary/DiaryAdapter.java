@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.HorizontalScrollView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -27,6 +29,7 @@ import hk.hkucs.group_6_android_app_dev.data.db.entity.WatchRecord;
 import hk.hkucs.group_6_android_app_dev.data.model.MediaType;
 import hk.hkucs.group_6_android_app_dev.data.model.RecordWithMedia;
 import hk.hkucs.group_6_android_app_dev.ui.components.HeatmapView;
+import hk.hkucs.group_6_android_app_dev.util.PosterLoader;
 
 /**
  * The whole Diary page as one list: the heatmap card first, then one date header per day with
@@ -140,6 +143,11 @@ class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         private final HeatmapView heatmap;
         private final HorizontalScrollView scroll;
         private final TextView summary;
+        private final View stats;
+        private final TextView longest;
+        private final TextView current;
+        private final TextView busiest;
+        private final View busiestBox;
         private boolean scrolledToToday;
 
         HeatmapHolder(View view) {
@@ -147,6 +155,11 @@ class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             heatmap = view.findViewById(R.id.diary_heatmap);
             scroll = view.findViewById(R.id.diary_heatmap_scroll);
             summary = view.findViewById(R.id.diary_activity_summary);
+            stats = view.findViewById(R.id.diary_stats);
+            longest = view.findViewById(R.id.diary_stat_longest);
+            current = view.findViewById(R.id.diary_stat_current);
+            busiest = view.findViewById(R.id.diary_stat_busiest);
+            busiestBox = view.findViewById(R.id.diary_stat_busiest_box);
             addLegendCells(view.getContext(), view.findViewById(R.id.diary_legend_cells));
         }
 
@@ -155,11 +168,38 @@ class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             heatmap.setSelectedDate(selected);
             heatmap.setOnDayClickListener(listener::onDayClick);
             summary.setText(heatmap.getContentDescription());
+            bindStats(DiaryStats.from(counts, Calendar.getInstance()), listener);
             if (!scrolledToToday) {
                 scrolledToToday = true;
                 // Today is in the last column, so start scrolled to the right edge.
                 scroll.post(() -> scroll.fullScroll(View.FOCUS_RIGHT));
             }
+        }
+
+        private void bindStats(DiaryStats data, Listener listener) {
+            Resources res = itemView.getResources();
+            String longestText = days(res, data.longestStreak);
+            String currentText = days(res, data.currentStreak);
+            String busiestText = data.busiestDate == null
+                    ? res.getString(R.string.diary_stat_none) : shortDate(data.busiestDate);
+            longest.setText(longestText);
+            current.setText(currentText);
+            busiest.setText(busiestText);
+            stats.setContentDescription(res.getString(R.string.diary_stats_description,
+                    longestText, currentText, busiestText));
+            if (data.busiestDate == null) {
+                busiestBox.setOnClickListener(null);
+                busiestBox.setClickable(false);
+            } else {
+                String date = data.busiestDate;
+                int count = data.busiestCount;
+                busiestBox.setOnClickListener(v -> listener.onDayClick(date, count));
+            }
+        }
+
+        private static String days(Resources res, int days) {
+            return days <= 0 ? res.getString(R.string.diary_stat_none)
+                    : res.getQuantityString(R.plurals.diary_stat_days, days, days);
         }
 
         private static void addLegendCells(Context context, LinearLayout container) {
@@ -196,6 +236,7 @@ class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     static final class RecordHolder extends RecyclerView.ViewHolder {
         private final TextView poster;
+        private final ImageView posterImage;
         private final TextView title;
         private final TextView meta;
         private final TextView rating;
@@ -204,6 +245,7 @@ class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         RecordHolder(View view) {
             super(view);
             poster = view.findViewById(R.id.diary_record_poster);
+            posterImage = view.findViewById(R.id.diary_record_poster_image);
             title = view.findViewById(R.id.diary_record_title);
             meta = view.findViewById(R.id.diary_record_meta);
             rating = view.findViewById(R.id.diary_record_rating);
@@ -217,6 +259,7 @@ class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
             title.setText(mediaTitle);
             poster.setText(mediaTitle.isEmpty() ? "" : mediaTitle.substring(0, 1).toUpperCase(Locale.ENGLISH));
+            PosterLoader.load(itemView.getContext(), item.mediaPoster, posterImage, poster);
 
             String metaText = metaLine(res, item);
             meta.setText(metaText);
@@ -244,6 +287,16 @@ class DiaryAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         try {
             Date date = new SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(isoDate);
             return new SimpleDateFormat("EEE, MMM d, yyyy", Locale.ENGLISH).format(date);
+        } catch (ParseException | NullPointerException e) {
+            return isoDate;
+        }
+    }
+
+    /** {@code 2026-02-22} as {@code Feb 22}. */
+    static String shortDate(String isoDate) {
+        try {
+            Date date = new SimpleDateFormat("yyyy-MM-dd", Locale.US).parse(isoDate);
+            return new SimpleDateFormat("MMM d", Locale.ENGLISH).format(date);
         } catch (ParseException | NullPointerException e) {
             return isoDate;
         }

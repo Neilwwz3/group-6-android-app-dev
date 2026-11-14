@@ -1,5 +1,6 @@
 package hk.hkucs.group_6_android_app_dev.ui.detail;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,22 +8,28 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.progressindicator.LinearProgressIndicator;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import androidx.activity.EdgeToEdge;
 import androidx.core.graphics.Insets;
@@ -32,10 +39,12 @@ import androidx.core.view.WindowInsetsCompat;
 import hk.hkucs.group_6_android_app_dev.R;
 import hk.hkucs.group_6_android_app_dev.data.db.entity.MediaItem;
 import hk.hkucs.group_6_android_app_dev.data.db.entity.WatchRecord;
+import hk.hkucs.group_6_android_app_dev.data.model.MediaType;
 import hk.hkucs.group_6_android_app_dev.ui.edit.EditMediaActivity;
 import hk.hkucs.group_6_android_app_dev.ui.record.AddRecordActivity;
 import hk.hkucs.group_6_android_app_dev.util.MediaMeta;
 import hk.hkucs.group_6_android_app_dev.util.PosterLoader;
+import hk.hkucs.group_6_android_app_dev.util.RecordFormat;
 import hk.hkucs.group_6_android_app_dev.util.StatusBadge;
 
 /** Title details: change status and rating, see records, edit and delete. */
@@ -43,6 +52,13 @@ public class MediaDetailActivity extends AppCompatActivity {
 
     public static final String EXTRA_MEDIA_ID =
             "hk.hkucs.group_6_android_app_dev.extra.MEDIA_ID";
+    private static final String EXTRA_SHARED_POSTER =
+            "hk.hkucs.group_6_android_app_dev.extra.SHARED_POSTER";
+    /** Longest wait for the poster before the shared transition starts anyway. */
+    private static final long SHARED_POSTER_TIMEOUT_MS = 400;
+
+    /** How long "Undo" stays on screen after deleting an entry. */
+    private static final int UNDO_MS = 5000;
 
     private MediaDetailViewModel vm;
     private ChipGroup statusGroup;
@@ -51,12 +67,30 @@ public class MediaDetailActivity extends AppCompatActivity {
     /** True while the UI mirrors stored data, so listeners ignore programmatic changes. */
     private boolean updatingUi;
     private boolean hadItem;
+    /** Distinct episodes logged so far, for the series progress bar. */
+    private int watchedEpisodes;
+    private boolean progressAnimated;
 
     public static Intent newIntent(Context context, @NonNull String mediaId) {
         if (mediaId == null || mediaId.trim().isEmpty()) {
             throw new IllegalArgumentException("mediaId is required");
         }
         return new Intent(context, MediaDetailActivity.class).putExtra(EXTRA_MEDIA_ID, mediaId);
+    }
+
+    /**
+     * Opens the details page. When {@code poster} is given, it grows into the details poster.
+     */
+    public static void open(@NonNull Activity activity, @NonNull String mediaId,
+            @Nullable View poster) {
+        Intent intent = newIntent(activity, mediaId);
+        if (poster == null) {
+            activity.startActivity(intent);
+            return;
+        }
+        intent.putExtra(EXTRA_SHARED_POSTER, true);
+        activity.startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(
+                activity, poster, "poster_" + mediaId).toBundle());
     }
 
     /** A nonblank String ID is required here. */
@@ -92,6 +126,23 @@ public class MediaDetailActivity extends AppCompatActivity {
         MaterialToolbar toolbar = findViewById(R.id.detail_toolbar);
         toolbar.setTitle(R.string.details_title);
         toolbar.setNavigationOnClickListener(view -> finish());
+        toolbar.inflateMenu(R.menu.menu_detail);
+        toolbar.setOnMenuItemClickListener(menuItem -> {
+            if (menuItem.getItemId() == R.id.action_share) {
+                shareTitle();
+                return true;
+            }
+            return false;
+        });
+
+        String mediaId = getIntent().getStringExtra(EXTRA_MEDIA_ID);
+        findViewById(R.id.detail_poster_image).setTransitionName("poster_" + mediaId);
+        if (getIntent().getBooleanExtra(EXTRA_SHARED_POSTER, false)) {
+            // Wait until the poster is bound (it is usually cached) so it can grow into place.
+            supportPostponeEnterTransition();
+            root.postDelayed(this::supportStartPostponedEnterTransition,
+                    SHARED_POSTER_TIMEOUT_MS);
+        }
 
         statusGroup = findViewById(R.id.detail_status_group);
         ratingLayout = findViewById(R.id.detail_rating_layout);
@@ -173,6 +224,8 @@ public class MediaDetailActivity extends AppCompatActivity {
                         : item.title.substring(0, 1).toUpperCase(java.util.Locale.US));
         PosterLoader.load(this, item.poster,
                 findViewById(R.id.detail_poster_image), findViewById(R.id.detail_poster_letter));
+        View poster = findViewById(R.id.detail_poster_image);
+        poster.post(this::supportStartPostponedEnterTransition);
 
         updatingUi = true;
         for (int i = 0; i < statusGroup.getChildCount(); i++) {
@@ -184,6 +237,82 @@ public class MediaDetailActivity extends AppCompatActivity {
         ratingField.setText(item.rating == null ? null : MediaMeta.score(item.rating));
         ratingLayout.setError(null);
         updatingUi = false;
+        renderProgress(item);
+    }
+
+    /** Series only: how many distinct episodes have been logged out of the total. */
+    private void renderProgress(@Nullable MediaItem item) {
+        View box = findViewById(R.id.detail_progress_box);
+        boolean show = item != null && MediaType.SERIES.equals(item.type)
+                && item.totalEpisodes != null && item.totalEpisodes > 0;
+        box.setVisibility(show ? View.VISIBLE : View.GONE);
+        if (!show) {
+            return;
+        }
+        int total = item.totalEpisodes;
+        int watched = Math.min(watchedEpisodes, total);
+        ((TextView) findViewById(R.id.detail_progress_label)).setText(
+                getString(R.string.detail_progress, watched, total));
+        LinearProgressIndicator bar = findViewById(R.id.detail_progress);
+        bar.setProgressCompat(Math.round(1000f * watched / total), !progressAnimated);
+        progressAnimated = true;
+    }
+
+    private void shareTitle() {
+        MediaItem item = vm.getItem().getValue();
+        if (item == null) {
+            return;
+        }
+        String name = item.year == null ? item.title
+                : getString(R.string.share_title_year, item.title, item.year);
+        String text = item.rating == null ? getString(R.string.share_title_unrated, name)
+                : getString(R.string.share_title_rated, name, MediaMeta.score(item.rating));
+        share(text + " " + getString(R.string.share_signature));
+    }
+
+    private void shareRecord(WatchRecord record) {
+        MediaItem item = vm.getItem().getValue();
+        if (item == null) {
+            return;
+        }
+        StringBuilder text = new StringBuilder(getString(R.string.share_record, item.title,
+                RecordFormat.longDate(record.date)));
+        if (record.rating != null) {
+            text.append(' ').append(getString(R.string.share_record_rating,
+                    MediaMeta.score(record.rating)));
+        }
+        if (!record.note.trim().isEmpty()) {
+            text.append(' ').append(getString(R.string.share_record_note, record.note.trim()));
+        }
+        text.append(' ').append(getString(R.string.share_signature));
+        share(text.toString());
+    }
+
+    private void share(String text) {
+        Intent send = new Intent(Intent.ACTION_SEND).setType("text/plain")
+                .putExtra(Intent.EXTRA_TEXT, text);
+        startActivity(Intent.createChooser(send, getString(R.string.share_chooser)));
+    }
+
+    private void showRecordMenu(View anchor, WatchRecord record) {
+        PopupMenu menu = new PopupMenu(this, anchor);
+        menu.inflate(R.menu.menu_record);
+        menu.setOnMenuItemClickListener(menuItem -> {
+            if (menuItem.getItemId() == R.id.action_share_record) {
+                shareRecord(record);
+                return true;
+            }
+            if (menuItem.getItemId() == R.id.action_delete_record) {
+                vm.deleteRecord(record);
+                Snackbar.make(findViewById(R.id.detail_root), R.string.record_deleted,
+                                UNDO_MS)
+                        .setAction(R.string.undo, v -> vm.restoreRecord(record))
+                        .show();
+                return true;
+            }
+            return false;
+        });
+        menu.show();
     }
 
     /** Saves the typed 0–10 rating with one-decimal precision; blank means not rated. */
@@ -214,13 +343,25 @@ public class MediaDetailActivity extends AppCompatActivity {
         container.removeAllViews();
         boolean empty = records == null || records.isEmpty();
         findViewById(R.id.records_empty).setVisibility(empty ? View.VISIBLE : View.GONE);
+        renderRecordSummary(records);
+        Set<Integer> episodes = new HashSet<>();
+        if (records != null) {
+            for (WatchRecord record : records) {
+                episodes.addAll(record.episodes);
+            }
+        }
+        watchedEpisodes = episodes.size();
+        renderProgress(vm.getItem().getValue());
         if (empty) {
             return;
         }
         LayoutInflater inflater = getLayoutInflater();
         for (WatchRecord record : records) {
             View view = inflater.inflate(R.layout.item_record, container, false);
-            ((TextView) view.findViewById(R.id.record_date)).setText(record.date);
+            ((TextView) view.findViewById(R.id.record_date)).setText(
+                    RecordFormat.longDate(record.date));
+            view.findViewById(R.id.record_more).setOnClickListener(
+                    anchor -> showRecordMenu(anchor, record));
             TextView note = view.findViewById(R.id.record_note);
             if (record.note.trim().isEmpty()) {
                 note.setVisibility(View.GONE);
@@ -234,25 +375,52 @@ public class MediaDetailActivity extends AppCompatActivity {
 
     private String recordMeta(WatchRecord record) {
         StringBuilder sb = new StringBuilder();
-        if (record.minutes != null) {
-            sb.append(getString(R.string.record_minutes, record.minutes));
-        }
         if (!record.episodes.isEmpty()) {
+            sb.append(RecordFormat.episodes(getResources(), record.episodes));
+        }
+        if (record.minutes != null) {
             appendSeparator(sb);
-            StringBuilder episodes = new StringBuilder();
-            for (Integer episode : record.episodes) {
-                if (episodes.length() > 0) {
-                    episodes.append(", ");
-                }
-                episodes.append(episode);
-            }
-            sb.append(getString(R.string.record_episodes, episodes));
+            sb.append(RecordFormat.duration(getResources(), record.minutes));
         }
         if (record.rating != null) {
             appendSeparator(sb);
-            sb.append(getString(R.string.rating_value, MediaMeta.score(record.rating)));
+            sb.append(getString(R.string.record_rating_star, MediaMeta.score(record.rating)));
         }
         return sb.toString();
+    }
+
+    /** "3 entries · 5 h 2 min", plus the rating change when it was rated more than once. */
+    private void renderRecordSummary(@Nullable List<WatchRecord> records) {
+        TextView summary = findViewById(R.id.records_summary);
+        if (records == null || records.isEmpty()) {
+            summary.setVisibility(View.GONE);
+            return;
+        }
+        int minutes = 0;
+        Float first = null;
+        Float last = null;
+        int rated = 0;
+        // Records are newest first: the last rated one in the list is the earliest rating.
+        for (WatchRecord record : records) {
+            minutes += record.minutes == null ? 0 : record.minutes;
+            if (record.rating != null) {
+                if (last == null) {
+                    last = record.rating;
+                }
+                first = record.rating;
+                rated++;
+            }
+        }
+        String text = getString(R.string.records_summary,
+                getResources().getQuantityString(R.plurals.profile_entries, records.size(),
+                        records.size()),
+                RecordFormat.duration(getResources(), minutes));
+        if (rated > 1 && !first.equals(last)) {
+            text = getString(R.string.records_summary, text, getString(
+                    R.string.records_rating_trend, MediaMeta.score(first), MediaMeta.score(last)));
+        }
+        summary.setText(text);
+        summary.setVisibility(View.VISIBLE);
     }
 
     private void confirmDelete() {
