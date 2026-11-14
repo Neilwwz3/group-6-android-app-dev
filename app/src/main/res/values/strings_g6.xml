@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- G6 demo polish. Kept in its own file so edits never conflict with strings.xml. -->
+<resources>
+    <!-- Charts -->
+    <string name="chart_hours_short">%1$dh</string>
+    <string name="chart_minutes_short">%1$dm</string>
+
+    <!-- Profile: monthly activity -->
+    <string name="profile_monthly_title">Monthly activity</string>
+    <string name="profile_monthly_prompt">Hours watched over the last 12 months.</string>
+    <string name="profile_monthly_hint">Tap a bar to see that month.</string>
+    <string name="profile_monthly_none">No entries this month</string>
+    <string name="profile_monthly_detail">%1$s · %2$s</string>
+    <plurals name="profile_entries">
+        <item quantity="one">%d entry</item>
+        <item quantity="other">%d entries</item>
+    </plurals>
+    <string name="profile_hours_minutes">%1$d h %2$d min</string>
+    <string name="profile_minutes_only">%1$d min</string>
+    <string name="profile_monthly_description">Bar chart of hours watched per month. Selected: %1$s, %2$s</string>
+
+    <!-- Profile: highlights -->
+    <string name="profile_highlights_title">Highlights</string>
+    <string name="profile_highlights_prompt">The stand-outs of your collection.</string>
+    <string name="profile_top_rated">Top rated</string>
+    <string name="profile_most_logged">Most logged</string>
+    <string name="profile_rating_value">★ %1$s / 10</string>
+    <string name="profile_split_title">Movies vs TV</string>
+    <string name="profile_split_movies">Movies · %1$s</string>
+    <string name="profile_split_series">TV shows · %1$s</string>
+    <string name="profile_split_description">Movies %1$s, TV shows %2$s of your viewing time</string>
+</resources>

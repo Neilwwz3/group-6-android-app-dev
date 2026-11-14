@@ -96,6 +96,7 @@ MediaRepository repo = MediaRepository.get(application);
 | `observeSummary()` | `LiveData<StatsSummary>`，全部数据 | 我的 |
 | `observeMonthSummary(String yearMonth)` | `LiveData<StatsSummary>`，例如 `"2026-11"`，只算这个月的记录 | 首页“本月概览” |
 | `observeGenreCounts()` | `LiveData<List<GenreCount>>`，数量多的在前 | 我的·题材环形图 |
+| `observeMonthlyTotals(String fromDate)` | `LiveData<List<MonthTotal>>`：每月的记录数 `count` 和总分钟 `minutes`，`month` 形如 `"2026-11"`，旧的在前；没有记录的月份不出现 | 我的·月度柱状图 |
 
 ### 示例数据
 

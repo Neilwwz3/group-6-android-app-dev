@@ -28,6 +28,7 @@ import hk.hkucs.group_6_android_app_dev.data.model.DayCount;
 import hk.hkucs.group_6_android_app_dev.data.model.GenreCount;
 import hk.hkucs.group_6_android_app_dev.data.model.MediaStatus;
 import hk.hkucs.group_6_android_app_dev.data.model.MediaType;
+import hk.hkucs.group_6_android_app_dev.data.model.MonthTotal;
 import hk.hkucs.group_6_android_app_dev.data.model.RecordWithMedia;
 import hk.hkucs.group_6_android_app_dev.data.model.StatsSummary;
 
@@ -145,6 +146,12 @@ public class MediaRepository {
     /** Totals for one month's records, e.g. {@code "2026-11"}. */
     public LiveData<StatsSummary> observeMonthSummary(String yearMonth) {
         return db.watchRecordDao().observeMonthSummary(yearMonth);
+    }
+
+    /** Record count and minutes per month ({@code YYYY-MM}), oldest first, for records on or
+     * after {@code fromDate}. Months without records are absent. */
+    public LiveData<List<MonthTotal>> observeMonthlyTotals(String fromDate) {
+        return db.watchRecordDao().observeMonthlyTotals(fromDate);
     }
 
     /** Genres by number of media items, most common first. */

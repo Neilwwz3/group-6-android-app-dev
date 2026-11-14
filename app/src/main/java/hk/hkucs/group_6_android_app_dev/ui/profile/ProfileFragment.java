@@ -1,5 +1,6 @@
 package hk.hkucs.group_6_android_app_dev.ui.profile;
 
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -9,6 +10,8 @@ import android.graphics.drawable.GradientDrawable;
 import android.graphics.Typeface;
 import android.view.Gravity;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
@@ -29,19 +32,33 @@ import androidx.lifecycle.ViewModelProvider;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
+import java.util.function.IntFunction;
 
 import hk.hkucs.group_6_android_app_dev.R;
+import hk.hkucs.group_6_android_app_dev.data.db.entity.MediaItem;
 import hk.hkucs.group_6_android_app_dev.data.model.GenreCount;
+import hk.hkucs.group_6_android_app_dev.data.model.MonthTotal;
 import hk.hkucs.group_6_android_app_dev.data.model.StatsSummary;
 import hk.hkucs.group_6_android_app_dev.ui.components.DonutChartView;
+import hk.hkucs.group_6_android_app_dev.ui.components.MonthlyBarChartView;
+import hk.hkucs.group_6_android_app_dev.ui.detail.MediaDetailActivity;
+import hk.hkucs.group_6_android_app_dev.util.PosterLoader;
 
 public class ProfileFragment extends Fragment {
     private static final int GENRE_PREVIEW_SIZE = 3;
     private static final int MIN_SIDE_BY_SIDE_WIDTH_DP = 300;
     private static final float MAX_SIDE_BY_SIDE_FONT_SCALE = 1.1f;
+    private static final long COUNT_UP_MS = 700;
     private AlertDialog dialog;
+    /** Numbers currently shown in the overview, so updates count up from them. */
+    private int shownTitles;
+    private int shownWatched;
+    private int shownMinutes;
+    private boolean monthPicked;
 
     public ProfileFragment() {
         super(R.layout.fragment_profile);
@@ -63,6 +80,13 @@ public class ProfileFragment extends Fragment {
 
         model.getSummary().observe(getViewLifecycleOwner(), summary -> renderSummary(view, summary));
         model.getGenreCounts().observe(getViewLifecycleOwner(), counts -> renderGenres(view, counts));
+        MonthlyBarChartView monthChart = view.findViewById(R.id.profile_month_chart);
+        monthChart.setOnMonthSelectedListener(index -> {
+            monthPicked = true;
+            renderSelectedMonth(view, monthChart);
+        });
+        model.getMonthlyTotals().observe(getViewLifecycleOwner(), totals -> renderMonthly(view, totals));
+        model.getHighlights().observe(getViewLifecycleOwner(), data -> renderHighlights(view, data));
         model.getBusy().observe(getViewLifecycleOwner(), busy -> {
             boolean running = Boolean.TRUE.equals(busy);
             load.setEnabled(!running);
@@ -94,10 +118,15 @@ public class ProfileFragment extends Fragment {
         }
         view.findViewById(R.id.profile_empty).setVisibility(summary.mediaCount == 0 ? View.VISIBLE : View.GONE);
         NumberFormat integerFormat = NumberFormat.getIntegerInstance(Locale.US);
-        setText(view, R.id.profile_titles, integerFormat.format(summary.mediaCount));
-        setText(view, R.id.profile_watched, integerFormat.format(summary.watchedCount));
-        setText(view, R.id.profile_time,
-                getString(R.string.g5_profile_metric_minutes, integerFormat.format(summary.totalMinutes)));
+        countUp(view.findViewById(R.id.profile_titles), shownTitles, summary.mediaCount,
+                integerFormat::format);
+        countUp(view.findViewById(R.id.profile_watched), shownWatched, summary.watchedCount,
+                integerFormat::format);
+        countUp(view.findViewById(R.id.profile_time), shownMinutes, summary.totalMinutes,
+                value -> getString(R.string.g5_profile_metric_minutes, integerFormat.format(value)));
+        shownTitles = summary.mediaCount;
+        shownWatched = summary.watchedCount;
+        shownMinutes = summary.totalMinutes;
         CharSequence rating = getText(R.string.g5_profile_metric_unrated);
         if (summary.averageRating != null) {
             SpannableStringBuilder formatted = new SpannableStringBuilder(
@@ -110,6 +139,132 @@ public class ProfileFragment extends Fragment {
             rating = formatted;
         }
         setText(view, R.id.profile_average, rating);
+    }
+
+    /** Rolls a number from {@code from} to {@code to}; jumps straight there when unchanged. */
+    private void countUp(TextView label, int from, int to, IntFunction<CharSequence> format) {
+        Object running = label.getTag();
+        if (running instanceof ValueAnimator) {
+            ((ValueAnimator) running).cancel();
+        }
+        if (from == to) {
+            label.setText(format.apply(to));
+            return;
+        }
+        ValueAnimator animator = ValueAnimator.ofInt(from, to);
+        animator.setDuration(COUNT_UP_MS);
+        animator.setInterpolator(new DecelerateInterpolator());
+        animator.addUpdateListener(a -> label.setText(format.apply((int) a.getAnimatedValue())));
+        label.setTag(animator);
+        animator.start();
+    }
+
+    private void renderMonthly(View view, List<MonthTotal> totals) {
+        MonthlyBarChartView chart = view.findViewById(R.id.profile_month_chart);
+        chart.setData(totals);
+        if (!monthPicked) {
+            // Open on the busiest month so the chart has something to say straight away.
+            chart.setSelectedIndex(chart.getBusiestIndex());
+        }
+        renderSelectedMonth(view, chart);
+    }
+
+    private void renderSelectedMonth(View view, MonthlyBarChartView chart) {
+        int index = chart.getSelectedIndex();
+        String monthName = chart.getMonthKey(index);
+        try {
+            monthName = new SimpleDateFormat("MMMM yyyy", Locale.US).format(
+                    new SimpleDateFormat("yyyy-MM", Locale.US).parse(chart.getMonthKey(index)));
+        } catch (ParseException ignored) {
+            // Keep the raw key.
+        }
+        int count = chart.getCount(index);
+        String detail = count == 0 ? getString(R.string.profile_monthly_none)
+                : getString(R.string.profile_monthly_detail,
+                        getResources().getQuantityString(R.plurals.profile_entries, count, count),
+                        duration(chart.getMinutes(index)));
+        setText(view, R.id.profile_month_title, monthName);
+        setText(view, R.id.profile_month_detail, detail);
+        chart.setContentDescription(getString(R.string.profile_monthly_description, monthName, detail));
+    }
+
+    private String duration(int minutes) {
+        return minutes >= 60
+                ? getString(R.string.profile_hours_minutes, minutes / 60, minutes % 60)
+                : getString(R.string.profile_minutes_only, minutes);
+    }
+
+    private void renderHighlights(View view, ProfileHighlights data) {
+        View section = view.findViewById(R.id.profile_highlights_section);
+        if (data == null || data.isEmpty()) {
+            section.setVisibility(View.GONE);
+            return;
+        }
+        boolean wasHidden = section.getVisibility() != View.VISIBLE;
+        section.setVisibility(View.VISIBLE);
+
+        String rating = data.topRated == null || data.topRated.rating == null ? ""
+                : getString(R.string.profile_rating_value, formatScore(data.topRated.rating));
+        bindHighlight(view, R.id.profile_top_rated_card, R.id.profile_top_rated_poster,
+                R.id.profile_top_rated_letter, R.id.profile_top_rated_title,
+                R.id.profile_top_rated_meta, data.topRated, rating, R.color.rating);
+        String logged = data.mostLogged == null ? "" : getResources().getQuantityString(
+                R.plurals.profile_entries, data.mostLoggedCount, data.mostLoggedCount);
+        bindHighlight(view, R.id.profile_most_logged_card, R.id.profile_most_logged_poster,
+                R.id.profile_most_logged_letter, R.id.profile_most_logged_title,
+                R.id.profile_most_logged_meta, data.mostLogged, logged, R.color.text_secondary);
+
+        int total = data.movieMinutes + data.seriesMinutes;
+        View splitCard = view.findViewById(R.id.profile_split_card);
+        splitCard.setVisibility(total == 0 ? View.GONE : View.VISIBLE);
+        if (total == 0) {
+            return;
+        }
+        NumberFormat percent = NumberFormat.getPercentInstance(Locale.US);
+        String movies = percent.format((double) data.movieMinutes / total);
+        String series = percent.format((double) data.seriesMinutes / total);
+        setWeight(view.findViewById(R.id.profile_split_movies), data.movieMinutes);
+        setWeight(view.findViewById(R.id.profile_split_series), data.seriesMinutes);
+        setText(view, R.id.profile_split_movies_label, getString(R.string.profile_split_movies, movies));
+        setText(view, R.id.profile_split_series_label, getString(R.string.profile_split_series, series));
+        splitCard.setContentDescription(getString(R.string.profile_split_description, movies, series));
+        if (wasHidden) {
+            View bar = view.findViewById(R.id.profile_split_bar);
+            bar.setPivotX(0f);
+            bar.setScaleX(0f);
+            bar.animate().scaleX(1f).setDuration(COUNT_UP_MS)
+                    .setInterpolator(new DecelerateInterpolator()).start();
+        }
+    }
+
+    private void bindHighlight(View root, int cardId, int posterId, int letterId, int titleId,
+                               int metaId, @Nullable MediaItem item, String meta, int metaColor) {
+        View card = root.findViewById(cardId);
+        card.setVisibility(item == null ? View.INVISIBLE : View.VISIBLE);
+        if (item == null) {
+            card.setOnClickListener(null);
+            return;
+        }
+        TextView letter = root.findViewById(letterId);
+        letter.setText(item.title.isEmpty() ? "" : item.title.substring(0, 1).toUpperCase(Locale.ENGLISH));
+        PosterLoader.load(requireContext(), item.poster, (ImageView) root.findViewById(posterId), letter);
+        setText(root, titleId, item.title);
+        TextView metaLabel = root.findViewById(metaId);
+        metaLabel.setText(meta);
+        metaLabel.setTextColor(ContextCompat.getColor(requireContext(), metaColor));
+        String id = item.id;
+        card.setOnClickListener(v -> startActivity(MediaDetailActivity.newIntent(requireContext(), id)));
+    }
+
+    private static void setWeight(View view, int weight) {
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
+        params.weight = weight;
+        view.setLayoutParams(params);
+    }
+
+    private static String formatScore(float score) {
+        return score == Math.rint(score) ? String.valueOf((int) score)
+                : String.format(Locale.US, "%.1f", score);
     }
 
     private void renderGenres(View view, List<GenreCount> counts) {
