@@ -29,4 +29,23 @@
     <string name="profile_split_movies">Movies · %1$s</string>
     <string name="profile_split_series">TV shows · %1$s</string>
     <string name="profile_split_description">Movies %1$s, TV shows %2$s of your viewing time</string>
+    <!-- Title details -->
+    <string name="detail_share">Share</string>
+    <string name="detail_progress">Episode progress · %1$d of %2$d</string>
+    <string name="records_summary">%1$s · %2$s</string>
+    <string name="records_rating_trend">Rating %1$s → %2$s</string>
+    <string name="record_more">More options for this entry</string>
+    <string name="record_share">Share entry</string>
+    <string name="record_delete">Delete entry</string>
+    <string name="record_deleted">Entry deleted</string>
+    <string name="undo">Undo</string>
+    <string name="record_rating_star">★ %1$s/10</string>
+    <string name="share_chooser">Share via</string>
+    <string name="share_title_year">%1$s (%2$d)</string>
+    <string name="share_title_rated">%1$s: I rate it %2$s/10.</string>
+    <string name="share_title_unrated">%1$s is on my list.</string>
+    <string name="share_record">Watched %1$s on %2$s.</string>
+    <string name="share_record_rating">Rated %1$s/10.</string>
+    <string name="share_record_note">“%1$s”</string>
+    <string name="share_signature">Tracked with MovieTracker.</string>
 </resources>

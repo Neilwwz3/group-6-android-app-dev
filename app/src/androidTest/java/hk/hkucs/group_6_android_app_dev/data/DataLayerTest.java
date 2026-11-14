@@ -92,6 +92,29 @@ public class DataLayerTest {
     }
 
     @Test
+    public void deleteRecord_thenRestore_putsTheSameRecordBackWithoutChangingStatus() {
+        String id = repo.saveMediaNow(media(MediaType.MOVIE, MediaStatus.WANT));
+        repo.addRecordNow(record(id, "2026-11-01"));
+        repo.updateStatus(id, MediaStatus.DROPPED);
+        List<DayCount> before = db.watchRecordDao().getDailyCounts("2026-01-01", "2026-12-31");
+        assertEquals(1, before.size());
+
+        WatchRecord saved = new WatchRecord();
+        saved.mediaId = id;
+        saved.date = "2026-11-01";
+        long recordId = db.watchRecordDao().insert(saved);
+        saved.id = recordId;
+        repo.deleteRecord(recordId, null);
+        assertEquals(1, db.watchRecordDao()
+                .getDailyCounts("2026-11-01", "2026-11-01").get(0).count);
+
+        repo.restoreRecord(saved, null);
+        assertEquals(2, db.watchRecordDao()
+                .getDailyCounts("2026-11-01", "2026-11-01").get(0).count);
+        assertEquals(MediaStatus.DROPPED, db.mediaDao().getById(id).status);
+    }
+
+    @Test
     public void dailyCounts_groupByDayWithinRangeInclusive() {
         String id = repo.saveMediaNow(media(MediaType.MOVIE, MediaStatus.WATCHED));
         repo.addRecordNow(record(id, "2025-11-30"));

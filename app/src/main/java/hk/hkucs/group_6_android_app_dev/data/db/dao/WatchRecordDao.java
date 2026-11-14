@@ -57,6 +57,9 @@ public interface WatchRecordDao {
             + "WHERE date >= :fromDate GROUP BY month ORDER BY month")
     LiveData<List<MonthTotal>> observeMonthlyTotals(String fromDate);
 
+    @Query("DELETE FROM watch_record WHERE id = :id")
+    void deleteById(long id);
+
     @Query("DELETE FROM watch_record WHERE media_id = :mediaId")
     void deleteForMedia(String mediaId);
 

@@ -137,6 +137,27 @@ public class MediaRepository {
         });
     }
 
+    /** Deletes one watch record. The title's status stays as it is. */
+    public void deleteRecord(long recordId, @Nullable Runnable onDone) {
+        writer.execute(() -> {
+            db.watchRecordDao().deleteById(recordId);
+            post(onDone);
+        });
+    }
+
+    /**
+     * Puts back a record removed with {@link #deleteRecord}, keeping its id and creation time
+     * (for "Undo"). Unlike {@link #addRecord} it never changes the title's status.
+     */
+    public void restoreRecord(@NonNull WatchRecord record, @Nullable Runnable onDone) {
+        writer.execute(() -> {
+            if (db.mediaDao().getById(record.mediaId) != null) {
+                db.watchRecordDao().insert(record);
+            }
+            post(onDone);
+        });
+    }
+
     // ---- Statistics ----
 
     public LiveData<StatsSummary> observeSummary() {
