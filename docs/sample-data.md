@@ -35,6 +35,7 @@ The entire dataset is in English, as required by the project's English-only UI r
 ## Viewing records
 
 - Record dates span **2025-12 to 2026-11**, with at least one record in each of the 12 months.
-- Records per month: 2025-12(1), 2026-01(8), 2026-02(3), 2026-03(4), 2026-04(5), 2026-05(6), 2026-06(4), 2026-07(3), 2026-08(4), 2026-09(4), 2026-10(2), 2026-11(6). January (8) stands out, with November and May (6 each) as secondary peaks, so the charts show clear variation.
+- 63 records in total. Records per month: 2025-12(1), 2026-01(11), 2026-02(6), 2026-03(4), 2026-04(5), 2026-05(7), 2026-06(4), 2026-07(3), 2026-08(4), 2026-09(5), 2026-10(2), 2026-11(11). January and November (11 each) stand out, with May (7) and February (6) as secondary peaks, so the charts show clear variation.
+- **Multi-record days** (one record per sitting), so the diary heatmap shows every shade: 2026-02-22 has 4 records (Supernatural, the darkest cell); 2026-01-11 and 2026-11-07 have 3; 2026-01-10, 2026-05-28, 2026-09-25 and 2026-11-08 have 2. Every other day with records has 1.
 - **Streak**: 2026-01-05 to 2026-01-12 is 8 consecutive days, each with a viewing record (bingeing Game of Thrones).
 - **Rewatch with changed rating**: 18 titles have 2 or more records with different ratings (e.g., Interstellar 9.0 to 9.5, Inception 8.5 to 9.0, Parasite 8.5 to 8.8, Spirited Away 8.8 to 9.0, The Shawshank Redemption 9.5 to 9.7).

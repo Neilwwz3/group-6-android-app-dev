@@ -417,8 +417,11 @@
         { "date": "2026-01-07", "episodes": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "minutes": 580, "rating": null, "note": "" },
         { "date": "2026-01-08", "episodes": [21, 22, 23, 24, 25, 26, 27, 28, 29, 30], "minutes": 580, "rating": null, "note": "" },
         { "date": "2026-01-09", "episodes": [31, 32, 33, 34, 35, 36, 37, 38, 39, 40], "minutes": 580, "rating": null, "note": "" },
-        { "date": "2026-01-10", "episodes": [41, 42, 43, 44, 45, 46, 47, 48, 49, 50], "minutes": 580, "rating": null, "note": "" },
-        { "date": "2026-01-11", "episodes": [51, 52, 53, 54, 55, 56, 57, 58, 59, 60], "minutes": 580, "rating": null, "note": "" },
+        { "date": "2026-01-10", "episodes": [41, 42, 43, 44, 45], "minutes": 290, "rating": null, "note": "" },
+        { "date": "2026-01-10", "episodes": [46, 47, 48, 49, 50], "minutes": 290, "rating": null, "note": "" },
+        { "date": "2026-01-11", "episodes": [51, 52, 53, 54], "minutes": 232, "rating": null, "note": "" },
+        { "date": "2026-01-11", "episodes": [55, 56, 57], "minutes": 174, "rating": null, "note": "" },
+        { "date": "2026-01-11", "episodes": [58, 59, 60], "minutes": 174, "rating": null, "note": "" },
         { "date": "2026-01-12", "episodes": [61, 62, 63, 64, 65, 66, 67], "minutes": 406, "rating": null, "note": "" },
         { "date": "2026-03-16", "episodes": [68, 69, 70, 71, 72, 73], "minutes": 348, "rating": 8.5, "note": "The ending felt rushed, but overall still worth it." }
       ]
@@ -444,7 +447,8 @@
         { "date": "2026-04-20", "episodes": [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "minutes": 611, "rating": null, "note": "" },
         { "date": "2026-05-03", "episodes": [21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33], "minutes": 611, "rating": null, "note": "" },
         { "date": "2026-05-15", "episodes": [34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46], "minutes": 611, "rating": null, "note": "" },
-        { "date": "2026-05-28", "episodes": [47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62], "minutes": 752, "rating": 9.4, "note": "The finale wraps it up so cleanly." }
+        { "date": "2026-05-28", "episodes": [47, 48, 49, 50, 51, 52, 53, 54], "minutes": 376, "rating": null, "note": "" },
+        { "date": "2026-05-28", "episodes": [55, 56, 57, 58, 59, 60, 61, 62], "minutes": 376, "rating": 9.4, "note": "The finale wraps it up so cleanly." }
       ]
     },
     {
@@ -506,7 +510,10 @@
       "rating": 9.1,
       "tags": ["intense"],
       "records": [
-        { "date": "2026-02-22", "episodes": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25], "minutes": 1125, "rating": 9.0, "note": "Season one is bleak and brilliant." },
+        { "date": "2026-02-22", "episodes": [1, 2, 3, 4, 5, 6], "minutes": 270, "rating": null, "note": "" },
+        { "date": "2026-02-22", "episodes": [7, 8, 9, 10, 11, 12], "minutes": 270, "rating": null, "note": "" },
+        { "date": "2026-02-22", "episodes": [13, 14, 15, 16, 17, 18], "minutes": 270, "rating": null, "note": "" },
+        { "date": "2026-02-22", "episodes": [19, 20, 21, 22, 23, 24, 25], "minutes": 315, "rating": 9.0, "note": "Season one is bleak and brilliant." },
         { "date": "2026-09-10", "episodes": [26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50], "minutes": 1125, "rating": 9.1, "note": "Into season three, the show hits its stride." }
       ]
     },
@@ -528,7 +535,8 @@
       "tags": ["anthology"],
       "records": [
         { "date": "2026-03-28", "episodes": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], "minutes": 715, "rating": 8.2, "note": "Got through the first three seasons, several episodes linger." },
-        { "date": "2026-10-02", "episodes": [14, 15, 16, 17, 18], "minutes": 275, "rating": 8.3, "note": "Halfway into season four." }
+        { "date": "2026-10-02", "episodes": [14, 15, 16, 17, 18], "minutes": 275, "rating": 8.3, "note": "Halfway into season four." },
+        { "date": "2026-11-07", "episodes": [19, 20], "minutes": 110, "rating": null, "note": "Two in a row, both unsettling." }
       ]
     },
         {
@@ -549,7 +557,9 @@
       "tags": ["intrigue"],
       "records": [
         { "date": "2026-05-08", "episodes": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15], "minutes": 705, "rating": 8.8, "note": "The slow burn is completely worth it." },
-        { "date": "2026-06-19", "episodes": [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], "minutes": 705, "rating": 9.0, "note": "Kim Wexler is the best written character on TV." }
+        { "date": "2026-06-19", "episodes": [16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30], "minutes": 705, "rating": 9.0, "note": "Kim Wexler is the best written character on TV." },
+        { "date": "2026-11-07", "episodes": [31, 32, 33], "minutes": 141, "rating": null, "note": "Season three opens strong." },
+        { "date": "2026-11-08", "episodes": [34, 35, 36], "minutes": 141, "rating": null, "note": "" }
       ]
     },
     {
@@ -570,8 +580,11 @@
       "tags": ["retro"],
       "records": [
         { "date": "2026-08-11", "episodes": [1, 2, 3, 4, 5, 6, 7, 8], "minutes": 416, "rating": 8.0, "note": "Season one nails the atmosphere." },
-        { "date": "2026-09-25", "episodes": [9, 10, 11, 12, 13, 14, 15, 16, 17], "minutes": 468, "rating": 8.2, "note": "Near the end of season two." },
-        { "date": "2026-10-18", "episodes": [18, 19, 20], "minutes": 156, "rating": 8.2, "note": "Just started season three." }
+        { "date": "2026-09-25", "episodes": [9, 10, 11, 12], "minutes": 208, "rating": null, "note": "" },
+        { "date": "2026-09-25", "episodes": [13, 14, 15, 16, 17], "minutes": 260, "rating": 8.2, "note": "Near the end of season two." },
+        { "date": "2026-10-18", "episodes": [18, 19, 20], "minutes": 156, "rating": 8.2, "note": "Just started season three." },
+        { "date": "2026-11-07", "episodes": [21, 22, 23], "minutes": 156, "rating": null, "note": "Season three keeps getting better." },
+        { "date": "2026-11-08", "episodes": [24, 25], "minutes": 104, "rating": null, "note": "" }
       ]
     },
     {

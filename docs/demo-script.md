@@ -12,7 +12,7 @@
 | 干扰 | 关掉通知、开勿扰；模拟器窗口放大到观众看得清 |
 | 备份 | 提前把主线完整录一遍屏，现场出问题就播放录屏 |
 
-示例数据：30 部作品，50 条观看记录，时间从 2025 年 12 月到 2026 年 11 月 11 日；1 月 5 日到 12 日连续 8 天有记录；5 部剧集“在看”，8 部作品“想看”。
+示例数据：30 部作品，63 条观看记录，时间从 2025 年 12 月到 2026 年 11 月 11 日；1 月 5 日到 12 日连续 8 天有记录；5 部剧集“在看”，8 部作品“想看”。热力图四档深浅都有：2 月 22 日最深（一天 4 条），1 月 11 日、11 月 7 日次之（3 条）。
 
 ## 主线（约 2 分钟，介绍视频照这个拍）
 
@@ -22,7 +22,7 @@
 | 2 | Library | 搜索框输入 `matrix`，再清空；点 **Want to Watch** 筛选；点开 **The Matrix** | "The library keeps every title with its status. Search and filters find anything in a second." | 搜索、状态筛选、海报卡片 |
 | 3 | 作品详情 | 点 **Add record** → 日期保持今天，时长 `136`，评分 `9`，短评 `Still holds up.` → **Save** | "Logging a watch takes a few seconds: date, time, a 0-to-10 rating and a short note." | 记一笔表单 |
 | 4 | 作品详情 | 返回后停留 2 秒 | "The entry is saved, and the film moves from Want to Watch to Watched automatically." | 新记录出现；状态徽章变成 Watched |
-| 5 | Diary | 指一下热力图上今天的格子；点 1 月里的一格 | "The diary turns a year of viewing into a heatmap. Tap any day and the timeline jumps straight to it." | 热力图、点格子跳转时间线 |
+| 5 | Diary | 指一下热力图上今天的格子；点 2 月 22 日那个最深的格子 | "The diary turns a year of viewing into a heatmap: the darker the cell, the more you watched that day. Tap any day and the timeline jumps straight to it." | 热力图、点格子跳转时间线 |
 | 6 | Profile | 停留 3 秒 | "Profile sums it all up: titles, time watched, average rating and your taste by genre. Everything stays on your phone, with no account." | 总量卡片、题材环形图 |
 
 ## 可选扩展（课上时间多时）
